@@ -1,0 +1,362 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+  {{!-- Sheet Header --}}
+  <header class="char-header header-grid">
+
+    <div class="header-fields header-grid">
+      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
+            use both the "grid" and "grid-Ncol" class where "N" can be any number
+            from 1 to 12 and will create that number of columns.  --}}
+      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
+          use both the "grid" and "grid-Ncol" class where "N" can be any number
+          from 1 to 12 and will create that number of columns.  --}}
+
+      <div class="header">
+        <div class="header-border" style="width: 75%;">
+          <!-- <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150"/> -->
+
+          <!-- PLAYER NAME -->
+          <div class="headernamegrid">
+            <div class="headerinputtext" style="font-size: 3rem;">Name</div>
+            <div class="headerinputfield charname" style="font-size: 2rem;"><input name="name" class="noborder"
+                type="text" value="{{actor.name}}" placeholder="Name" /></div>
+          </div>
+          <div class="seperatorLine"></div>
+          <!-- Background -->
+          <div class="headernamegrid">
+            <div class="headerinputtext">Background</div>
+            <div class="headerinputfield charname"><input name="data.description.background"
+                style="color: rgb(22,22,22);" class="noborder" type="text" value="{{data.description.background}}"
+                placeholder="" data-dtype="String" /></div>
+          </div>
+
+        </div>
+
+        <div class="header-border">
+          <!-- Birthsign -->
+          <div class="headernamegrid">
+            <div class="headerinputtext">Sign</div>
+            <div class="headerinputfield charname"><input name="data.description.birthsign"
+                style="color: rgb(22,22,22);" class="noborder" type="text" value="{{data.description.birthsign}}"
+                placeholder="" data-dtype="String" /></div>
+          </div>
+          <div class="seperatorLine"></div>
+          <!-- Coat -->
+          <div class="headernamegrid">
+            <div class="headerinputtext">Coat</div>
+            <div class="headerinputfield charname"><input name="data.description.coat" style="color: rgb(22,22,22);"
+                class="noborder" type="text" value="{{data.description.coat}}" placeholder="" data-dtype="String" />
+            </div>
+          </div>
+          <div class="seperatorLine"></div>
+          <!-- Look -->
+          <div class="headernamegrid">
+            <div class="headerinputtext">Look</div>
+            <div class="headerinputfield charname"><input name="data.description.look" style="color: rgb(22,22,22);"
+                class="noborder" type="text" value="{{data.description.look}}" placeholder="" data-dtype="String" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="grid-area: portrait" ;>
+
+        <img class="portrait" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="250" width="250" />
+
+        <div class="verticalFlex blockborder">
+          <!-- Grit -->
+          <div class="statblock">
+            <label for="data.grit.value" class="statName littleLabel">Grit</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.grit.value" value="{{data.grit.value}}"
+              data-dtype="Number" />
+          </div>
+        </div>
+      </div>
+
+      <div class="centercol">
+        <div class="grid">
+          <div class="verticalFlex blockborder">
+            <!-- Level -->
+            <div class="statblock">
+              <label for="data.level.value" class="statName littleLabel">LVL </label>
+
+              <input class="minmax-input darkGreyText" type="text" name="data.level.value" value="{{data.level.value}}"
+                data-dtype="Number" />
+            </div>
+          </div>
+          <div class="verticalFlex blockborder">
+            <!-- XP -->
+            <div class="statblock">
+              <label for="data.level.xp" class="statName littleLabel">XP </label>
+
+              <input class="minmax-input darkGreyText" type="text" name="data.level.xp" value="{{data.level.xp}}"
+                data-dtype="Number" />
+            </div>
+          </div>
+        </div>
+
+        <div class="creaturedescription">
+          {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+        </div>
+
+      </div>
+
+      <div class="abilities">
+        <div class="verticalFlex blockborder">
+          <!-- Strength -->
+          <div class="statblock">
+            <label for="data.stat.strength.value" class="statName minmaxtext rollable stat-roll" data-key="strength"
+              data-roll="1d20" data-label="Strength">STR</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.strength.value"
+              value="{{data.stats.strength.value}}" data-dtype="Number" />
+
+            <div class="slant" style="transform: skewX(0deg);"></div>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.strength.max"
+              value="{{data.stats.strength.max}}" data-dtype="Number" />
+          </div>
+
+          <div class="seperatorLine"></div>
+
+          <!-- Dexterity -->
+          <div class="statblock">
+            <label for="data.stat.dexterity.value" class="statName minmaxtext rollable stat-roll" data-key="dexterity"
+              data-roll="1d20" data-label="Dexterity">DEX</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.dexterity.value"
+              value="{{data.stats.dexterity.value}}" data-dtype="Number" />
+
+            <div class="slant" style="transform: skewX(0deg);"></div>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.dexterity.max"
+              value="{{data.stats.dexterity.max}}" data-dtype="Number" />
+
+          </div>
+          <div class="seperatorLine"></div>
+
+          <!-- Will -->
+          <div class="statblock">
+            <label for="data.stat.will.value" class="statName minmaxtext rollable stat-roll" data-key="will"
+              data-roll="1d20" data-label="Will">WIL</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.will.value"
+              value="{{data.stats.will.value}}" data-dtype="Number" />
+
+            <div class="slant" style="transform: skewX(0deg);"></div>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.will.max"
+              value="{{data.stats.will.max}}" data-dtype="Number" />
+          </div>
+
+        </div>
+
+        <div class="verticalFlex">
+          <div class="statblock" style="height: 20px;">
+            <div style="width:33%;"></div>
+            <div class="current-max-label">Current</div>
+            <div class="current-max-label">Max</div>
+          </div>
+        </div>
+
+        <div class="verticalFlex blockborder">
+          <!-- HP -->
+          <div class="statblock">
+            <label for="data.stat.will.value" class="statName minmaxtext">HP </label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.health.value" value="{{data.health.value}}"
+              data-dtype="Number" />
+            <div class="slant" style="transform: skewX(0deg);"></div>
+            <input class="minmax-input darkGreyText" type="text" name="data.health.max" value="{{data.health.max}}"
+              data-dtype="Number" />
+          </div>
+        </div>
+
+        <div class="verticalFlex">
+          <div class="statblock" style="height: 20px;">
+            <div style="width:33%;"></div>
+            <div class="current-max-label">Current</div>
+            <div class="current-max-label">Max</div>
+          </div>
+        </div>
+
+        <div class="verticalFlex blockborder">
+          <!-- Pips -->
+          <div class="statblock">
+            <label for="data.pips.value" class="statName littleLabel">Pips</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.pips.value" value="{{data.pips.value}}"
+              data-dtype="Number" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="mausritter sheet-tabs tabs" data-group="primary">
+    <a class="tab-select" data-tab="drag">Drag</a>
+    <a class="tab-select" data-tab="items">Inventory</a>
+    <a class="tab-select" data-tab="notes">Notes</a>
+
+  </nav>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+    {{!-- Notes Tab --}}
+    <div class="tab biography" data-group="primary" data-tab="notes">
+      {{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}
+    </div>
+    {{!-- Owned Items Tab --}}
+    <div class="tab items" data-group="primary" data-tab="items">
+      <!-- ITEMS -->
+      <ol class="items-list">
+        <li class="item flexrow item-header">
+          <div class="item-controls">
+            <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> Add
+              Item</a>
+          </div>
+        </li>
+
+        <div class="seperatorLine"></div>
+        Hand
+
+        {{#each actor.gear as |item id|}}
+        <li class="item flexrow dropitem" data-item-id="{{item._id}}">
+          <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+          <h4 class="skill-name list-roll description-roll" style="flex-grow: 1.5;">{{item.name}}</h4>
+          <div class="skill-stat list-roll item-quantity">{{item.data.quantity}}</div>
+          <div class="skill-stat">{{item.data.weight}}</div>
+          <div class="skill-stat">{{item.data.cost}}</div>
+          <div class="item-controls">
+            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+          </div>
+        </li>
+        {{/each}}
+      </ol>
+    </div>
+
+    {{!-- Item Drag Tab --}}
+    <div class="tab items" data-group="primary" data-tab="drag">
+      <div class="" data-item-id="{{item._id}}">
+        <div>
+          <div class="item-container">
+            <!-- Main Paw -->
+            <div class="item-slot-dashed" style="transform: translate3d(-270px, -130px, 0px);">
+              <div class="item-slot-header">
+                Main Paw
+              </div>
+            </div>
+            <!-- Off Paw -->
+            <div class="item-slot-dashed" style="transform: translate3d(-270px, 0px, 0px);">
+              <div class="item-slot-header">
+                Off Paw
+              </div>
+              <div class="item-slot-footer">Carried: Ready to use</div>
+            </div>
+
+            <!-- Body -->
+            <div class="item-slot-dashed" style="transform: translate3d(-140px, -130px, 0px);">
+              <div class="item-slot-header">
+                Body
+              </div>
+            </div>
+            <div class="item-slot-dashed" style="transform: translate3d(-140px, 0px, 0px);">
+              <div class="item-slot-header">
+                Body
+              </div>
+              <div class="item-slot-footer">Worn: Quick to ready</div>
+            </div>
+
+
+            <!-- Main Paw -->
+            <div class="item-bag-container" style="transform: translate3d(140px, -65px, 0px);">
+              <div class="item-slot-footer">Pack: takes time to ready. During combat, requires an action to retrieve</div>
+            </div>
+            <div class="item-slot-dashed" style="transform: translate3d(10px, -130px, 0px);">
+              <div class="item-bag-text">
+                1
+              </div>
+            </div>
+            <div class="item-slot-dashed" style="transform: translate3d(140px, -130px, 0px);">
+              <div class="item-bag-text">
+                2
+              </div>
+            </div>
+            <div class="item-slot-dashed" style="transform: translate3d(270px, -130px, 0px);">
+              <div class="item-bag-text">
+                3
+              </div>
+            </div>
+            <div class="item-slot-dashed" style="transform: translate3d(10px, 0px, 0px);">
+              <div class="item-bag-text">
+                4
+              </div>
+            </div>
+            <div class="item-slot-dashed" style="transform: translate3d(140px, 0px, 0px);">
+              <div class="item-bag-text">
+                5
+              </div>
+            </div>
+            <div class="item-slot-dashed" style="transform: translate3d(270px, 0px, 0px);">
+              <div class="item-bag-text">
+                6
+              </div>
+            </div>
+
+            {{#each actor.gear as |item id|}}
+            <div class="item-card item dragItems" style="width: {{item.data.size.x}}; height: {{item.data.size.y}};"
+              data-item-id="{{item._id}}">
+              <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+              <div class="item-card-header flex-between" data-item-id="{{item._id}}">
+                <div class="list-roll item-roll item-card-title">{{item.name}}</div>
+
+                <div class="item-controls item-card-chat">
+                  <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                  <!-- <i class="fas fa-comment-dots list-roll description-roll"></i> -->
+                </div>
+              </div>
+              <div class="grid grid-3col pip-button list-roll" style="width: 50px; margin: 5px;">
+                {{{item.data.pips.html}}}
+              </div>
+              <div class="item-card-tag">{{item.data.tag}}</div>
+              {{#if item.data.isWeapon}}
+              {{#if item.data.weapon.canSwap}}
+              <div class="item-card-damage list-roll damage-swap" style="font-size: 1.3em;">{{item.data.weapon.dmg1}}
+                <div style="color: grey; font-size: 0.8em;">{{item.data.weapon.dmg2}}</div>
+              </div>
+              {{else}}
+              <div class="item-card-damage">{{item.data.weapon.dmg1}}</div>
+              {{/if}}
+              {{/if}}
+              {{#if item.data.armor.value}}
+              <div class="item-card-damage">{{item.data.armor.value}} def</div>
+              {{/if}}
+              {{#if item.data.store}}
+              <div class="item-card-field-container">
+                <input class="item-card-field noborder item-input"
+                  style="position: absolute; text-align: left; left: 5px;" type="text" name="data.store.value"
+                  value="{{item.data.store.value}}" data-dtype="Number" data-edit="item.data.store.value" />
+                <div class="item-card-max">/{{item.data.store.max}}</div>
+              </div>
+              {{/if}}
+              <img src="{{item.img}}" title="{{item.name}}" class="item-card-image" />
+            </div>
+
+            <!-- <div class="itemt dragItems" id="{{item._id}}" data-item-id="{{item._id}}">
+              
+              {{item.name}}
+            </div> -->
+
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

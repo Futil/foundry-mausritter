@@ -1,0 +1,72 @@
+<div class="mausritter" {{#if actor._id}}data-actor-id="{{actor._id}}" {{/if}}
+    {{#if item._id}}data-item-id="{{item._id}}" {{/if}} {{#if tokenId}}data-token-id="{{tokenId}}" {{/if}}>
+    <div class="showinfo"></div>
+    <div class="showlessinfo"></div>
+
+    <div class="rollcontainer">
+        {{#if onlyDesc}}
+        <div class="flexrow">
+            <div class="rollweaponh1">{{item.name}}
+            </div>
+            <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
+        </div>
+        <div class="description" style="font-size: 1.4em;">
+            <div class="body">{{{item.data.description}}}</div>
+            <br />
+        </div>
+        {{else}}
+        {{#if isWeapon}}
+        <div class="flexrow">
+            <div class="rollweaponh1">{{item.name}}
+            </div>
+            <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
+        </div>
+        {{else}}
+        <div class="rollh1">{{stat.name}}</div>
+        {{/if}}
+
+        {{#if advantage}}
+        <div class="rollh2">A/D</div>
+        {{else}}
+        {{#unless isWeapon}}
+        <div class="rollh2">{{data.resultText.value}}</div>
+        {{/unless}}
+        {{/if}}
+        {{#unless isWeapon}}
+        <div class="roll-grid">
+            {{#if advantage}}
+            <div class="roll-result">{{data.diceTotal.value}} / {{data.diceTotal.advantageValue}}</div>
+            {{else}}
+            <div class="roll-result">{{data.diceTotal.value}}</div>
+            {{/if}}
+        </div>
+        <div class="roll-target">
+            <div class="valuetext">Target:</div>
+            <div class="roll-targetbox">
+                <div class="value">{{targetValue}}</div>
+            </div>
+        </div>
+        <div class="rollmods">
+            <div class="valuetext">{{stat.name}} ({{this.target}})</div>
+        </div>
+        {{/unless}}
+            <!-- Damage Roll -->
+            {{#if isWeapon}}
+            <div class="roll-damage">Damage</div>
+            <div>
+                <div class="roll-damagebox">
+                    <div class="value">{{data.diceTotal.damageValue}}</div>
+                </div>
+            </div>
+            <div class="rollmods" style="margin-top: 0px;">({{item.data.weapon.dmg1}})</div>
+            <br/>
+
+            {{#if item.data.description}}
+            <div class="description">
+                <div class="header" style="font-size: 1.3em;">Description</div>
+                <div class="body">{{{item.data.description}}}</div>
+            </div>
+            {{/if}}
+        {{/if}}
+        {{/if}}
+    </div>

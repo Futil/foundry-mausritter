@@ -1,0 +1,188 @@
+{
+  "Actor": {
+    "types": [
+      "character",
+      "creature"
+    ],
+    "templates": {
+      "base": {
+        "health": {
+          "value": 10,
+          "min": 0,
+          "max": 10
+        },
+        "hits": {
+          "value": 2,
+          "max": 2
+        }
+      }
+    },
+    "character": {
+      "templates": [
+        "base"
+      ],
+      "biography": "",
+      "notes": "",
+      "description": {
+        "background": "Description",
+        "birthsign": "",
+        "coat": "",
+        "look": ""
+      },
+      "level": {
+        "value": 1,
+        "xp": 0
+      },
+      "pips": {
+        "value": 0
+      },
+      "grit": {
+        "value": 0,
+        "ignored": ""
+      },
+      "stats": {
+        "strength": {
+          "value": 10,
+          "label": "Strength",
+          "max": 0
+        },
+        "dexterity": {
+          "value": 10,
+          "label": "Dexterity",
+          "max": 0
+        },
+        "will": {
+          "value": 10,
+          "label": "Will",
+          "max": 0
+        }
+      },
+      "other": {
+        "grit": {
+          "value": 0
+        }
+      }
+    },
+    "creature": {
+      "templates": [
+        "base"
+      ],
+      "biography": "",
+      "description": "This is a description",
+      "xp": {
+        "value": 1
+      },
+      "stats": {
+        "combat": {
+          "value": 10,
+          "label": "Combat",
+          "enabled": true
+        },
+        "instinct": {
+          "value": 10,
+          "label": "Instinct",
+          "enabled": true
+        },
+        "speed": {
+          "value": 10,
+          "label": "Speed",
+          "enabled": true
+        },
+        "loyalty": {
+          "value": 10,
+          "label": "Loyalty",
+          "enabled": false
+        },
+        "armor": {
+          "value": 10,
+          "label": "Armor",
+          "enabled": false
+        },
+        "sanity": {
+          "value": 10,
+          "label": "Sanity",
+          "enabled": false
+        }
+      }
+    }
+  },
+  "Item": {
+    "types": [
+      "item",
+      "weapon",
+      "armor",
+      "storage",
+      "condition"
+    ],
+    "templates": {
+      "base": {
+        "description": "",
+        "sheet": {
+          "active": false,
+          "currentX": 0,
+          "currentY": 0,
+          "initialX": 0,
+          "initialY": 0,
+          "xOffset": 0,
+          "yOffset": 0
+        },
+        "pips": {
+          "value": 0,
+          "max": 0,
+          "html": ""
+        },
+        "size" : {
+          "width" : 1,
+          "height" : 1
+        }
+      }
+    },
+    "item": {
+      "templates": [
+        "base"
+      ],
+      "weight": 0,
+      "cost": 0,
+      "tag": "",
+      "placement": "hand"
+    },
+    "storage": {
+      "templates": [
+        "base"
+      ],
+      "weight": 0,
+      "cost": 0,
+      "store": {
+        "value" : "0",
+        "max" : 25
+      },
+      "tag": ""
+    },
+    "weapon": {
+      "templates": [
+        "base"
+      ],
+      "weight": 0,
+      "cost": 0,
+      "tag": "",
+      "placement": "hand",
+      "weapon": {
+        "dmg1": "1d6",
+        "dmg2": "0",
+        "selected": 0,
+        "canSwap": false
+      }
+    },
+    "armor": {
+      "templates": [
+        "base"
+      ],
+      "weight": 0,
+      "cost": 0,
+      "tag": "",
+      "armor" : {
+        "value" : 1
+      }
+    }
+  }
+}

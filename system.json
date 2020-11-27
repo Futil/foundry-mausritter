@@ -1,0 +1,29 @@
+{
+  "name": "mausritter",
+  "title": "Mausritter",
+  "description": "The unofficial Mausritter system for FoundryVTT.",
+  "version": "0.0.1",
+  "minimumCoreVersion": "0.7.0",
+  "compatibleCoreVersion": "0.7.7",
+  "templateVersion": 2,
+  "author": "Martin Jencka",
+  "esmodules": ["module/mausritter.js"],
+  "styles": ["css/mausritter.css"],
+  "scripts": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 1,
+  "gridUnits": "in",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE.txt"
+}

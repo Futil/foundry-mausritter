@@ -22,8 +22,8 @@
   "gridUnits": "in",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "",
-  "url": "",
-  "manifest": "",
-  "download": "",
+  "url": "https://github.com/Futil/foundry-mausritter",
+  "manifest": "https://raw.githubusercontent.com/Futil/foundry-mothership/master/system.json",
+  "download": "https://github.com/Futil/foundry-mausritter/archive/master.zip",
   "license": "LICENSE.txt"
 }

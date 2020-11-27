@@ -23,7 +23,7 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "",
   "url": "https://github.com/Futil/foundry-mausritter",
-  "manifest": "https://raw.githubusercontent.com/Futil/foundry-mothership/master/system.json",
+  "manifest": "https://raw.githubusercontent.com/Futil/foundry-mausritter/master/system.json",
   "download": "https://github.com/Futil/foundry-mausritter/archive/master.zip",
   "license": "LICENSE.txt"
 }

@@ -223,6 +223,18 @@ export class MausritterActorSheet extends ActorSheet {
         // let dragItem = document.querySelector("#" + container.dataset.itemId);
         var curIndex = 1; //The current zIndex
 
+        if(item.data.sheet == undefined){
+          item.data.sheet = {
+            "active": false,
+            "currentX": 0,
+            "currentY": 0,
+            "initialX": 0,
+            "initialY": 0,
+            "xOffset": 0,
+            "yOffset": 0
+          };
+        }
+
         setTranslate(item.data.sheet.currentX, item.data.sheet.currentY, dragItem, true);
         dragItem.style.zIndex = "1";
 

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Germania+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 @include-when-export url(https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
 
@@ -390,7 +391,8 @@
 .mausritter .tab-select {
   font-size: medium;
   font-weight: bold;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: 'Germania One', cursive;
+  font-size: 1.5em;
   color: #111;
   text-align: center;
 }
@@ -1108,6 +1110,17 @@
   pointer-events: none;
 }
 
+.mausritter .item-card-header-noborder {
+  display: flex;
+  padding: 4px;
+  height: 30px;
+  z-index: 10;
+  font-family: 'Germania One', cursive;
+  font-size: 1.4em;
+  color: black;
+  pointer-events: none;
+}
+
 .mausritter .item-card-chat {
   font-size: 0.5em;
   color: grey;
@@ -1126,6 +1139,37 @@
   bottom: 0;
   position: absolute;
   pointer-events: none;
+}
+
+.mausritter .item-card-desc {
+  text-align: left;
+  margin: 5px;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 0.9em;
+  bottom: 40px;
+  position: absolute;
+  pointer-events: none;
+  font-family: "Roboto", sans-serif;
+}
+.mausritter .item-card-clear {
+  text-align: left;
+  margin: 5px;
+  font-weight: 900;
+  font-size: 0.9em;
+  bottom: 17px;
+  position: absolute;
+  pointer-events: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.mausritter .item-card-clear-text {
+  text-align: left;
+  margin: 5px;
+  bottom: 0;
+  position: absolute;
+  pointer-events: none;
+  font-size: 0.9em;
 }
 
 .mausritter .item-card-damage {
@@ -1180,4 +1224,9 @@
 
 .mausritter .pip-button {
   pointer-events: auto;
+}
+
+.mausritter .sheet-tabs{
+  border-top: 2px solid rgb(22, 22, 22);
+  border-bottom: 2px solid rgb(22, 22, 22);
 }

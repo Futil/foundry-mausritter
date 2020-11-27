@@ -133,7 +133,9 @@
         },
         "size" : {
           "width" : 1,
-          "height" : 1
+          "height" : 1,
+          "x" : "9em",
+          "y" : "9em"
         }
       }
     },
@@ -168,7 +170,7 @@
       "placement": "hand",
       "weapon": {
         "dmg1": "1d6",
-        "dmg2": "0",
+        "dmg2": "",
         "selected": 0,
         "canSwap": false
       }
@@ -183,6 +185,13 @@
       "armor" : {
         "value" : 1
       }
+    },
+    "condition": {
+      "templates": [
+        "base"
+      ],
+      "clear": "",
+      "desc": ""
     }
   }
 }

@@ -197,7 +197,7 @@
   </header>
 
   {{!-- Sheet Tab Navigation --}}
-  <nav class="mausritter sheet-tabs tabs" data-group="primary">
+  <nav class="mausritter sheet-tabs tabs" style="line-height: 29px; border-top: 2px solid rgb(22, 22, 22); border-bottom: 2px solid rgb(22, 22, 22);" data-group="primary">
     <a class="tab-select" data-tab="drag">Inventory</a>
     <a class="tab-select" data-tab="notes">Notes</a>
 
@@ -324,6 +324,17 @@
             <div class="item-card item dragItems" style="width: {{item.data.size.x}}; height: {{item.data.size.y}};"
               data-item-id="{{item._id}}">
               <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+              {{#if item.data.desc}} <!-- If it's a condition -->
+              <div class="item-card-header-noborder flex-between" data-item-id="{{item._id}}">
+                <div class="list-roll item-roll item-card-title">{{item.name}}</div>
+
+                <div class="item-controls item-card-chat">
+                  <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                  <!-- <i class="fas fa-comment-dots list-roll description-roll"></i> -->
+                </div>
+              </div>
+              {{else}}
               <div class="item-card-header flex-between" data-item-id="{{item._id}}">
                 <div class="list-roll item-roll item-card-title">{{item.name}}</div>
 
@@ -333,6 +344,7 @@
                   <!-- <i class="fas fa-comment-dots list-roll description-roll"></i> -->
                 </div>
               </div>
+              {{/if}}
               <div class="grid grid-3col pip-button list-roll" style="width: 50px; margin: 5px;">
                 {{{item.data.pips.html}}}
               </div>
@@ -355,6 +367,17 @@
                   style="position: absolute; text-align: left; left: 5px;" type="text" name="data.store.value"
                   value="{{item.data.store.value}}" data-dtype="Number" data-edit="item.data.store.value" />
                 <div class="item-card-max">/{{item.data.store.max}}</div>
+              </div>
+              {{/if}}
+              {{#if item.data.desc}}
+              <div class="item-card-desc">
+                {{item.data.desc}}
+              </div>
+              <div class="item-card-clear">
+                Clear:
+              </div>
+              <div class="item-card-clear-text">
+                {{item.data.clear}}
               </div>
               {{/if}}
               <img src="{{item.img}}" title="{{item.name}}" class="item-card-image" />

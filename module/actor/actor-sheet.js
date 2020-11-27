@@ -165,7 +165,6 @@ export class MausritterActorSheet extends ActorSheet {
       const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", li.dataset.itemId))
       const input = $(ev.currentTarget);
 
-      console.log(input);
       item[input[0].name] = input[0].value;
       
       this.actor.updateEmbeddedEntity('OwnedItem', item);
@@ -179,7 +178,6 @@ export class MausritterActorSheet extends ActorSheet {
 
       if (event.button == 0) {
         if (amount < item.data.pips.max) {
-          console.log(amount);
           item.data.pips.value = Number(amount) + 1;
         }
       } else if (event.button == 2) {
@@ -189,8 +187,6 @@ export class MausritterActorSheet extends ActorSheet {
       }
 
       this.actor.updateEmbeddedEntity('OwnedItem', item);
-
-      console.log(item);
     });
 
 

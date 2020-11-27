@@ -27,15 +27,15 @@ export class MausritterActor extends Actor {
   _prepareCharacterData(actorData) {
     const data = actorData.data;
 
-    let armorBonus = 0;
-    const armors = this.getEmbeddedCollection("OwnedItem").filter(e => "armor" === e.type);
+    // let armorBonus = 0;
+    // const armors = this.getEmbeddedCollection("OwnedItem").filter(e => "armor" === e.type);
 
-    for (let armor of armors) {
-      if (armor.data.equipped) {
-        armorBonus += armor.data.bonus;
-      }
-    }
-    data.stats.armor.mod = armorBonus;
+    // for (let armor of armors) {
+    //   if (armor.data.equipped) {
+    //     armorBonus += armor.data.bonus;
+    //   }
+    // }
+    // data.stats.armor.mod = armorBonus;
   }
 
   /**

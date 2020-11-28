@@ -880,6 +880,10 @@
   display: inline-flex;
 }
 
+.mausritter .fa-circle{
+  color: rgb(22, 22, 22);
+}
+
 .mausritter .portrait {
   width: 100%;
   height: auto;

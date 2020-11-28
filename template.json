@@ -68,40 +68,25 @@
         "base"
       ],
       "biography": "",
-      "description": "This is a description",
-      "xp": {
-        "value": 1
+      "notes": "",
+      "description": {
+        "disposition": ""
       },
       "stats": {
-        "combat": {
+        "strength": {
           "value": 10,
-          "label": "Combat",
-          "enabled": true
+          "label": "Strength",
+          "max": 0
         },
-        "instinct": {
+        "dexterity": {
           "value": 10,
-          "label": "Instinct",
-          "enabled": true
+          "label": "Dexterity",
+          "max": 0
         },
-        "speed": {
+        "will": {
           "value": 10,
-          "label": "Speed",
-          "enabled": true
-        },
-        "loyalty": {
-          "value": 10,
-          "label": "Loyalty",
-          "enabled": false
-        },
-        "armor": {
-          "value": 10,
-          "label": "Armor",
-          "enabled": false
-        },
-        "sanity": {
-          "value": 10,
-          "label": "Sanity",
-          "enabled": false
+          "label": "Will",
+          "max": 0
         }
       }
     }

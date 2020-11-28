@@ -4,7 +4,6 @@ import { MausritterActorSheet } from "./actor/actor-sheet.js";
 import { MausritterCreatureSheet } from "./actor/creature-sheet.js";
 import { MausritterItem } from "./item/item.js";
 import { MausritterItemSheet } from "./item/item-sheet.js";
-import "./external/dragula.min.js";
 
 import {
   registerSettings
@@ -77,15 +76,15 @@ Hooks.once('init', async function () {
     return str.toLowerCase();
   });
 
-  preloadHandlebarsTemplates();
+  // preloadHandlebarsTemplates();
 });
 
-async function preloadHandlebarsTemplates() {
-  const templatePaths = [
-      "systems/mausritter/templates/item/item-card.html"
-  ];
-  return loadTemplates(templatePaths);
-}
+// async function preloadHandlebarsTemplates() {
+//   const templatePaths = [
+//       "systems/mausritter/templates/item/item-card.html"
+//   ];
+//   return loadTemplates(templatePaths);
+// }
 
 
 Hooks.once("ready", async function () {

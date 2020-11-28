@@ -18,7 +18,6 @@ export class MausritterActor extends Actor {
     // things organized.
     if (actorData.type === 'character') this._prepareCharacterData(actorData);
     else if (actorData.type === 'creature') this._prepareCreatureData(actorData);
-    else if (actorData.type === 'ship') this._prepareShipData(actorData);
 
   }
   /**
@@ -45,9 +44,6 @@ export class MausritterActor extends Actor {
     const data = actorData.data;
   }
 
-  _prepareShipData(actorData) {
-    const data = actorData.data;
-  }
 
   rollStatSelect(statList) {
 

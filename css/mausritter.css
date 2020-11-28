@@ -240,6 +240,16 @@
   grid-template-columns: 15em auto 14em;
 }
 
+.mausritter .creature-header .header-grid {
+  display: grid;
+  grid-template-areas:
+  'header header header'
+  'centercol centercol abilities ';
+  grid-gap: 10px;
+  padding: 10px;
+  grid-template-columns: 15em auto 14em;
+}
+
 .mausritter .abilities {grid-area: abilities;}
 
 .mausritter .stress {grid-area: stress;}
@@ -857,6 +867,10 @@
   background: linear-gradient(90deg, rgba(221,221,221,1) 0%, rgba(221,221,221,1) 34%,rgba(255,255,255,1) 20%, rgba(255,255,255,1) 100%);
 }
 
+.mausritter .creature-header-border {
+  background: linear-gradient(90deg, rgba(221,221,221,1) 0%, rgba(221,221,221,1) 25%,rgba(255,255,255,1) 5%, rgba(255,255,255,1) 100%);
+}
+
 .mausritter .headernamegrid {
   display: flex;
 }
@@ -868,6 +882,13 @@
 
 .mausritter .portrait {
   width: 100%;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.mausritter .portrait-creature {
+  width: 102px;
   height: auto;
   border: 2px solid black;
   border-radius: 10px;
@@ -1033,6 +1054,7 @@
   height: 18.4em;
   width: 27.7em;
   pointer-events: none;
+  color: rgb(22, 22, 22);
 }
 
 .mausritter .item-bag-text {
@@ -1134,6 +1156,7 @@
 
 .mausritter .item-card-tag {
   text-align: left;
+  color: rgb(22, 22, 22);
   margin: 5px;
   font-weight: bold;
   bottom: 0;
@@ -1143,6 +1166,7 @@
 
 .mausritter .item-card-desc {
   text-align: left;
+  color: rgb(22, 22, 22);
   margin: 5px;
   font-weight: 500;
   font-style: italic;
@@ -1154,6 +1178,7 @@
 }
 .mausritter .item-card-clear {
   text-align: left;
+  color: rgb(22, 22, 22);
   margin: 5px;
   font-weight: 900;
   font-size: 0.9em;
@@ -1165,6 +1190,7 @@
 
 .mausritter .item-card-clear-text {
   text-align: left;
+  color: rgb(22, 22, 22);
   margin: 5px;
   bottom: 0;
   position: absolute;
@@ -1175,6 +1201,7 @@
 .mausritter .item-card-damage {
   text-align: center;
   border: 1px solid rgb(22, 22, 22);
+  color: rgb(22, 22, 22);
   margin: 5px;
   font-family: 'Germania One', cursive;
   font-size: 1.5em;

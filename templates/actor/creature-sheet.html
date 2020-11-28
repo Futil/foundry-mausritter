@@ -1,211 +1,278 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
   {{!-- Sheet Header --}}
+  <header class="creature-header header-grid">
 
-  <header class="creature-header-grid">
-    <!-- Creature NAME -->
-    <input name="name" class="noborder creaturename" style="grid-area:'name';" type="text" value="{{actor.name}}" placeholder="Name" />
-    <div class="creature-header">
-      {{#if data.stats.combat.enabled}}
-      <!-- Combat -->
-      <div class="mainstatwrapper">
-        <div class="resource creature-mainstat">
-          <span class="ability-mod stat-roll rollable creaturestat" data-key="combat" data-roll="d100"
-            data-label="Combat">COMBAT</span>
-          <input class="creaturestat noborder" style="width: 30px;" type="text" name="data.stats.combat.value"
-            value="{{data.stats.combat.value}}" data-dtype="Number" />
-        </div>
-      </div>
-      {{/if}}
-      {{#if data.stats.instinct.enabled}}
-      <!-- Instinct -->
-      <div class="mainstatwrapper">
-        <div class="resource creature-mainstat">
-          <span class="ability-mod stat-roll rollable creaturestat" data-key="instinct" data-roll="d100"
-            data-label="Instinct">Instinct</span>
-          <input class="creaturestat noborder" style="width: 30px;" type="text" name="data.stats.instinct.value"
-            value="{{data.stats.instinct.value}}" data-dtype="Number" />
-        </div>
-      </div>
-      {{/if}}
-      {{#if data.stats.speed.enabled}}
-      <!-- Speed -->
-      <div class="mainstatwrapper">
-        <div class="resource creature-mainstat">
-          <span class="ability-mod stat-roll rollable creaturestat" data-key="speed" data-roll="d100"
-            data-label="Speed">Speed</span>
-          <input class="creaturestat noborder" style="width: 30px;" type="text" name="data.stats.speed.value"
-            value="{{data.stats.speed.value}}" data-dtype="Number" />
-        </div>
-      </div>
-      {{/if}}
-      {{#if data.stats.loyalty.enabled}}
-      <!-- Loyalty -->
-      <div class="mainstatwrapper">
-        <div class="resource creature-mainstat">
-          <span class="ability-mod stat-roll rollable creaturestat" data-key="loyalty" data-roll="d100"
-            data-label="Speed">Loyalty</span>
-          <input class="creaturestat noborder" style="width: 30px;" type="text" name="data.stats.loyalty.value"
-            value="{{data.stats.loyalty.value}}" data-dtype="Number" />
-        </div>
-      </div>
-      {{/if}}
-      {{#if data.stats.armor.enabled}}
-      <!-- Armor -->
-      <div class="mainstatwrapper">
-        <div class="resource creature-mainstat">
-          <span class="ability-mod stat-roll rollable creaturestat" data-key="armor" data-roll="d100"
-            data-label="Speed">Armor</span>
-          <input class="creaturestat noborder" style="width: 30px;" type="text" name="data.stats.armor.value"
-            value="{{data.stats.armor.value}}" data-dtype="Number" />
-        </div>
-      </div>
-      {{/if}}
-      {{#if data.stats.sanity.enabled}}
-      <!-- Sanity -->
-      <div class="mainstatwrapper">
-        <div class="resource creature-mainstat">
-          <span class="ability-mod stat-roll rollable creaturestat" data-key="sanity" data-roll="d100"
-            data-label="Speed">Sanity</span>
-          <input class="creaturestat noborder" style="width: 30px;" type="text" name="data.stats.sanity.value"
-            value="{{data.stats.sanity.value}}" data-dtype="Number" />
-        </div>
-      </div>
-      {{/if}}
-      <!-- <div class="health grid grid-1col">
-        <div class="resource healthspread minmaxtopstat">
-          <label for="data.health.value" class="resource-label minmaxtext">Health</label>
+    <div class="header-fields header-grid">
+      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
+            use both the "grid" and "grid-Ncol" class where "N" can be any number
+            from 1 to 12 and will create that number of columns.  --}}
+      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
+          use both the "grid" and "grid-Ncol" class where "N" can be any number
+          from 1 to 12 and will create that number of columns.  --}}
 
-          <div class="minmaxwrapper">
-            <input class="sizelarge circle-input greyText" type="text" name="data.health.value"
-              value="{{data.health.value}}" data-dtype="Number" />
-            <input class="maxhealth-input darkGreyText" type="text" name="data.health.max" value="{{data.health.max}}"
+      <div class="header .creature">
+        <img class="portrait-creature" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="20"
+          width="20" />
+
+        <div class="header-border creature-header-border" style="width: 100%;">
+          <!-- <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150"/> -->
+
+          <!-- PLAYER NAME -->
+          <div class="headernamegrid">
+            <div class="headerinputtext" style="font-size: 3rem;">Name</div>
+            <div class="headerinputfield charname" style="font-size: 2rem;flex:3;"><input name="name" class="noborder"
+                type="text" value="{{actor.name}}" placeholder="Name" style="height: auto;"/></div>
+          </div>
+          <div class="seperatorLine"></div>
+          <!-- Background -->
+          <div class="headernamegrid">
+            <div class="headerinputtext">Disposition</div>
+            <div class="headerinputfield charname" style="flex:3;"><input name="data.description.disposition"
+                style="color: rgb(22,22,22);" class="noborder" type="text" value="{{data.description.disposition}}"
+                placeholder="" data-dtype="String"/></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div style="grid-area: centercol" ;>
+        {{!-- Item Drag Tab --}}
+        <div class="item-container" style="width:420px; height:280px;">
+          <!-- Main Paw -->
+          <div class="item-slot-dashed" style="transform: translate3d(-130px, -60px, 0px);">
+            <div class="item-slot-header">
+              Main Paw
+            </div>
+          </div>
+          <!-- Off Paw -->
+          <div class="item-slot-dashed" style="transform: translate3d(-130px, 70px, 0px);">
+            <div class="item-slot-header">
+              Off Paw
+            </div>
+          </div>
+
+          <!-- Main Paw -->
+          <div class="item-bag-container" style="transform: translate3d(65px, 5px, 0px); width:18.4em;">
+          </div>
+          <div class="item-slot-dashed" style="transform: translate3d(0px, -60px, 0px);">
+            <div class="item-bag-text">
+              1
+            </div>
+          </div>
+          <div class="item-slot-dashed" style="transform: translate3d(130px, -60px, 0px);">
+            <div class="item-bag-text">
+              2
+            </div>
+          </div>
+          <div class="item-slot-dashed" style="transform: translate3d(0px, 70px, 0px);">
+            <div class="item-bag-text">
+              3
+            </div>
+          </div>
+          <div class="item-slot-dashed" style="transform: translate3d(130px, 70px, 0px);">
+            <div class="item-bag-text">
+              4
+            </div>
+          </div>
+
+          {{#each actor.gear as |item id|}}
+          <div class="item-card item dragItems" style="width: {{item.data.size.x}}; height: {{item.data.size.y}};"
+            data-item-id="{{item._id}}">
+            <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+            {{#if item.data.desc}}
+            <!-- If it's a condition -->
+            <div class="item-card-header-noborder flex-between" data-item-id="{{item._id}}">
+              <div class="list-roll item-roll item-card-title">{{item.name}}</div>
+
+              <div class="item-controls item-card-chat">
+                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                <!-- <i class="fas fa-comment-dots list-roll description-roll"></i> -->
+              </div>
+            </div>
+            {{else}}
+            <div class="item-card-header flex-between" data-item-id="{{item._id}}">
+              <div class="list-roll item-roll item-card-title">{{item.name}}</div>
+
+              <div class="item-controls item-card-chat">
+                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                <!-- <i class="fas fa-comment-dots list-roll description-roll"></i> -->
+              </div>
+            </div>
+            {{/if}}
+            <div class="grid grid-3col pip-button list-roll" style="width: 50px; margin: 5px;">
+              {{{item.data.pips.html}}}
+            </div>
+            <div class="item-card-tag">{{item.data.tag}}</div>
+            {{#if item.data.isWeapon}}
+            {{#if item.data.weapon.canSwap}}
+            <div class="item-card-damage list-roll damage-swap" style="font-size: 1.3em;">{{item.data.weapon.dmg1}}
+              <div style="color: grey; font-size: 0.8em;">{{item.data.weapon.dmg2}}</div>
+            </div>
+            {{else}}
+            <div class="item-card-damage">{{item.data.weapon.dmg1}}</div>
+            {{/if}}
+            {{/if}}
+            {{#if item.data.armor.value}}
+            <div class="item-card-damage">{{item.data.armor.value}} def</div>
+            {{/if}}
+            {{#if item.data.store}}
+            <div class="item-card-field-container">
+              <input class="item-card-field noborder item-input"
+                style="position: absolute; text-align: left; left: 5px;" type="text" name="data.store.value"
+                value="{{item.data.store.value}}" data-dtype="Number" data-edit="item.data.store.value" />
+              <div class="item-card-max">/{{item.data.store.max}}</div>
+            </div>
+            {{/if}}
+            {{#if item.data.desc}}
+            <div class="item-card-desc">
+              {{item.data.desc}}
+            </div>
+            <div class="item-card-clear">
+              Clear:
+            </div>
+            <div class="item-card-clear-text">
+              {{item.data.clear}}
+            </div>
+            {{/if}}
+            <img src="{{item.img}}" title="{{item.name}}" class="item-card-image" />
+          </div>
+
+          <!-- <div class="itemt dragItems" id="{{item._id}}" data-item-id="{{item._id}}">
+                  
+                  {{item.name}}
+                </div> -->
+
+          {{/each}}
+        </div>
+      </div>
+
+      <div class="abilities">
+        <div class="verticalFlex blockborder">
+          <!-- Strength -->
+          <div class="statblock">
+            <label for="data.stat.strength.value" class="statName minmaxtext rollable stat-roll" data-key="strength"
+              data-roll="1d20" data-label="Strength">STR</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.strength.value"
+              value="{{data.stats.strength.value}}" data-dtype="Number" />
+
+            <div class="slant" style="transform: skewX(0deg);"></div>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.strength.max"
+              value="{{data.stats.strength.max}}" data-dtype="Number" />
+          </div>
+
+          <div class="seperatorLine"></div>
+
+          <!-- Dexterity -->
+          <div class="statblock">
+            <label for="data.stat.dexterity.value" class="statName minmaxtext rollable stat-roll" data-key="dexterity"
+              data-roll="1d20" data-label="Dexterity">DEX</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.dexterity.value"
+              value="{{data.stats.dexterity.value}}" data-dtype="Number" />
+
+            <div class="slant" style="transform: skewX(0deg);"></div>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.dexterity.max"
+              value="{{data.stats.dexterity.max}}" data-dtype="Number" />
+
+          </div>
+          <div class="seperatorLine"></div>
+
+          <!-- Will -->
+          <div class="statblock">
+            <label for="data.stat.will.value" class="statName minmaxtext rollable stat-roll" data-key="will"
+              data-roll="1d20" data-label="Will">WIL</label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.will.value"
+              value="{{data.stats.will.value}}" data-dtype="Number" />
+
+            <div class="slant" style="transform: skewX(0deg);"></div>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.stats.will.max"
+              value="{{data.stats.will.max}}" data-dtype="Number" />
+          </div>
+
+        </div>
+
+        <div class="verticalFlex">
+          <div class="statblock" style="height: 20px;">
+            <div style="width:33%;"></div>
+            <div class="current-max-label">Current</div>
+            <div class="current-max-label">Max</div>
+          </div>
+        </div>
+
+        <div class="verticalFlex blockborder">
+          <!-- HP -->
+          <div class="statblock">
+            <label for="data.stat.will.value" class="statName minmaxtext">HP </label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.health.value" value="{{data.health.value}}"
+              data-dtype="Number" />
+            <div class="slant" style="transform: skewX(0deg);"></div>
+            <input class="minmax-input darkGreyText" type="text" name="data.health.max" value="{{data.health.max}}"
               data-dtype="Number" />
           </div>
-          <div class="healthmaxtext">MAX</div>
-          <div class="healthmaxtext">CURRENT</div>
-
         </div>
-      </div> -->
+
+        <div class="verticalFlex">
+          <div class="statblock" style="height: 20px;">
+            <div style="width:33%;"></div>
+            <div class="current-max-label">Current</div>
+            <div class="current-max-label">Max</div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="whiteline"></div>
   </header>
-  <div class="creature-description-grid">
-    <div class="creaturedescription">
-      <div class="grid">
-        <!-- Health -->
-        <div class="resource healthspread minmaxtopstat">
-          <label for="data.health.value" class="resource-label minmaxtext">Health</label>
-  
-          <div class="minmaxwrapper">
-            <input class="maxhealth-input darkGreyText" type="text" name="data.health.value" value="{{data.health.value}}"
-              data-dtype="Number" />
-            <div class="slant"></div>
-            <input class="maxhealth-input darkGreyText" type="text" name="data.health.max" value="{{data.health.max}}"
-              data-dtype="Number" />
-          </div>
-  
-          <div class="healthmaxtext">Current</div>
-          <div class="healthmaxtext">Maximum</div>
-        </div>
-  
-        <!-- Hits -->
-        <div class="resource healthspread minmaxtopstat">
-          <label for="data.hits.value" class="resource-label minmaxtext">Hits</label>
-  
-          <div class="minmaxwrapper">
-            <input class="maxhealth-input darkGreyText" type="text" name="data.hits.value" value="{{data.hits.value}}"
-              data-dtype="Number" />
-            <div class="slant"></div>
-            <input class="maxhealth-input darkGreyText" type="text" name="data.hits.max" value="{{data.hits.max}}"
-              data-dtype="Number" />
-          </div>
-  
-          <div class="healthmaxtext">Current</div>
-          <div class="healthmaxtext">Maximum</div>
-        </div>
-      </div>
-      {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-    </div>
-    <div class="creature-abilities">
-      <img class="img noborder" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="auto" width="100%" />
-      <div class="creature-ability-container creature-ability-title">Special Abilities</div>
-      <div class="whiteline"></div>
-      {{#each actor.abilities as |ability id|}}
-      <li style="margin-top: -12px" class="creature-ability-container item dropitem" data-item-id="{{ability._id}}">
-        <div class="creature-ability-title list-roll description-roll">{{ability.name}}</div>
-        <div class="creature-ability-text itemtext">{{{ability.data.description}}}</div>
-        <div class="item-controls" style="margin-left: 3px; font-size: 0.7rem;">
-          <a class="item-control item-edit darkgrey" title="Edit Ability"><i class="fas fa-edit"></i></a>
-          <a class="item-control item-delete darkgrey" title="Delete Ability"><i class="fas fa-trash"></i></a>
-        </div>
-      </li>
-
-      {{/each}}
-      <a class="item-control weapon-create darkgrey " style="margin-left: 5px;" title="Create Ability"
-        data-type="ability"><i class="fas fa-plus"></i>
-        Add</a>
-    </div>
-  </div>
 
   {{!-- Sheet Tab Navigation --}}
-  <nav class="mausritter sheet-tabs tabs" data-group="primary">
-    <a class="tab-select" data-tab="weapons">Weapons</a>
-    <a class="tab-select" data-tab="description">Bio</a>
+  <nav class="mausritter sheet-tabs tabs"
+    style="line-height: 29px; border-top: 2px solid rgb(22, 22, 22); border-bottom: 2px solid rgb(22, 22, 22);"
+    data-group="primary">
+    <a class="tab-select" data-tab="notes">Notes</a>
+    <a class="tab-select" data-tab="items">Items</a>
+
   </nav>
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
-
-    {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="description">
-      {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+    {{!-- Notes Tab --}}
+    <div class="tab biography" data-group="primary" data-tab="notes">
+      {{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}
     </div>
-    {{!-- Owned Weapons Tab --}}
-    <div class="tab items" data-group="primary" data-tab="weapons">
-      <!-- WEAPONS -->
+    {{!-- Owned Items Tab --}}
+    <div class="tab items" data-group="primary" data-tab="items">
+      <!-- ITEMS -->
       <ol class="items-list">
         <li class="item flexrow item-header">
-          <div class="item-image"></div>
-          <div class="skill-stat" style="flex-grow: 2;">Name</div>
-          <div class="skill-stat">Damage</div>
-          <div class="skill-stat">Ammo</div>
-          <div class="skill-stat">Shots</div>
-          <div class="skill-stat">S/M/L</div>
           <div class="item-controls">
-            <a class="item-control weapon-create" title="Create Weapon" data-type="weapon"><i class="fas fa-plus"></i>
-              Add</a>
+            <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> Add
+              Item</a>
           </div>
         </li>
-        {{#each actor.weapons as |weapon id|}}
-        <li class="item flexrow  dropitem" data-item-id="{{weapon._id}}">
-          <!-- <div class="item-image"><img src="{{skill.img}}" title="{{skill.name}}" width="24" height="24"/></div> -->
-          <div class="item-image"><img src="{{weapon.img}}" title="{{weapon.name}}" width="24" height="24" /></div>
-          <div class="skill-name weapon-roll list-roll" style="flex-grow: 2;">{{weapon.name}}</div>
-          <div class="skill-stat">{{weapon.data.damage}}</div>
-          {{#if weapon.data.useAmmo}}
-          <div class="skill-stat weapon-ammo list-roll">{{weapon.data.ammo}}</div>
-          {{else}}
-          <div class="skill-stat">N/A</div>
-          {{/if}}
-          {{#if weapon.data.shots}}
-          <div class="skill-stat">{{weapon.data.curShots}}/{{weapon.data.shots}} <i
-              class="fas fa-sync weapon-reload list-roll"></i></div>
-          {{else}}
-          <div class="skill-stat">N/A</div>
-          {{/if}}
-          {{#if weapon.data.ranges.medium}}
-          <div class="skill-stat">{{weapon.data.ranges.short}}/{{weapon.data.ranges.medium}}/{{weapon.data.ranges.long}}
-          </div>
-          {{else}}
-          <div class="skill-stat">CQC</div>
-          {{/if}}
+
+        <div class="seperatorLine"></div>
+        {{#each actor.gear as |item id|}}
+        <li class="item flexrow dropitem" data-item-id="{{item._id}}">
+          <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+          <h4 class="skill-name list-roll description-roll" style="flex-grow: 1.5;">{{item.name}}</h4>
+          <div class="skill-stat list-roll item-quantity">{{item.data.quantity}}</div>
+          <div class="skill-stat">{{item.data.weight}}</div>
+          <div class="skill-stat">{{item.data.cost}}</div>
           <div class="item-controls">
-            <a class="item-control weapon-edit" title="Edit Weapon"><i class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title="Delete Weapon"><i class="fas fa-trash"></i></a>
+            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
           </div>
         </li>
         {{/each}}
-
       </ol>
     </div>
   </section>

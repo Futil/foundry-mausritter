@@ -240,7 +240,7 @@
   grid-template-columns: 15em auto 14em;
 }
 
-.mausritter .creature-header .header-grid {
+.mausritter .header-grid-creature {
   display: grid;
   grid-template-areas:
   'header header header'

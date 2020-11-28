@@ -235,14 +235,14 @@ export class MausritterActorSheet extends ActorSheet {
           };
         }
 
+
         setTranslate(item.data.sheet.currentX, item.data.sheet.currentY, dragItem, true);
-        dragItem.style.zIndex = "1";
+        dragItem.style.zIndex = item.data.sheet.currentX+500;
 
         this.actor.updateEmbeddedEntity('OwnedItem', item);
 
         dragItem.addEventListener("mousedown", (e) => {
-          curIndex++;
-          dragItem.style.zIndex = curIndex;
+          dragItem.style.zIndex = 800;
 
           if (e.type === "touchstart") {
             item.data.sheet.initialX = e.touches[0].clientX - item.data.sheet.xOffset;
@@ -266,8 +266,7 @@ export class MausritterActorSheet extends ActorSheet {
 
 
           this.actor.updateEmbeddedEntity('OwnedItem', item);
-          curIndex++;
-          dragItem.parentElement.style.zIndex = curIndex;
+          dragItem.parentElement.style.zIndex = item.data.sheet.currentX+500;
         }, false);
 
 

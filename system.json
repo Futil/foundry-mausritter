@@ -7,10 +7,43 @@
   "compatibleCoreVersion": "0.7.7",
   "templateVersion": 2,
   "author": "Martin Jencka",
-  "esmodules": ["module/mausritter.js"],
-  "styles": ["css/mausritter.css"],
+  "esmodules": [
+    "module/mausritter.js"
+  ],
+  "styles": [
+    "css/mausritter.css"
+  ],
   "scripts": [],
-  "packs": [],
+  "packs": [
+    {
+      "name": "weapons",
+      "label": "Weapons",
+      "system": "mausritter",
+      "path": "packs/weapons.db",
+      "entity": "Item"
+    },
+    {
+      "name": "armor",
+      "label": "Armor",
+      "system": "mausritter",
+      "path": "packs/armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "gear",
+      "label": "Gear",
+      "system": "mausritter",
+      "path": "packs/gear.db",
+      "entity": "Item"
+    },
+    {
+      "name": "conditions",
+      "label": "Conditions",
+      "system": "mausritter",
+      "path": "packs/conditions.db",
+      "entity": "Item"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

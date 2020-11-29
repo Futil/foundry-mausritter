@@ -270,6 +270,17 @@ export class MausritterCreatureSheet extends ActorSheet {
           dragItem.parentElement.style.zIndex = curIndex;
         }, false);
 
+        dragItem.addEventListener("mouseleave", (e) => {
+          item.data.sheet.initialX = item.data.sheet.currentX;
+          item.data.sheet.initialY = item.data.sheet.currentY;
+          setTranslate(item.data.sheet.initialX, item.data.sheet.initialY, dragItem, true);
+
+          item.data.sheet.active = false;
+
+
+          this.actor.updateEmbeddedEntity('OwnedItem', item);
+          dragItem.parentElement.style.zIndex = item.data.sheet.currentX+500;
+        }, false);
 
         dragItem.addEventListener("mousemove", (e) => {
           if (item.data.sheet.active) {

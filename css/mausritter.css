@@ -882,6 +882,8 @@
 
 .mausritter .fa-circle{
   color: rgb(22, 22, 22);
+  background: white;
+  border-radius: 10px;
 }
 
 .mausritter .portrait {
@@ -1152,6 +1154,9 @@
   color: grey;
   text-align: right;
   pointer-events: auto;
+  bottom: 3px;
+  right: 4px;
+  position: absolute;
 }
 
 .mausritter .item-card-title {
@@ -1166,6 +1171,7 @@
   bottom: 0;
   position: absolute;
   pointer-events: none;
+  background: white;
 }
 
 .mausritter .item-card-desc {
@@ -1175,7 +1181,7 @@
   font-weight: 500;
   font-style: italic;
   font-size: 0.9em;
-  bottom: 40px;
+  top: 27px;
   position: absolute;
   pointer-events: none;
   font-family: "Roboto", sans-serif;

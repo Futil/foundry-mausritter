@@ -9,15 +9,23 @@ The sample Rat portrait from the official book was allowed to be used with permi
 All other icons were done for this project by myself.
 
 # Features:
-**Official - Style character sheets**
+## Styled character sheets
 Character, Creature, and NPC sheets were built to resemble the standard print sheets.
-**Draggable & Transferrable Item Cards**
+
+
+## Draggable & Transferrable Item Cards
 Inventory is handled through item cards, which can be moved around freely, moved between sheets, or copied with CTRL+Drag.
+
 Cards are styled to resemble the official game cards, with automated rolls, usage dots, and more being included.
-**Automated Skill Rolls**
+
+
+## Automated Skill Rolls
 You can roll your stats using the built in advantage/disadvantage system
-**Macro Support for Weapons, Items, and Skills**
+
+
+## Macro Support for Weapons, Items, and Skills
 For items, you can simply drag them into the hotbar, or use this script:
+
 ```
 game.mausritter.rollItemMacro("itemName");
 ```
@@ -26,7 +34,7 @@ For Skills, create a new macro with this
 game.mausritter.rollStatMacro();
 ```
 
-![Alt text](https://i.imgur.com/QNwzFwB.png "Character Sheet")
-![Alt text](https://i.imgur.com/Qd0tVt9.png "Creature Sheet")
+# Screenshots
+![Alt text](https://i.imgur.com/4PYBj8X.jpg "Game Example")
 
 _Mausritter ©2020 Isaac Williams & Losing Games_

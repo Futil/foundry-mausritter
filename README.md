@@ -1,5 +1,5 @@
 # Mausritter RPG for Foundry VTT
-#### This is an unofficial version of the Mausritter RPG, which is the property of Isaac Williams & Losing Games.
+#### This is an unofficial version of the Mausritter RPG system, which is the property of Isaac Williams & Losing Games.
 Mausritter can be purchased here: https://mausritter.com/
 ```
 - The official game Weapon, Item, and Spell Icons by Isaac Williams are licensed under CC-BY.

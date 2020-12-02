@@ -49,6 +49,13 @@
       "system": "mausritter",
       "path": "packs/spells.db",
       "entity": "Item"
+    },
+    {
+      "name": "creatures",
+      "label": "Creatures",
+      "system": "mausritter",
+      "path": "packs/creatures.db",
+      "entity": "Actor"
     }
   ],
   "languages": [

@@ -67,23 +67,40 @@ Hooks.once('init', async function () {
     return outStr;
   });
 
-
-  /**
-   * Set default values for new actors' tokens
-   */
-  Hooks.on("preCreateActor", (createData) => {
-    if (createData.type == "character") {
-      createData.token.vision = true;
-      createData.token.actorLink = true;
-    }
-  })
-
   Handlebars.registerHelper('toLowerCase', function (str) {
     return str.toLowerCase();
   });
 
   // preloadHandlebarsTemplates();
 });
+
+/**
+ * Set default values for new actors' tokens
+ */
+Hooks.on("preCreateActor", (createData) => {
+  let disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
+
+  if (createData.type == "creature") {
+    disposition = CONST.TOKEN_DISPOSITIONS.HOSTILE
+  }
+
+  // Set wounds, advantage, and display name visibility
+  mergeObject(createData,
+    {
+      "token.bar1": { "attribute": "health" },        // Default Bar 1 to Health 
+      "token.bar2": { "stat": "strength" },      // Default Bar 2 to Insanity
+      "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,     // Default display name to be on owner hover
+      "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,     // Default display bars to be on owner hover
+      "token.disposition": disposition,                               // Default disposition to neutral
+      "token.name": createData.name                                   // Set token name to actor name
+    })
+
+
+  if (createData.type == "character") {
+    createData.token.vision = true;
+    createData.token.actorLink = true;
+  }
+})
 
 // async function preloadHandlebarsTemplates() {
 //   const templatePaths = [

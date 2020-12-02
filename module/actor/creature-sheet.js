@@ -99,7 +99,7 @@ export class MausritterCreatureSheet extends ActorSheet {
             }
             item.size.x = (item.size.width * 8 + item.size.width) + "em";
             item.size.y = (item.size.height * 8 + item.size.height) + "em";
-            
+
             //Update Pos
             // if (item.sheet == undefined) {
             //     item.sheet = {
@@ -403,18 +403,21 @@ export class MausritterCreatureSheet extends ActorSheet {
     //The onDragItemStart event can be subverted to let you package additional data what you're dragging
     _onDragItemStart(event) {
         let itemId = event.currentTarget.getAttribute("data-item-id");
-        
+
         if (!itemId)
             return;
-        
+
         const clickedItem = duplicate(
             this.actor.getEmbeddedEntity("OwnedItem", itemId)
         );
 
-        let width = $('#' + itemId).outerWidth();
-        let height = $('#' + itemId).outerHeight();
-        var x = event.pageX - $('#' + itemId).offset().left - width / 2;
-        var y = event.pageY - $('#' + itemId).offset().top - height / 2;
+
+        let it = $(event.currentTarget);
+
+        let width = it.outerWidth();
+        let height = it.outerHeight();
+        var x = event.pageX - it.offset().left - width / 2;
+        var y = event.pageY - it.offset().top - height / 2;
 
         let i = $('#' + itemId);
 
@@ -477,16 +480,32 @@ export class MausritterCreatureSheet extends ActorSheet {
         // Handle item sorting within the same Actor
         const actor = this.actor;
 
-        let width = $('#drag-area-' + actor._id).outerWidth();
-        let height = $('#drag-area-' + actor._id).outerHeight();
-
-        var x = event.pageX - $('#drag-area-' + actor._id).offset().left - width / 2;
-        var y = event.pageY - $('#drag-area-' + actor._id).offset().top - height / 2;
-
-        if (Math.abs(x) > Math.abs(width / 2) || Math.abs(y) > Math.abs(height / 2)) {
-            x = 0;
-            y = 0;
+        let it = $(event.target);
+        if(it.attr('id') != "drag-area"){
+            it = it.parents("#drag-area")
         }
+
+        var x = 0;
+        var y = 0;
+
+
+        if(it.length){
+            let width = it.outerWidth();
+            let height = it.outerHeight();
+    
+            x = event.pageX - it.offset().left - width / 2;
+            y = event.pageY - it.offset().top - height / 2;
+        }
+        // let width = $('#drag-area-' + actor._id).outerWidth();
+        // let height = $('#drag-area-' + actor._id).outerHeight();
+    
+        // var x = event.pageX - $('#drag-area-' + actor._id).offset().left - width / 2;
+        // var y = event.pageY - $('#drag-area-' + actor._id).offset().top - height / 2;
+        
+        // if (Math.abs(x) > Math.abs(width / 2) || Math.abs(y) > Math.abs(height / 2)) {
+        //     x = 0;
+        //     y = 0;
+        // }
 
         let sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
         if (sameActor && !(event.ctrlKey)) {

@@ -42,6 +42,13 @@
       "system": "mausritter",
       "path": "packs/conditions.db",
       "entity": "Item"
+    },
+    {
+      "name": "spells",
+      "label": "Spells",
+      "system": "mausritter",
+      "path": "packs/spells.db",
+      "entity": "Item"
     }
   ],
   "languages": [

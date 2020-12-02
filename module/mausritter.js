@@ -1,7 +1,9 @@
 // Import Modules
 import { MausritterActor } from "./actor/actor.js";
 import { MausritterActorSheet } from "./actor/actor-sheet.js";
+import { MausritterHirelingSheet } from "./actor/hireling-sheet.js";
 import { MausritterCreatureSheet } from "./actor/creature-sheet.js";
+
 import { MausritterItem } from "./item/item.js";
 import { MausritterItemSheet } from "./item/item-sheet.js";
 
@@ -41,6 +43,10 @@ Hooks.once('init', async function () {
   Actors.registerSheet("mausritter", MausritterActorSheet, {
     types: ['character'],
     makeDefault: true
+  });
+  Actors.registerSheet("mausritter", MausritterHirelingSheet, {
+    types: ['hireling'],
+    makeDefault: false
   });
   Actors.registerSheet("mausritter", MausritterCreatureSheet, {
     types: ['creature'],
@@ -147,11 +153,7 @@ function rollItemMacro(itemName) {
 
   console.log();
 
-  if (item.type == "weapon") {
-    return actor.rollWeapon(item.id);
-  } else {
-    return actor.printDescription(item.id);
-  }
+  return actor.rollItem(item.id);
 }
 
 

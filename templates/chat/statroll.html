@@ -10,17 +10,22 @@
             </div>
             <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
         </div>
-        <div class="description" style="font-size: 1.4em;">
+        {{#if pip}}
+        {{{pip}}}
+        {{/if}}
+        <div class="description">
             <div class="body">{{{item.data.description}}}</div>
-            <br />
         </div>
         {{else}}
-        {{#if isWeapon}}
+        {{#if isWeapon}} 
         <div class="flexrow">
             <div class="rollweaponh1">{{item.name}}
             </div>
             <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
         </div>
+        {{#if pip}}
+        {{{pip}}}
+        {{/if}}
         {{else}}
         <div class="rollh1">{{stat.name}}</div>
         {{/if}}
@@ -52,21 +57,21 @@
         {{/unless}}
             <!-- Damage Roll -->
             {{#if isWeapon}}
-            <div class="roll-damage">Damage</div>
+            <div class="roll-damage">{{rollTitle}}</div>
             <div>
                 <div class="roll-damagebox">
-                    <div class="value">{{data.diceTotal.damageValue}}</div>
+                    <div class="value">{{rollText}}</div>
                 </div>
             </div>
-            <div class="rollmods" style="margin-top: 0px;">({{item.data.weapon.dmg1}})</div>
-            <br/>
+            <div class="rollmods" style="margin-top: 0px;">({{#if isSpell}}{{data.rollDiv}}{{else}}{{item.data.weapon.dmg1}}{{/if}})</div>
 
-            {{#if item.data.description}}
-            <div class="description">
-                <div class="header" style="font-size: 1.3em;">Description</div>
-                <div class="body">{{{item.data.description}}}</div>
-            </div>
+                {{#if item.data.description}}
+                <div class="description">
+                    <div class="header" style="font-size: 1.3em;">Description</div>
+                    <div class="body">{{{item.data.description}}}</div>
+                </div>
+                {{/if}}
             {{/if}}
-        {{/if}}
+
         {{/if}}
     </div>

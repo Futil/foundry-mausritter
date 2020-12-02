@@ -64,6 +64,11 @@
 .mausritter .darkgrey{
   color:rgb(92, 92, 92);
 }
+
+.mausritter .red {
+  color:red;
+}
+
 /* .chat-message, #chat-form, .textarea{
   background: white;
 } */
@@ -355,6 +360,8 @@
   margin-right: -9px;
   width: 46px;
 }
+
+
 
 .mausritter .items-list .item img {
   display: block;
@@ -1022,12 +1029,11 @@
 .mausritter .roll-damagebox {
   padding: 4px;
   border: 2px solid rgb(117, 0, 0);
-  border-radius: 1em;
+  border-radius: 0.5em;
   font-size: 2rem;
   text-align: center;
   grid-column: 2/span 2;
   color: rgb(117, 0, 0);
-  width: 70px;
   margin: auto;
 }
 
@@ -1107,6 +1113,12 @@
   position: absolute;
 }
 
+.mausritter .item-container-controls {
+  text-align: right;
+  position: absolute;
+  top: 3px;
+  right: 27px;
+}
 
 .mausritter .item-card {
   z-index: 9;
@@ -1121,21 +1133,23 @@
   height: 9em;
   width: 9em;
 
-  cursor: move;
+  cursor: grab;
   pointer-events: auto;
 }
 
 .mausritter .item-card-header {
   display: flex;
+  justify-content: left;
   padding: 4px;
   height: 30px;
   z-index: 10;
   border-bottom: 1px solid rgb(22, 22, 22);
   border-radius: 0.1em 0.1em 0 0;
   font-family: 'Germania One', cursive;
-  font-size: 1.3em;
+  font-size: 1.25em;
   color: black;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .mausritter .item-card-header-noborder {
@@ -1147,6 +1161,12 @@
   font-size: 1.4em;
   color: black;
   pointer-events: none;
+}
+
+.mausritter .item-card-star {
+  font-size: 27px;
+  position: relative;
+  top: -10px;
 }
 
 .mausritter .item-card-chat {
@@ -1211,6 +1231,7 @@
 .mausritter .item-card-damage {
   text-align: center;
   border: 1px solid rgb(22, 22, 22);
+  background: white;
   color: rgb(22, 22, 22);
   margin: 5px;
   font-family: 'Germania One', cursive;
@@ -1229,7 +1250,7 @@
   position: absolute;
   z-index: -1;
   bottom: 0;
-  left: 9px;
+  left: 10%;
 }
 
 .mausritter .item-card-field-container {

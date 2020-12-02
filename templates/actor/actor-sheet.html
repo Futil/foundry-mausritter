@@ -200,6 +200,7 @@
   <nav class="mausritter sheet-tabs tabs" style="line-height: 29px; border-top: 2px solid rgb(22, 22, 22); border-bottom: 2px solid rgb(22, 22, 22);" data-group="primary">
     <a class="tab-select" data-tab="drag">Inventory</a>
     <a class="tab-select" data-tab="notes">Notes</a>
+    <!-- <a class="tab-select" data-tab="items">Items</a> -->
 
   </nav>
 
@@ -243,7 +244,11 @@
     <div class="tab items" data-group="primary" data-tab="drag">
       <div class="" data-item-id="{{item._id}}">
         <div>
-          <div class="item-container">
+          <div class="item-container" id="drag-area-{{actor._id}}">
+            <div class="item-container-controls">
+              <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> Add
+                Item</a>
+            </div>
             <!-- Main Paw -->
             <div class="item-slot-dashed" style="transform: translate3d(-270px, -150px, 0px);">
               <div class="item-slot-header">
@@ -321,16 +326,21 @@
             </div>
 
             {{#each actor.gear as |item id|}}
-            <div class="item-card item dragItems" style="width: {{item.data.size.x}}; height: {{item.data.size.y}};"
-              data-item-id="{{item._id}}">
+            <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}};"
+              data-item-id="{{item._id}}" id="{{item._id}}">
               <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-              {{#if item.data.desc}} <!-- If it's a condition -->
+              {{#if item.data.clear}} <!-- If it's a condition -->
               <div class="item-card-header-noborder flex-between" data-item-id="{{item._id}}">
                 <div class="list-roll item-roll item-card-title">{{item.name}}</div>
               </div>
               {{else}}
               <div class="item-card-header flex-between" data-item-id="{{item._id}}">
-                <div class="list-roll item-roll item-card-title">{{item.name}}</div>
+                {{#if item.data.isSpell}}
+                <span class="item-card-star">★</span>
+                {{/if}}
+                <div class="list-roll item-roll item-card-title">
+                  {{item.name}}
+                </div>
               </div>
               {{/if}}
               <div class="grid grid-3col pip-button list-roll" style="width: 50px; margin: 5px;">

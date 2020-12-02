@@ -2,6 +2,7 @@
   "Actor": {
     "types": [
       "character",
+      "hireling",
       "creature"
     ],
     "templates": {
@@ -63,6 +64,33 @@
         }
       }
     },
+    "hireling": {
+      "templates": [
+        "base"
+      ],
+      "biography": "",
+      "notes": "",
+      "description": {
+        "disposition": ""
+      },
+      "stats": {
+        "strength": {
+          "value": 10,
+          "label": "Strength",
+          "max": 0
+        },
+        "dexterity": {
+          "value": 10,
+          "label": "Dexterity",
+          "max": 0
+        },
+        "will": {
+          "value": 10,
+          "label": "Will",
+          "max": 0
+        }
+      }
+    },
     "creature": {
       "templates": [
         "base"
@@ -97,7 +125,8 @@
       "weapon",
       "armor",
       "storage",
-      "condition"
+      "condition",
+      "spell"
     ],
     "templates": {
       "base": {
@@ -116,11 +145,11 @@
           "max": 0,
           "html": ""
         },
-        "size" : {
-          "width" : 1,
-          "height" : 1,
-          "x" : "9em",
-          "y" : "9em"
+        "size": {
+          "width": 1,
+          "height": 1,
+          "x": "9em",
+          "y": "9em"
         }
       }
     },
@@ -140,8 +169,8 @@
       "weight": 0,
       "cost": 0,
       "store": {
-        "value" : "0",
-        "max" : 25
+        "value": "0",
+        "max": 25
       },
       "tag": ""
     },
@@ -167,8 +196,8 @@
       "weight": 0,
       "cost": 0,
       "tag": "",
-      "armor" : {
-        "value" : 1
+      "armor": {
+        "value": 1
       }
     },
     "condition": {
@@ -177,6 +206,13 @@
       ],
       "clear": "",
       "desc": ""
+    },
+    "spell": {
+      "templates": [
+        "base"
+      ],
+      "tag": "",
+      "isSpell" : true
     }
   }
 }

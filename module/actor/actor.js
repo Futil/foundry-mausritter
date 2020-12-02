@@ -17,7 +17,8 @@ export class MausritterActor extends Actor {
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
     if (actorData.type === 'character') this._prepareCharacterData(actorData);
-    else if (actorData.type === 'creature') this._prepareCreatureData(actorData);
+    else if (actorData.type === 'hireling') this._prepareCharacterData(actorData);
+    else if (actorData.type === 'creature') this._prepareCharacterData(actorData);
 
   }
   /**
@@ -35,13 +36,6 @@ export class MausritterActor extends Actor {
     //   }
     // }
     // data.stats.armor.mod = armorBonus;
-  }
-
-  /**
-   * Prepare Character type specific data
-   */
-  _prepareCreatureData(actorData) {
-    const data = actorData.data;
   }
 
 
@@ -110,37 +104,35 @@ export class MausritterActor extends Actor {
 
     console.log(item);
 
-    if (item.type != "weapon") {
-      this.chatDesc(item);
-    } else {
+    if(item.type == "weapon"){
       if(item.data.weapon.selected == 0)
         this.rollWeapon(item, item.data.weapon.dmg1);
       else
       this.rollWeapon(item, item.data.weapon.dmg2);
-      // //Select the stat of the roll.
-      // let t = new Dialog({
-      //   title: "Select Stat",
-      //   content: "<h2> Impaired/Enhanced </h2> <select style='margin-bottom:10px;'name='enhanced' id='enhanced'>\
-      //   <option value='none'>None</option>\
-      //   <option value='enhanced'>Enhanced</option>\
-      //   <option value='impaired'>Impaired</option>\
-      //   </select> <br/>",
-      //   buttons: {
-      //     roll: {
-      //       icon: '<i class="fas fa-check"></i>',
-      //       label: "Roll",
-      //       callback: (html) => this.rollWeapon(item, item.data.data.weapon.dmg)
-      //     },
-      //     cancel: {
-      //       icon: '<i class="fas fa-times"></i>',
-      //       label: "Cancel",
-      //       callback: () => { }
-      //     }
-      //   },
-      //   default: "roll",
-      //   close: () => { }
-      // });
-      // t.render(true);
+    } else if(item.type=="spell"){
+      //Select the stat of the roll.
+      let t = new Dialog({
+        title: "Select Stat",
+        content: "<h2> How much power? </h2> <input style='margin-bottom:10px;' name='power' id='power' value='1'></input><br/>",
+        buttons: {
+          roll: {
+            icon: '<i class="fas fa-check"></i>',
+            label: "Roll",
+            callback: (html) => this.rollSpell(item, html.find('[id=\"power\"]')[0].value)
+          },
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: "Cancel",
+            callback: () => { }
+          }
+        },
+        default: "roll",
+        close: () => { }
+      });
+      t.render(true);
+    }
+    else {
+      this.chatDesc(item);
     }
   }
 
@@ -151,6 +143,16 @@ export class MausritterActor extends Actor {
 
     const diceData = this.formatDice(damageRoll);
 
+    //Create the pip HTML.
+    let pipHtml = "";
+    for (let i = 0; i < item.data.pips.max; i++) {
+      if (i < item.data.pips.value)
+        pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
+      else
+        pipHtml += '<i class="far fa-circle">&nbsp;</i>';
+    }
+    
+
     var templateData = {
       actor: this,
       data: {
@@ -160,7 +162,106 @@ export class MausritterActor extends Actor {
         },
       },
       item: item,
+      pip: pipHtml,
+      rollTitle: "Damage", //The title of the roll.
+      rollText: damageRoll._total, //What is printed within the roll amount.
       isWeapon: true,
+      diceData
+    };
+
+    let chatData = {
+      user: game.user._id,
+      speaker: {
+        actor: this._id,
+        token: this.token,
+        alias: this.name
+      }
+    };
+
+    let rollMode = game.settings.get("core", "rollMode");
+    if (["gmroll", "blindroll"].includes(rollMode)) chatData["whisper"] = ChatMessage.getWhisperRecipients("GM");
+
+    let template = 'systems/mausritter/templates/chat/statroll.html';
+    renderTemplate(template, templateData).then(content => {
+      chatData.content = content;
+      if (game.dice3d) {
+        game.dice3d.showForRoll(damageRoll, game.user, true, chatData.whisper, chatData.blind).then(displayed => ChatMessage.create(chatData));
+
+      } else {
+        chatData.sound = CONFIG.sounds.dice;
+        ChatMessage.create(chatData);
+      }
+    });
+
+  }
+
+  rollSpell(item = "", power = ""){
+    let die = power+"d6";
+
+    let damageRoll = new Roll(die);
+    damageRoll.roll();
+    console.log(damageRoll);
+
+    const diceData = this.formatDice(damageRoll);
+    console.log(diceData);
+
+    let rollDiv = '';
+
+    let usage = 0;
+    let miscast = 0;
+
+    for(let i=0; i < parseInt(power); i++){
+      if(i > 0)
+      rollDiv += ', ' + diceData.dice[i].result;
+      else
+      rollDiv += '' + diceData.dice[i].result;
+
+      if(diceData.dice[i].result >= 4){
+        usage++;
+        if(diceData.dice[i].result == 6){
+          miscast++;
+        }
+      }
+    }
+
+    if(item.data.description == null){
+      item.data.description = "";
+    }
+    item.data.description = item.data.description.replace("[DICE]", "<strong style='text-decoration:underline' class='red'>"+power+"</strong>")
+    item.data.description = item.data.description.replace("[SUM]", "<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>")
+    item.data.description += "<h2>Usage: <strong>"+usage+"</strong></h2>";
+    if(miscast){
+      item.data.description += "<h2>Miscast: <strong>"+miscast+"</strong> </h2> Take [[/r "+miscast+"d6]] Will Damage <br/> Then, make a will save, taking the <i>mad</i> condition on a failure.";
+    }
+
+    //Create the pip HTML.
+    let pipHtml = "";
+    for (let i = 0; i < item.data.pips.max; i++) {
+      if (i < item.data.pips.value)
+        pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
+      else
+        pipHtml += '<i class="far fa-circle">&nbsp;</i>';
+    }
+
+    console.log(pipHtml);
+
+    var templateData = {
+      actor: this,
+      data: {
+        diceTotal: {
+          damageValue: damageRoll._total,
+          damageRoll: damageRoll
+        },
+        rollDiv:rollDiv
+      },
+      item: item,
+      pip: pipHtml,
+      isSpell: true,
+      isWeapon:true,
+      rollTitle: "Sum|Dice", //The title of the roll.
+      rollText: damageRoll._total+'|'+power, //What is printed within the roll amount.
+      sum: damageRoll._total,
+      dice: power,
       diceData
     };
 
@@ -255,7 +356,7 @@ export class MausritterActor extends Actor {
           value: resultText
         },
         isCreature: {
-          value: this.data.type == "creature" ? true : false
+          value: this.data.type == "hireling" ? true : false
         }
       },
       target: attribute.value,
@@ -281,7 +382,7 @@ export class MausritterActor extends Actor {
     if (["gmroll", "blindroll"].includes(rollMode)) chatData["whisper"] = ChatMessage.getWhisperRecipients("GM");
 
     /*
-            if (this.data.type == "creature") {
+            if (this.data.type == "hireling") {
                 chatData.whisper = game.user._id;
             }
     */
@@ -374,13 +475,32 @@ export class MausritterActor extends Actor {
     if (!item.name && isNaN(itemName))
       itemName = item.charAt(0)?.toUpperCase() + item.toLowerCase().slice(1);
 
+    //Create the pip HTML.
+    let pipHtml = "";
+    for (let i = 0; i < item.data.pips.max; i++) {
+      if (i < item.data.pips.value)
+        pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
+      else
+        pipHtml += '<i class="far fa-circle">&nbsp;</i>';
+    }
+
+    if(item.data.description == null){
+      item.data.description = "";
+    } else if(item.data.description.length > 0){
+      item.data.description += "<br/>";
+    }
+    if(item.type == "condition"){
+      item.data.description += item.data.desc+"<br/><strong>Clear: </strong>"+item.data.clear;
+    }
+
     var templateData = {
       actor: this,
       stat: {
         name: itemName.toUpperCase()
       },
       item: item,
-      onlyDesc: true,
+      pip: pipHtml,
+      onlyDesc: true
     };
 
     let chatData = {
@@ -396,7 +516,7 @@ export class MausritterActor extends Actor {
     if (["gmroll", "blindroll"].includes(rollMode)) chatData["whisper"] = ChatMessage.getWhisperRecipients("GM");
 
     /*
-            if (this.data.type == "creature") {
+            if (this.data.type == "hireling") {
                 chatData.whisper = game.user._id;
             }
     */

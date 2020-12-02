@@ -2,11 +2,11 @@
   "name": "mausritter",
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.0.3b",
+  "version": "0.0.4",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.7",
   "templateVersion": 2,
-  "author": "Martin Jencka",
+  "author": "Futilrevenge",
   "esmodules": [
     "module/mausritter.js"
   ],

@@ -3,15 +3,15 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class MausritterActorSheet extends ActorSheet {
+export class MausritterHirelingSheet extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["mausritter", "sheet", "actor", "character"],
-      template: "systems/mausritter/templates/actor/actor-sheet.html",
-      width: 742,
-      height: 800,
+      classes: ["mausritter", "sheet", "actor", "hireling"],
+      template: "systems/mausritter/templates/actor/hireling-sheet.html",
+      width: 680,
+      height: 620,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "character" }]
     });
   }
@@ -24,7 +24,7 @@ export class MausritterActorSheet extends ActorSheet {
     data.dtypes = ["String", "Number", "Boolean"];
 
     // Prepare items.
-    if (this.actor.data.type == 'character') {
+    if (this.actor.data.type == 'hireling') {
       this._prepareCharacterItems(data);
     }
 
@@ -124,6 +124,7 @@ export class MausritterActorSheet extends ActorSheet {
       this.actor.updateEmbeddedEntity('OwnedItem', item);
     });
 
+
     // Add Inventory Item
     html.find('.item-create').click(ev => {
 
@@ -153,7 +154,6 @@ export class MausritterActorSheet extends ActorSheet {
       });
       t.render(true);
     });
-
 
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
@@ -232,10 +232,10 @@ export class MausritterActorSheet extends ActorSheet {
     });
 
 
+  
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = ev => this._onDragItemStart(ev);
-      let dragEnd = ev => this._onDragOver(ev);
 
       html.find('li.dropitem').each((i, li) => {
         if (li.classList.contains("inventory-header")) return;
@@ -247,8 +247,6 @@ export class MausritterActorSheet extends ActorSheet {
         if (div.classList.contains("inventory-header")) return;
         div.setAttribute("draggable", true);
         div.addEventListener("dragstart", handler, false);
-        div.addEventListener("dragend", dragEnd, false);
-
       });
 
 
@@ -282,8 +280,8 @@ export class MausritterActorSheet extends ActorSheet {
 
           if (round) {
             let roundScale = 5;
-            xPos = Math.round(xPos / roundScale) * roundScale;// - (item.data.size.width - 1) * 4;
-            yPos = Math.round(yPos / roundScale) * roundScale;// - (item.data.size.height - 1) * 4;
+            xPos = Math.round(xPos / roundScale) * roundScale;
+            yPos = Math.round(yPos / roundScale) * roundScale;
           }
           el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
@@ -382,6 +380,8 @@ export class MausritterActorSheet extends ActorSheet {
       diff: false
     });
   }
+
+
 
   //The onDragItemStart event can be subverted to let you package additional data what you're dragging
   _onDragItemStart(event) {
@@ -508,6 +508,5 @@ export class MausritterActorSheet extends ActorSheet {
     // Create the owned item
     return this._onDropItemCreate(itemData);
   }
-
 
 }

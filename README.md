@@ -6,9 +6,9 @@ The sample Rat portrait was given with permission.
 
 Features:
 
-  -Sheets styled to appear similar to printout sheets.
+  -Draggable item cards
   
-  -Automated Skill, Weapon,rolls, with built in advantage/disadvantage system.
+  -Automated Skill and item rolls, with built in advantage/disadvantage system.
     
   -Macro support for weapons, items, and stats.
 

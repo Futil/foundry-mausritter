@@ -71,6 +71,11 @@ Hooks.once('init', async function () {
     return str.toLowerCase();
   });
 
+  CONFIG.Combat.initiative = {
+    formula: "-1d20+@stats.dexterity.value",
+    decimals: 2
+  };
+
   // preloadHandlebarsTemplates();
 });
 
@@ -114,6 +119,7 @@ Hooks.once("ready", async function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => createMausritterMacro(data, slot));
 });
+
 
 
 /* -------------------------------------------- */
@@ -190,8 +196,8 @@ function rollStatMacro() {
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
-    const stat = actor ? Object.entries(actor.data.data.stats) : null;
-  
+  const stat = actor ? Object.entries(actor.data.data.stats) : null;
+
 
   // if (stat == null) {
   //   ui.notifications.info("Stat not found on token");

@@ -105,10 +105,34 @@ export class MausritterActor extends Actor {
     console.log(item);
 
     if(item.type == "weapon"){
-      if(item.data.weapon.selected == 0)
-        this.rollWeapon(item, item.data.weapon.dmg1);
-      else
-      this.rollWeapon(item, item.data.weapon.dmg2);
+            //Select the stat of the roll.
+      let t = new Dialog({
+        title: "Select Stat",
+        content: "<h2> Enhanced/Impaired </h2> <select style='margin-bottom:10px;'name='enhanced' id='enhanced'>\
+        <option value='normal'>Normal</option>\
+        <option value='enhanced'>Enhanced</option>\
+        <option value='impaired'>Impaired</option></select> <br/>",
+        buttons: {
+          roll: {
+            icon: '<i class="fas fa-check"></i>',
+            label: "Roll",
+            callback: (html) => this.rollWeapon(item, html.find('[id=\"enhanced\"]')[0].value)
+          },
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: "Cancel",
+            callback: () => { }
+          }
+        },
+        default: "roll",
+        close: () => { }
+      });
+      t.render(true);
+      
+      // if(item.data.weapon.selected == 0)
+      //   this.rollWeapon(item, item.data.weapon.dmg1);
+      // else
+      // this.rollWeapon(item, item.data.weapon.dmg2);
     } else if(item.type=="spell"){
       //Select the stat of the roll.
       let t = new Dialog({
@@ -136,7 +160,18 @@ export class MausritterActor extends Actor {
     }
   }
 
-  rollWeapon(item = "", die = ""){
+  rollWeapon(item = "", state = ""){
+    let die = (item.data.weapon.selected == 0 ? item.data.weapon.dmg1 : item.data.weapon.dmg2)
+    
+    if(state == "impaired")
+      die = 'd4';
+    if(state == "enhanced")
+      die = 'd12';
+      
+  //   this.rollWeapon(item, item.data.weapon.dmg1);
+  // else
+  // this.rollWeapon(item, item.data.weapon.dmg2);
+
     let damageRoll = new Roll(die);
     damageRoll.roll();
     console.log(damageRoll);

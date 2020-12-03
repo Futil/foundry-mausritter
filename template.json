@@ -3,7 +3,8 @@
     "types": [
       "character",
       "hireling",
-      "creature"
+      "creature",
+      "storage"
     ],
     "templates": {
       "base": {
@@ -117,6 +118,21 @@
           "max": 0
         }
       }
+    },
+    "storage": {
+      "templates": [
+        "base"
+      ],
+      "biography": "",
+      "notes": "",
+      "description": {
+        "disposition": ""
+      },
+      "size" : {
+        "width" : 3,
+        "height" : 2
+      },
+      "storeDiv":""
     }
   },
   "Item": {

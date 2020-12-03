@@ -3,6 +3,7 @@ import { MausritterActor } from "./actor/actor.js";
 import { MausritterActorSheet } from "./actor/actor-sheet.js";
 import { MausritterHirelingSheet } from "./actor/hireling-sheet.js";
 import { MausritterCreatureSheet } from "./actor/creature-sheet.js";
+import { MausritterStorageSheet } from "./actor/storage-sheet.js";
 
 import { MausritterItem } from "./item/item.js";
 import { MausritterItemSheet } from "./item/item-sheet.js";
@@ -50,6 +51,10 @@ Hooks.once('init', async function () {
   });
   Actors.registerSheet("mausritter", MausritterCreatureSheet, {
     types: ['creature'],
+    makeDefault: false
+  });
+  Actors.registerSheet("mausritter", MausritterStorageSheet, {
+    types: ['storage'],
     makeDefault: false
   });
 

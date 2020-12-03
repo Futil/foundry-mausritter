@@ -1044,6 +1044,7 @@
 .mausritter .item-container {
   width: 720px;
   height: 470px;
+  margin: auto;
   background-color: rgba(230,230,230,1);
   display: flex;
   align-items: center;

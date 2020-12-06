@@ -82,7 +82,7 @@
             </div>
   
             {{#each actor.gear as |item id|}}
-            <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}};"
+            <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}}; transform: translate3d({{item.data.sheet.currentX}}px,{{item.data.sheet.currentY}}px, 0);"
               data-item-id="{{item._id}}" id="{{item._id}}">
               <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
               {{#if item.data.clear}} <!-- If it's a condition -->

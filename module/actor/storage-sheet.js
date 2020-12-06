@@ -100,9 +100,10 @@ export class MausritterStorageSheet extends ActorSheet {
             }
             item.size.x = (item.size.width * 8 + item.size.width) + "em";
             item.size.y = (item.size.height * 8 + item.size.height) + "em";
-
+            
             gear.push(i);
         }
+
         actorData.data.storeDiv = ""
         actorData.data.size.divWidth = actorData.data.size.width * 130 + 35;
         actorData.data.size.divHeight = actorData.data.size.height * 130 + 35;
@@ -122,12 +123,12 @@ export class MausritterStorageSheet extends ActorSheet {
 
 
 
-        console.log(this);
         // Assign and return
         actorData.gear = gear;
 
         this.position.width = actorData.data.size.width * 130 + 80;
         this.position.height = actorData.data.size.height * 130 + 230;
+        
     }
 
 //   /** @override */
@@ -280,38 +281,38 @@ export class MausritterStorageSheet extends ActorSheet {
 
             // Item Card handler
 
-            html.find('div.dragItems').each((i, dragItem) => {
+            // html.find('div.dragItems').each((i, dragItem) => {
 
-                const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", dragItem.dataset.itemId))
-                // let dragItem = document.querySelector("#" + container.dataset.itemId);
-                var curIndex = 1; //The current zIndex
+            //     const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", dragItem.dataset.itemId))
+            //     // let dragItem = document.querySelector("#" + container.dataset.itemId);
+            //     var curIndex = 1; //The current zIndex
 
-                if (item.data.sheet == undefined) {
-                    item.data.sheet = {
-                        "active": false,
-                        "currentX": 0,
-                        "currentY": 0,
-                        "initialX": 0,
-                        "initialY": 0,
-                        "xOffset": 0,
-                        "yOffset": 0
-                    };
-                }
+            //     if (item.data.sheet == undefined) {
+            //         item.data.sheet = {
+            //             "active": false,
+            //             "currentX": 0,
+            //             "currentY": 0,
+            //             "initialX": 0,
+            //             "initialY": 0,
+            //             "xOffset": 0,
+            //             "yOffset": 0
+            //         };
+            //     }
 
+            //     console.log("Item Position Update");
+            //     setTranslate(item.data.sheet.currentX, item.data.sheet.currentY, dragItem, true);
+            //     dragItem.style.zIndex = item.data.sheet.currentX + 500;
 
-                setTranslate(item.data.sheet.currentX, item.data.sheet.currentY, dragItem, true);
-                dragItem.style.zIndex = item.data.sheet.currentX + 500;
+            //     function setTranslate(xPos, yPos, el, round = false) {
 
-                function setTranslate(xPos, yPos, el, round = false) {
-
-                    if (round) {
-                        let roundScale = 5;
-                        xPos = Math.round(xPos / roundScale) * roundScale;
-                        yPos = Math.round(yPos / roundScale) * roundScale;
-                    }
-                    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-                }
-            });
+            //         if (round) {
+            //             let roundScale = 5;
+            //             xPos = Math.round(xPos / roundScale) * roundScale;
+            //             yPos = Math.round(yPos / roundScale) * roundScale;
+            //         }
+            //         el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+            //     }
+            // });
         }
 
 

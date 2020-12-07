@@ -101,6 +101,12 @@ export class MausritterStorageSheet extends ActorSheet {
             item.size.x = (item.size.width * 8 + item.size.width) + "em";
             item.size.y = (item.size.height * 8 + item.size.height) + "em";
             
+            let roundScale = 5;
+            let xPos = Math.round(item.sheet.currentX / roundScale) * roundScale;
+            let yPos = Math.round(item.sheet.currentY / roundScale) * roundScale;
+            item.sheet.currentX = xPos;
+            item.sheet.currentY = yPos;
+
             gear.push(i);
         }
 

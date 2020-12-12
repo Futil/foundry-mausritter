@@ -15,6 +15,9 @@ Inventory is handled through item cards, which can be moved around freely, moved
 
 Cards are styled to resemble the official game cards, with automated rolls, usage dots, and more being included.
 
+## Item Compendiums
+Every Item, Weapon, Condition, and Spell from the game has been included inside of the system's compendiums.
+
 ## Storage Sheets with Adjustable Dimensions
 Have a cart, chest, bank, etc that players want to store items in? Or maybe you have a treasure horde that you want to allow players to peruse through. You can create 'Storage' actors with adjustable slot counts.
 

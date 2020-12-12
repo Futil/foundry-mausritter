@@ -3,7 +3,7 @@
 Mausritter can be purchased here: https://mausritter.com/
 ```
 - The official game Weapon, Item, and Spell Icons by Isaac Williams are licensed under CC-BY.
-- The sample Rat portrait from the official book was allowed to be used with permission from Isaac Willians
+- The sample Rat portrait from the official book was allowed to be used with permission from Isaac Williams
 ```
 # Features:
 ## Styled character sheets

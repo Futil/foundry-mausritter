@@ -262,8 +262,8 @@ export class MausritterActor extends Actor {
     if(item.data.description == null){
       item.data.description = "";
     }
-    item.data.description = item.data.description.replace("[DICE]", "<strong style='text-decoration:underline' class='red'>"+power+"</strong>")
-    item.data.description = item.data.description.replace("[SUM]", "<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>")
+    item.data.description = item.data.description.replaceAll("[DICE]", "<strong style='text-decoration:underline' class='red'>"+power+"</strong>")
+    item.data.description = item.data.description.replaceAll("[SUM]", "<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>")
     item.data.description += "<h2>Usage: <strong>"+usage+"</strong></h2>";
     if(miscast){
       item.data.description += "<h2>Miscast: <strong>"+miscast+"</strong> </h2> Take [[/r "+miscast+"d6]] Will Damage <br/> Then, make a will save, taking the <i>mad</i> condition on a failure.";

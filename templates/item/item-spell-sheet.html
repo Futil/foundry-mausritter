@@ -1,29 +1,33 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <header class="sheet-header-maus">
+        <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" class="item-text item-sheet-header"/></h1>
 
             <div class="grid grid-3col">
                 <div class="resource">
-                    <label class="resource-label">Current Pips</label>
-                    <input type="text" name="data.pips.value" value="{{data.pips.value}}" data-dtype="Number" />
+                    <label class="resource-label">Worth</label>
+                    <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
-                    <label class="resource-label">Max Pips</label>
-                    <input type="text" name="data.pips.max" value="{{data.pips.max}}" data-dtype="Number" />
+                    <label class="resource-label">Current Usage</label>
+                    <input type="text" name="data.pips.value" value="{{data.pips.value}}" data-dtype="Number" class="item-text"/>
+                </div>
+                <div class="resource">
+                    <label class="resource-label">Max Usage</label>
+                    <input type="text" name="data.pips.max" value="{{data.pips.max}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">Tag</label>
-                    <input type="text" name="data.tag" value="{{data.tag}}" data-dtype="String" />
+                    <input type="text" name="data.tag" value="{{data.tag}}" data-dtype="String" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">Width</label>
-                    <input type="text" name="data.size.width" value="{{data.size.width}}" data-dtype="Number" />
+                    <input type="text" name="data.size.width" value="{{data.size.width}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">Height</label>
-                    <input type="text" name="data.size.height" value="{{data.size.height}}" data-dtype="Number" />
+                    <input type="text" name="data.size.height" value="{{data.size.height}}" data-dtype="Number" class="item-text"/>
                 </div>
             </div>
 

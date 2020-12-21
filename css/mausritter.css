@@ -358,7 +358,14 @@
   -webkit-box-flex: 0;
   flex: 0 24px;
   margin-right: -9px;
-  width: 46px;
+  height: 42px;
+  border-radius: 24px;
+  border-width: 2px;
+  position: absolute;
+  right: 10px;
+  border-color: white;
+  top: 1px;
+  background: white;
 }
 
 
@@ -916,6 +923,7 @@
   border: 2px solid #111;
   border-radius: 0em 0em 0.25em 0.25em;
   font-family: 'Germania One', cursive;
+  position: relative;
 }
 
 .mausritter .rollh1 {
@@ -940,7 +948,8 @@
   color: white;
   padding: 5px;
   flex: auto;
-  width: 71%;
+  width: 100%;
+  /* width: 71%; */
 }
 
 .mausritter .rollh2 {
@@ -1288,4 +1297,61 @@
 .mausritter .sheet-tabs{
   border-top: 2px solid rgb(22, 22, 22);
   border-bottom: 2px solid rgb(22, 22, 22);
+}
+
+.mausritter .sheet-header-maus{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: normal;
+}
+
+.mausritter .item-img{
+  flex: 0.15 0 64px;
+  /* height: 184px; */
+  width: 130px;
+  margin-right: 6px;
+  /* position: absolute; */
+  top: 2px;
+  margin-top: 0px;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: grey;
+  object-fit: scale-down;
+}
+
+.mausritter .sheet-header-maus h1.charname{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: normal;
+  font-family: 'Germania One', cursive;
+  border-bottom: 0;
+}
+
+.mausritter .sheet-header-maus .item-text{
+  height: 25px;
+  background: rgb(230,230,230);
+  padding: 7px;
+  border-width: 0;
+  border-color: grey;
+}
+
+.mausritter .sheet-header-maus .item-sheet-header{
+  height: 39px;
+}
+
+
+
+.mausritter .sheet-header-maus .resource-label{
+  font-family: 'Germania One', cursive;
+  font-weight: normal;
+  font-size: larger;
+}
+
+.mausritter .tabs .item{
+  font-family: 'Germania One', cursive;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 28px;
 }

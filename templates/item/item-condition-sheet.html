@@ -1,16 +1,16 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
+    <header class="sheet-header-maus">
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" class="item-text item-sheet-header"/></h1>
 
             <div class="grid grid-2col">
                 <div class="resource">
                     <label class="resource-label">Clear</label>
-                    <input type="text" name="data.clear" value="{{data.clear}}" data-dtype="String" />
+                    <input type="text" name="data.clear" value="{{data.clear}}" data-dtype="String" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">Description</label>
-                    <input type="text" name="data.desc" value="{{data.desc}}" data-dtype="String" />
+                    <input type="text" name="data.desc" value="{{data.desc}}" data-dtype="String" class="item-text"/>
                 </div>
 
             </div>

@@ -232,7 +232,6 @@ export class MausritterActorSheet extends ActorSheet {
       item.data.weapon.dmg2 = d1;
       this.actor.updateEmbeddedEntity('OwnedItem', item);
 
-      console.log(item);
     });
 
 
@@ -305,8 +304,6 @@ export class MausritterActorSheet extends ActorSheet {
    * @private
    */
   _onItemCreate(event, type) {
-
-    console.log(type);
     event.preventDefault();
     const header = event.currentTarget;
     // Get the type of item to create.
@@ -365,8 +362,6 @@ export class MausritterActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-
-    console.log(super.getData());
 
     if (dataset.roll) {
       let roll = new Roll(dataset.roll, this.actor.data.data);
@@ -513,9 +508,7 @@ export class MausritterActorSheet extends ActorSheet {
 
       if (data.actorId && !(event.ctrlKey)) {
           let oldActor = game.actors.get(data.actorId);
-          console.log(oldActor);
           oldActor.deleteOwnedItem(data.itemId);
-          console.log("This is the player");
       }
 
       if (!data.offset) {

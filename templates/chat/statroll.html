@@ -5,10 +5,10 @@
 
     <div class="rollcontainer">
         {{#if onlyDesc}}
-        <div class="flexrow">
+        <div class="flexrow" style="height: 46px;">
             <div class="rollweaponh1">{{item.name}}
             </div>
-            <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
+            <img class="roll-image" src="{{item.img}}" title="{{item.name}}" />
         </div>
         {{#if pip}}
         {{{pip}}}
@@ -18,10 +18,10 @@
         </div>
         {{else}}
         {{#if isWeapon}} 
-        <div class="flexrow">
+        <div class="flexrow" style="height: 46px;">
             <div class="rollweaponh1">{{item.name}}
             </div>
-            <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
+            <img class="roll-image" src="{{item.img}}" title="{{item.name}}" />
         </div>
         {{#if pip}}
         {{{pip}}}

@@ -44,9 +44,6 @@ export class MausritterActor extends Actor {
     let selectList = "";
 
     statList.forEach(stat => selectList += "<option value='" + stat[0] + "'>" + stat[1].label + "</option>")
-    statList.forEach(stat => console.log(stat[0]));
-
-    console.log(statList);
 
     let d = new Dialog({
       title: "Select Roll Type",
@@ -70,7 +67,6 @@ export class MausritterActor extends Actor {
   }
 
   rollStat(attribute) {
-    console.log(attribute);
 
     let attLabel = attribute.label?.charAt(0).toUpperCase() + attribute.label?.toLowerCase().slice(1);
     if (!attribute.label && isNaN(attLabel))
@@ -101,8 +97,6 @@ export class MausritterActor extends Actor {
 
   rollItem(itemId, options = { event: null }) {
     let item = duplicate(this.getEmbeddedEntity("OwnedItem", itemId));
-
-    console.log(item);
 
     if(item.type == "weapon"){
             //Select the stat of the roll.
@@ -174,19 +168,18 @@ export class MausritterActor extends Actor {
 
     let damageRoll = new Roll(die);
     damageRoll.roll();
-    console.log(damageRoll);
 
     const diceData = this.formatDice(damageRoll);
 
     //Create the pip HTML.
-    let pipHtml = "";
+    let pipHtml = "<div style='margin-top: 5px;'>";
     for (let i = 0; i < item.data.pips.max; i++) {
       if (i < item.data.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
     }
-    
+    pipHtml += "</div>";
 
     var templateData = {
       actor: this,
@@ -235,10 +228,8 @@ export class MausritterActor extends Actor {
 
     let damageRoll = new Roll(die);
     damageRoll.roll();
-    console.log(damageRoll);
 
     const diceData = this.formatDice(damageRoll);
-    console.log(diceData);
 
     let rollDiv = '';
 
@@ -262,23 +253,23 @@ export class MausritterActor extends Actor {
     if(item.data.description == null){
       item.data.description = "";
     }
-    item.data.description = item.data.description.replaceAll("[DICE]", "<strong style='text-decoration:underline' class='red'>"+power+"</strong>")
-    item.data.description = item.data.description.replaceAll("[SUM]", "<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>")
+
+    item.data.description = item.data.description.split("[DICE]").join("<strong style='text-decoration:underline' class='red'>"+power+"</strong>");
+    item.data.description = item.data.description.split("[SUM]").join("<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>");
     item.data.description += "<h2>Usage: <strong>"+usage+"</strong></h2>";
     if(miscast){
       item.data.description += "<h2>Miscast: <strong>"+miscast+"</strong> </h2> Take [[/r "+miscast+"d6]] Will Damage <br/> Then, make a will save, taking the <i>mad</i> condition on a failure.";
     }
 
     //Create the pip HTML.
-    let pipHtml = "";
+    let pipHtml = "<div style='margin-top: 5px;'>";
     for (let i = 0; i < item.data.pips.max; i++) {
       if (i < item.data.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
     }
-
-    console.log(pipHtml);
+    pipHtml += "</div>";
 
     var templateData = {
       actor: this,
@@ -331,17 +322,12 @@ export class MausritterActor extends Actor {
     if (!attribute.label && isNaN(attributeName))
       attributeName = attribute.charAt(0)?.toUpperCase() + attribute.toLowerCase().slice(1);
 
-    console.log("Got here baybee");
-
     // Roll
     let diceformular = "1d20";
 
-    console.log(attribute);
 
     let r = new Roll(diceformular, {});
     r.roll();
-
-    console.log(r);
 
     let rSplit = ("" + r._total).split("");
 
@@ -353,7 +339,6 @@ export class MausritterActor extends Actor {
     if (item.type == "weapon") {
       damageRoll = new Roll(item.data.damage);
       damageRoll.roll();
-      console.log(damageRoll);
     }
 
     // Format Dice
@@ -372,8 +357,6 @@ export class MausritterActor extends Actor {
     } else {
         resultText = (r._total <= targetValue ? "Success" : "Failure");
     }
-
-    console.log(attribute.value + attribute.mod);
 
     var templateData = {
       actor: this,
@@ -511,13 +494,14 @@ export class MausritterActor extends Actor {
       itemName = item.charAt(0)?.toUpperCase() + item.toLowerCase().slice(1);
 
     //Create the pip HTML.
-    let pipHtml = "";
+    let pipHtml = "<div style='margin-top: 5px;'>";
     for (let i = 0; i < item.data.pips.max; i++) {
       if (i < item.data.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
     }
+    pipHtml += "</div>";
 
     if(item.data.description == null){
       item.data.description = "";

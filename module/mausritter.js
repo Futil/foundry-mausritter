@@ -143,8 +143,6 @@ async function createMausritterMacro(data, slot) {
   if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
   const item = data.data;
 
-  console.log(data);
-
   // Create the macro command
   let command = `game.mausritter.rollItemMacro("${item.name}");`;
 
@@ -179,8 +177,6 @@ function rollItemMacro(itemName) {
   const item = actor ? actor.items.find(i => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 
-  console.log();
-
   return actor.rollItem(item.id);
 }
 
@@ -209,7 +205,6 @@ function rollStatMacro() {
   //   return;
   // }
 
-  console.log(stat);
 
   return actor.rollStatSelect(stat);
 }

@@ -97,14 +97,23 @@ export class MausritterHirelingSheet extends ActorSheet {
           "y": "9em"
         }
       }
-      item.size.x = (item.size.width * 8 + item.size.width) + "em";
-      item.size.y = (item.size.height * 8 + item.size.height) + "em";
+      if(item.sheet.rotation == undefined)
+      item.sheet.rotation = 0;
+
+      item.size.aspect = (item.sheet.rotation == -90 ? (item.size.width > item.size.height ? item.size.width / item.size.height : item.size.height / item.size.width) : 1);
+
+      item.sheet.curHeight = (item.sheet.rotation == -90 ? item.size.width : item.size.height);
+      item.sheet.curWidth = (item.sheet.rotation == -90 ? item.size.height : item.size.width);
+
+      item.size.x = (item.sheet.curWidth * 8 + item.sheet.curWidth) + "em";
+      item.size.y = (item.sheet.curHeight * 8 + item.sheet.curHeight) + "em";
 
       let roundScale = 5;
       let xPos = Math.round(item.sheet.currentX / roundScale) * roundScale;
       let yPos = Math.round(item.sheet.currentY / roundScale) * roundScale;
       item.sheet.currentX = xPos;
       item.sheet.currentY = yPos;
+      item.sheet.zIndex = xPos + yPos + 1000;
 
       gear.push(i);
     }
@@ -173,6 +182,16 @@ export class MausritterHirelingSheet extends ActorSheet {
       li.slideUp(200, () => this.render(false));
     });
 
+    // Rotate Inventory Item
+    html.find('.item-rotate').click(ev => {
+      const li = ev.currentTarget.closest(".item");
+      const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", li.dataset.itemId))
+      if(item.data.sheet.rotation == -90)
+        item.data.sheet.rotation = 0;
+      else
+        item.data.sheet.rotation = -90;
+        this.actor.updateEmbeddedEntity('OwnedItem', item);
+    });
 
     // Rollable Attributes
     html.find('.stat-roll').click(ev => {

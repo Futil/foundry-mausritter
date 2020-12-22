@@ -82,7 +82,7 @@
             </div>
   
             {{#each actor.gear as |item id|}}
-            <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}}; transform: translate3d({{item.data.sheet.currentX}}px,{{item.data.sheet.currentY}}px, 0);"
+            <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}}; transform: translate3d({{item.data.sheet.currentX}}px,{{item.data.sheet.currentY}}px, 0); z-index: {{item.data.sheet.zIndex}};"
               data-item-id="{{item._id}}" id="{{item._id}}">
               <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
               {{#if item.data.clear}} <!-- If it's a condition -->
@@ -136,20 +136,21 @@
                 {{item.data.clear}}
               </div>
               {{/if}}
-              <img src="{{item.img}}" title="{{item.name}}" class="item-card-image" />
+              <img src="{{item.img}}" title="{{item.name}}" class="item-card-image" style="transform:rotate({{item.data.sheet.rotation}}deg) scale({{item.data.size.aspect}});"/>
               <div class="item-controls item-card-chat">
+                <a class="item-control item-rotate" title="Rotate Item"><i class="fas fa-sync-alt"></i></a>
                 <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                 <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                 <!-- <i class="fas fa-comment-dots list-roll description-roll"></i> -->
               </div>
             </div>
-  
+
             <!-- <div class="itemt dragItems" id="{{item._id}}" data-item-id="{{item._id}}">
               
               {{item.name}}
             </div> -->
-  
-            {{/each}}
+
+          {{/each}}
           </div>
         </div>
   

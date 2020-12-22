@@ -15,6 +15,8 @@ Inventory is handled through item cards, which can be moved around freely, moved
 
 Cards are styled to resemble the official game cards, with automated rolls, usage dots, and more being included.
 
+For usage, left click the dots to increase, and right click to decrease. You can also swap medium weapon damage between one handed and two by clicking the damage value.
+
 ## Item Compendiums
 Every Item, Weapon, Condition, and Spell from the game has been included inside of the system's compendiums.
 
@@ -23,7 +25,6 @@ Have a cart, chest, bank, etc that players want to store items in? Or maybe you 
 
 ## Automated Skill Rolls
 You can roll your stats using the built in advantage/disadvantage system
-
 
 ## Macro Support for Weapons, Items, and Skills
 For items, you can simply drag them into the hotbar, or use this script:

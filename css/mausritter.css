@@ -415,7 +415,7 @@
 .mausritter .tab-select {
   font-size: medium;
   font-weight: bold;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.5em;
   color: #111;
   text-align: center;
@@ -501,7 +501,7 @@
   font-size: 0.9rem;
   font-weight: bold;
   text-align: center;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   background: transparent;
   flex: 1;
 }
@@ -565,14 +565,14 @@
   font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   background: transparent;
   flex: 1;
 }
 
 
 .mausritter .minmaxtext{
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
@@ -582,7 +582,7 @@
 }
 
 .mausritter .littleLabel{
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.3rem;
   font-weight: bold;
   text-align: center;
@@ -853,7 +853,7 @@
 
 .mausritter .headerinputtext {
   color: rgb(22, 22, 22);
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.3rem;
   font-weight: bold;
   text-align: center;
@@ -868,7 +868,7 @@
   padding: 2px;
   /* background-color: rgb(240,240,240); */
   font-size: 1rem;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   flex: 1.9;
 }
 
@@ -922,7 +922,7 @@
 
   border: 2px solid #111;
   border-radius: 0em 0em 0.25em 0.25em;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   position: relative;
 }
 
@@ -977,7 +977,7 @@
   width: 100%;
   padding: 0.5rem;
   color: black;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 0.9rem;
   text-align: center;
 }
@@ -1011,7 +1011,7 @@
   border-radius: 1.5rem;
   color: #111;
 
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   text-align: right;
 }
 
@@ -1032,7 +1032,7 @@
   padding: 5px;
   color: rgb(117, 0, 0);
   font-weight: normal;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
 }
 
 .mausritter .roll-damagebox {
@@ -1082,7 +1082,7 @@
 .mausritter .item-bag-text {
   padding: 9px;
   height: 100%;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 3.3em;
   color: grey;
   margin: 20%;
@@ -1104,7 +1104,7 @@
 .mausritter .item-slot-header {
   padding: 4px;
   height: 30px;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.3em;
   color: grey;
   text-align: center;
@@ -1156,7 +1156,7 @@
   z-index: 10;
   border-bottom: 1px solid rgb(22, 22, 22);
   border-radius: 0.1em 0.1em 0 0;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.25em;
   color: black;
   pointer-events: none;
@@ -1168,7 +1168,7 @@
   padding: 4px;
   height: 30px;
   z-index: 10;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.4em;
   color: black;
   pointer-events: none;
@@ -1245,7 +1245,7 @@
   background: white;
   color: rgb(22, 22, 22);
   margin: 5px;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-size: 1.5em;
   right: 0;
   top: 28px;
@@ -1271,7 +1271,7 @@
   margin: auto;
   background-color: rgb(240,240,240);
   font-size: 1.5rem;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   border: 2px solid rgb(22, 22, 22);
   position: absolute;
   bottom: 5px;
@@ -1327,7 +1327,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: normal;
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   border-bottom: 0;
 }
 
@@ -1346,13 +1346,13 @@
 
 
 .mausritter .sheet-header-maus .resource-label{
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-weight: normal;
   font-size: larger;
 }
 
 .mausritter .tabs .item{
-  font-family: 'Germania One', cursive;
+  font-family: 'Germania One', Garamond;
   font-weight: bold;
   font-size: 1.5em;
   line-height: 28px;

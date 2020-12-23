@@ -9,9 +9,9 @@
     "templates": {
       "base": {
         "health": {
-          "value": 10,
+          "value": 0,
           "min": 0,
-          "max": 10
+          "max": 0
         },
         "hits": {
           "value": 2,
@@ -44,17 +44,17 @@
       },
       "stats": {
         "strength": {
-          "value": 10,
+          "value": 0,
           "label": "Strength",
           "max": 0
         },
         "dexterity": {
-          "value": 10,
+          "value": 0,
           "label": "Dexterity",
           "max": 0
         },
         "will": {
-          "value": 10,
+          "value": 0,
           "label": "Will",
           "max": 0
         }
@@ -76,17 +76,17 @@
       },
       "stats": {
         "strength": {
-          "value": 10,
+          "value": 0,
           "label": "Strength",
           "max": 0
         },
         "dexterity": {
-          "value": 10,
+          "value": 0,
           "label": "Dexterity",
           "max": 0
         },
         "will": {
-          "value": 10,
+          "value": 0,
           "label": "Will",
           "max": 0
         }
@@ -103,17 +103,17 @@
       },
       "stats": {
         "strength": {
-          "value": 10,
+          "value": 0,
           "label": "Strength",
           "max": 0
         },
         "dexterity": {
-          "value": 10,
+          "value": 0,
           "label": "Dexterity",
           "max": 0
         },
         "will": {
-          "value": 10,
+          "value": 0,
           "label": "Will",
           "max": 0
         }
@@ -169,7 +169,8 @@
           "width": 1,
           "height": 1,
           "x": "9em",
-          "y": "9em"
+          "y": "9em",
+          "aspect" : 1
         }
       }
     },
@@ -203,7 +204,7 @@
       "tag": "",
       "placement": "hand",
       "weapon": {
-        "dmg1": "1d6",
+        "dmg1": "d6",
         "dmg2": "",
         "selected": 0,
         "canSwap": false

@@ -17,14 +17,14 @@
 
           <!-- PLAYER NAME -->
           <div class="headernamegrid">
-            <div class="headerinputtext" style="font-size: 3rem;">Name</div>
+            <div class="headerinputtext" style="font-size: 3rem;">{{localize "Maus.ActorName"}}</div>
             <div class="headerinputfield charname" style="font-size: 2rem;"><input name="name" class="noborder"
                 type="text" value="{{actor.name}}" placeholder="Name" style="height: auto;"/></div>
           </div>
           <div class="seperatorLine"></div>
           <!-- Background -->
           <div class="headernamegrid">
-            <div class="headerinputtext">Background</div>
+            <div class="headerinputtext">{{localize "Maus.ActorBackground"}}</div>
             <div class="headerinputfield charname"><input name="data.description.background"
                 style="color: rgb(22,22,22);" class="noborder" type="text" value="{{data.description.background}}"
                 placeholder="" data-dtype="String" /></div>
@@ -35,7 +35,7 @@
         <div class="header-border">
           <!-- Birthsign -->
           <div class="headernamegrid">
-            <div class="headerinputtext">Sign</div>
+            <div class="headerinputtext">{{localize "Maus.ActorSign"}}</div>
             <div class="headerinputfield charname"><input name="data.description.birthsign"
                 style="color: rgb(22,22,22);" class="noborder" type="text" value="{{data.description.birthsign}}"
                 placeholder="" data-dtype="String" /></div>
@@ -43,7 +43,7 @@
           <div class="seperatorLine"></div>
           <!-- Coat -->
           <div class="headernamegrid">
-            <div class="headerinputtext">Coat</div>
+            <div class="headerinputtext">{{localize "Maus.ActorCoat"}}</div>
             <div class="headerinputfield charname"><input name="data.description.coat" style="color: rgb(22,22,22);"
                 class="noborder" type="text" value="{{data.description.coat}}" placeholder="" data-dtype="String" />
             </div>
@@ -51,7 +51,7 @@
           <div class="seperatorLine"></div>
           <!-- Look -->
           <div class="headernamegrid">
-            <div class="headerinputtext">Look</div>
+            <div class="headerinputtext">{{localize "Maus.ActorLook"}}</div>
             <div class="headerinputfield charname"><input name="data.description.look" style="color: rgb(22,22,22);"
                 class="noborder" type="text" value="{{data.description.look}}" placeholder="" data-dtype="String" />
             </div>
@@ -67,7 +67,7 @@
         <div class="verticalFlex blockborder">
           <!-- Grit -->
           <div class="statblock">
-            <label for="data.grit.value" class="statName littleLabel">Grit</label>
+            <label for="data.grit.value" class="statName littleLabel">{{localize "Maus.ActorGrit"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.grit.value" value="{{data.grit.value}}"
               data-dtype="Number" />
@@ -80,7 +80,7 @@
           <div class="verticalFlex blockborder">
             <!-- Level -->
             <div class="statblock">
-              <label for="data.level.value" class="statName littleLabel">LVL </label>
+              <label for="data.level.value" class="statName littleLabel">{{localize "Maus.ActorLvl"}} </label>
 
               <input class="minmax-input darkGreyText" type="text" name="data.level.value" value="{{data.level.value}}"
                 data-dtype="Number" />
@@ -89,7 +89,7 @@
           <div class="verticalFlex blockborder">
             <!-- XP -->
             <div class="statblock">
-              <label for="data.level.xp" class="statName littleLabel">XP </label>
+              <label for="data.level.xp" class="statName littleLabel">{{localize "Maus.ActorXP"}} </label>
 
               <input class="minmax-input darkGreyText" type="text" name="data.level.xp" value="{{data.level.xp}}"
                 data-dtype="Number" />
@@ -108,7 +108,7 @@
           <!-- Strength -->
           <div class="statblock">
             <label for="data.stat.strength.value" class="statName minmaxtext rollable stat-roll" data-key="strength"
-              data-roll="1d20" data-label="Strength">STR</label>
+              data-roll="1d20" data-label="Strength">{{localize "Maus.ActorStr"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.stats.strength.value"
               value="{{data.stats.strength.value}}" data-dtype="Number" />
@@ -124,7 +124,7 @@
           <!-- Dexterity -->
           <div class="statblock">
             <label for="data.stat.dexterity.value" class="statName minmaxtext rollable stat-roll" data-key="dexterity"
-              data-roll="1d20" data-label="Dexterity">DEX</label>
+              data-roll="1d20" data-label="Dexterity">{{localize "Maus.ActorDex"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.stats.dexterity.value"
               value="{{data.stats.dexterity.value}}" data-dtype="Number" />
@@ -140,7 +140,7 @@
           <!-- Will -->
           <div class="statblock">
             <label for="data.stat.will.value" class="statName minmaxtext rollable stat-roll" data-key="will"
-              data-roll="1d20" data-label="Will">WIL</label>
+              data-roll="1d20" data-label="Will">{{localize "Maus.ActorWil"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.stats.will.value"
               value="{{data.stats.will.value}}" data-dtype="Number" />
@@ -156,8 +156,8 @@
         <div class="verticalFlex">
           <div class="statblock" style="height: 20px;">
             <div style="width:33%;"></div>
-            <div class="current-max-label">Current</div>
-            <div class="current-max-label">Max</div>
+            <div class="current-max-label">{{localize "Maus.Current"}}</div>
+            <div class="current-max-label">{{localize "Maus.Max"}}</div>
           </div>
         </div>
 
@@ -177,15 +177,15 @@
         <div class="verticalFlex">
           <div class="statblock" style="height: 20px;">
             <div style="width:33%;"></div>
-            <div class="current-max-label">Current</div>
-            <div class="current-max-label">Max</div>
+            <div class="current-max-label">{{localize "Maus.Current"}}</div>
+            <div class="current-max-label">{{localize "Maus.Max"}}</div>
           </div>
         </div>
 
         <div class="verticalFlex blockborder">
           <!-- Pips -->
           <div class="statblock">
-            <label for="data.pips.value" class="statName littleLabel">Pips</label>
+            <label for="data.pips.value" class="statName littleLabel">{{localize "Maus.Pips"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.pips.value" value="{{data.pips.value}}"
               data-dtype="Number" />
@@ -198,8 +198,8 @@
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="mausritter sheet-tabs tabs" style="line-height: 29px; border-top: 2px solid rgb(22, 22, 22); border-bottom: 2px solid rgb(22, 22, 22);" data-group="primary">
-    <a class="tab-select" data-tab="drag">Inventory</a>
-    <a class="tab-select" data-tab="notes">Notes</a>
+    <a class="tab-select" data-tab="drag">{{localize "Maus.Inventory"}}</a>
+    <a class="tab-select" data-tab="notes">{{localize "Maus.Notes"}}</a>
     <!-- <a class="tab-select" data-tab="items">Items</a> -->
 
   </nav>
@@ -216,8 +216,7 @@
       <ol class="items-list">
         <li class="item flexrow item-header">
           <div class="item-controls">
-            <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> Add
-              Item</a>
+            <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> {{localize "Maus.InventoryAddItem"}}</a>
           </div>
         </li>
 
@@ -246,40 +245,39 @@
         <div>
           <div class="item-container" id="drag-area">
             <div class="item-container-controls">
-              <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> Add
-                Item</a>
+              <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> {{localize "Maus.InventoryAddItem"}}</a>
             </div>
             <!-- Main Paw -->
             <div class="item-slot-dashed" style="transform: translate3d(-270px, -150px, 0px);">
               <div class="item-slot-header">
-                Main Paw
+                {{localize "Maus.InventoryMainPaw"}}
               </div>
             </div>
             <!-- Off Paw -->
             <div class="item-slot-dashed" style="transform: translate3d(-270px, -20px, 0px);">
               <div class="item-slot-header">
-                Off Paw
+                {{localize "Maus.InventoryOffPaw"}}
               </div>
-              <div class="item-slot-footer">Carried: Ready to use</div>
+              <div class="item-slot-footer">{{localize "Maus.InventoryCarried"}}</div>
             </div>
 
             <!-- Body -->
             <div class="item-slot-dashed" style="transform: translate3d(-140px, -150px, 0px);">
               <div class="item-slot-header">
-                Body
+                {{localize "Maus.InventoryBody"}}
               </div>
             </div>
             <div class="item-slot-dashed" style="transform: translate3d(-140px, -20px, 0px);">
               <div class="item-slot-header">
-                Body
+                {{localize "Maus.InventoryBody"}}
               </div>
-              <div class="item-slot-footer">Worn: Quick to ready</div>
+              <div class="item-slot-footer">{{localize "Maus.InventoryWorn"}}</div>
             </div>
 
 
             <!-- Main Paw -->
             <div class="item-bag-container" style="transform: translate3d(140px, -85px, 0px);">
-              <div class="item-slot-footer">Pack: takes time to ready. During combat, requires an action to retrieve</div>
+              <div class="item-slot-footer">{{localize "Maus.InventoryPack"}}</div>
             </div>
             <div class="item-slot-dashed" style="transform: translate3d(10px, -150px, 0px);">
               <div class="item-bag-text">
@@ -315,13 +313,13 @@
             <!-- Grit -->
             <div class="item-slot-dashed" style="transform: translate3d(-205px, 150px, 0px); width:18.5em;">
               <div class="item-slot-header">
-                Grit
+                {{localize "Maus.InventoryGrit"}}
               </div>
             </div>
             <!-- Bank -->
             <div class="item-slot-dashed" style="transform: translate3d(140px, 150px, 0px); width:27.5em;">
               <div class="item-slot-header">
-                Bank
+                {{localize "Maus.InventoryBank"}}
               </div>
             </div>
 
@@ -374,7 +372,7 @@
               {{/if}}
               {{#if item.data.clear}}
               <div class="item-card-clear">
-                Clear:
+                {{localize "Maus.CardClear"}}:
               </div>
               <div class="item-card-clear-text">
                 {{item.data.clear}}

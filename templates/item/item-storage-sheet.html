@@ -6,15 +6,15 @@
 
             <div class="grid grid-3col">
                 <div class="resource">
-                    <label class="resource-label">Worth</label>
+                    <label class="resource-label">{{localize "Maus.ItemWorth"}}</label>
                     <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
-                    <label class="resource-label">Store</label>
+                    <label class="resource-label">{{localize "Maus.ItemCurrentStore"}}</label>
                     <input type="text" name="data.store.value" value="{{data.store.value}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
-                    <label class="resource-label">Max Store</label>
+                    <label class="resource-label">{{localize "Maus.ItemMaxStore"}}</label>
                     <input type="text" name="data.store.max" value="{{data.store.max}}" data-dtype="Number" class="item-text"/>
                 </div>
             </div>
@@ -24,7 +24,7 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs item" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="description">{{localize "Maus.ItemDescription"}}</a>
     </nav>
 
     {{!-- Sheet Body --}}

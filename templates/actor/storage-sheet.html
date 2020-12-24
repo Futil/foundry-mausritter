@@ -20,7 +20,7 @@
 
                     <!-- PLAYER NAME -->
                     <div class="headernamegrid">
-                        <div class="headerinputtext" style="font-size: 2rem;">Name</div>
+                        <div class="headerinputtext" style="font-size: 2rem;">{{localize "Maus.ActorName"}}</div>
                         <div class="headerinputfield charname" style="font-size: 2rem;flex:3;"><input name="name"
                                 class="noborder" type="text" value="{{actor.name}}" placeholder="Name"
                                 style="height: auto;" /></div>
@@ -28,7 +28,7 @@
                     <div class="seperatorLine"></div>
                     <!-- Background -->
                     <div class="headernamegrid">
-                        <div class="headerinputtext">Type</div>
+                        <div class="headerinputtext">{{localize "Maus.ActorType"}}</div>
                         <div class="headerinputfield charname" style="flex:3;"><input
                                 name="data.description.disposition" style="color: rgb(22,22,22);" class="noborder"
                                 type="text" value="{{data.description.disposition}}" placeholder=""
@@ -43,9 +43,9 @@
     <nav class="mausritter sheet-tabs tabs"
         style="line-height: 29px; border-top: 2px solid rgb(22, 22, 22); border-bottom: 2px solid rgb(22, 22, 22);"
         data-group="primary">
-        <a class="tab-select" data-tab="storage">Storage</a>
-        <a class="tab-select" data-tab="notes">Notes</a>
-        <a class="tab-select" data-tab="options">Options</a>
+        <a class="tab-select" data-tab="storage">{{localize "Maus.Storage"}}</a>
+        <a class="tab-select" data-tab="notes">{{localize "Maus.Notes"}}</a>
+        <a class="tab-select" data-tab="options">{{localize "Maus.Options"}}</a>
 
     </nav>
 
@@ -62,7 +62,7 @@
                 <div class="verticalFlex blockborder">
                     <!-- Width -->
                     <div class="statblock">
-                        <label for="data.size.width" class="statName littleLabel">Width </label>
+                        <label for="data.size.width" class="statName littleLabel">{{localize "Maus.OptionsWidth"}} </label>
 
                         <input class="minmax-input darkGreyText" type="text" name="data.size.width"
                             value="{{data.size.width}}" data-dtype="Number" />
@@ -71,7 +71,7 @@
                 <div class="verticalFlex blockborder">
                     <!-- Height -->
                     <div class="statblock">
-                        <label for="data.size.height" class="statName littleLabel">Height </label>
+                        <label for="data.size.height" class="statName littleLabel">{{localize "Maus.OptionsHeight"}} </label>
 
                         <input class="minmax-input darkGreyText" type="text" name="data.size.height"
                             value="{{data.size.height}}" data-dtype="Number" />
@@ -86,8 +86,7 @@
             <div class="item-container" style="width:{{data.size.divWidth}}px; height:{{data.size.divHeight}}px;" id="drag-area">
                 <div class="item-container-controls">
                     <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i>
-                        Add
-                        Item</a>
+                        {{localize "Maus.InventoryAddItem"}}</a>
                 </div>
 
                 {{{data.storeDiv}}}
@@ -172,7 +171,7 @@
                   {{/if}}
                   {{#if item.data.clear}}
                   <div class="item-card-clear">
-                    Clear:
+                    {{localize "Maus.CardClear"}}:
                   </div>
                   <div class="item-card-clear-text">
                     {{item.data.clear}}

@@ -56,6 +56,13 @@
       "system": "mausritter",
       "path": "packs/creatures.db",
       "entity": "Actor"
+    },
+    {
+      "name": "hex-generation",
+      "label": "Hex Generation",
+      "system": "mausritter",
+      "path": "packs/hex-generation.db",
+      "entity": "RollTable"
     }
   ],
   "languages": [
@@ -63,6 +70,11 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "pt-br",
+      "name": "Portuguese (Brazilian)",
+      "path": "lang/pt-br.json"
     }
   ],
   "gridDistance": 1,

@@ -590,6 +590,15 @@
   flex: 0.5;
 }
 
+.mausritter .bigLabel{
+  font-family: 'Germania One', Garamond;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+  flex: 0.5;
+}
+
 .mausritter .seperatorLine{
   border-bottom: 2px solid #111;
   height: 0;

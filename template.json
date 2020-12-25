@@ -16,7 +16,8 @@
         "hits": {
           "value": 2,
           "max": 2
-        }
+        },
+        "armor": 0
       }
     },
     "character": {

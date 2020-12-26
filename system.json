@@ -2,7 +2,7 @@
   "name": "mausritter",
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.0.9b",
+  "version": "0.0.9c",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.8",
   "templateVersion": 2,
@@ -58,11 +58,18 @@
       "entity": "Actor"
     },
     {
-      "name": "hex-generation",
-      "label": "Hex Generation",
+      "name": "tables",
+      "label": "Tables",
       "system": "mausritter",
-      "path": "packs/hex-generation.db",
+      "path": "packs/tables.db",
       "entity": "RollTable"
+    },
+    {
+      "name": "mausritter-macros",
+      "label": "Mausritter Macros",
+      "system": "mausritter",
+      "path": "packs/mausritter-macros.db",
+      "entity": "Macro"
     }
   ],
   "languages": [
@@ -72,9 +79,9 @@
       "path": "lang/en.json"
     },
     {
-      "lang": "pt-br",
-      "name": "Portuguese (Brazilian)",
-      "path": "lang/pt-br.json"
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
     }
   ],
   "gridDistance": 1,

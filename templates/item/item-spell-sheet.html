@@ -1,29 +1,33 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <header class="sheet-header-maus">
+        <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" class="item-text item-sheet-header"/></h1>
 
             <div class="grid grid-3col">
                 <div class="resource">
-                    <label class="resource-label">Current Pips</label>
-                    <input type="text" name="data.pips.value" value="{{data.pips.value}}" data-dtype="Number" />
+                    <label class="resource-label">{{localize "Maus.ItemWorth"}}</label>
+                    <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
-                    <label class="resource-label">Max Pips</label>
-                    <input type="text" name="data.pips.max" value="{{data.pips.max}}" data-dtype="Number" />
+                    <label class="resource-label">{{localize "Maus.ItemCurrentUsage"}}</label>
+                    <input type="text" name="data.pips.value" value="{{data.pips.value}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
-                    <label class="resource-label">Tag</label>
-                    <input type="text" name="data.tag" value="{{data.tag}}" data-dtype="String" />
+                    <label class="resource-label">{{localize "Maus.ItemMaxUsage"}}</label>
+                    <input type="text" name="data.pips.max" value="{{data.pips.max}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
-                    <label class="resource-label">Width</label>
-                    <input type="text" name="data.size.width" value="{{data.size.width}}" data-dtype="Number" />
+                    <label class="resource-label">{{localize "Maus.ItemTag"}}</label>
+                    <input type="text" name="data.tag" value="{{data.tag}}" data-dtype="String" class="item-text"/>
                 </div>
                 <div class="resource">
-                    <label class="resource-label">Height</label>
-                    <input type="text" name="data.size.height" value="{{data.size.height}}" data-dtype="Number" />
+                    <label class="resource-label">{{localize "Maus.ItemWidth"}}</label>
+                    <input type="text" name="data.size.width" value="{{data.size.width}}" data-dtype="Number" class="item-text"/>
+                </div>
+                <div class="resource">
+                    <label class="resource-label">{{localize "Maus.ItemHeight"}}</label>
+                    <input type="text" name="data.size.height" value="{{data.size.height}}" data-dtype="Number" class="item-text"/>
                 </div>
             </div>
 
@@ -32,7 +36,7 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="description">{{localize "Maus.ItemDescription"}}</a>
     </nav>
 
     {{!-- Sheet Body --}}

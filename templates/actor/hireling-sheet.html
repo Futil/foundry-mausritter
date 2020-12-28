@@ -20,14 +20,14 @@
 
           <!-- PLAYER NAME -->
           <div class="headernamegrid">
-            <div class="headerinputtext" style="font-size: 3rem;">Name</div>
+            <div class="headerinputtext" style="font-size: 3rem;">{{localize "Maus.ActorName"}}</div>
             <div class="headerinputfield charname" style="font-size: 2rem;flex:3;"><input name="name" class="noborder"
                 type="text" value="{{actor.name}}" placeholder="Name" style="height: auto;"/></div>
           </div>
           <div class="seperatorLine"></div>
           <!-- Background -->
           <div class="headernamegrid">
-            <div class="headerinputtext">Disposition</div>
+            <div class="headerinputtext">{{localize "Maus.ActorDisposition"}}</div>
             <div class="headerinputfield charname" style="flex:3;"><input name="data.description.disposition"
                 style="color: rgb(22,22,22);" class="noborder" type="text" value="{{data.description.disposition}}"
                 placeholder="" data-dtype="String"/></div>
@@ -41,19 +41,18 @@
         {{!-- Item Drag Tab --}}
         <div class="item-container" style="width:420px; height:290px;" id="drag-area">
           <div class="item-container-controls">
-            <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> Add
-              Item</a>
+            <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> {{localize "Maus.InventoryAddItem"}}</a>
           </div>
           <!-- Main Paw -->
           <div class="item-slot-dashed" style="transform: translate3d(-130px, -60px, 0px);">
             <div class="item-slot-header">
-              Main Paw
+              {{localize "Maus.InventoryMainPaw"}}
             </div>
           </div>
           <!-- Off Paw -->
           <div class="item-slot-dashed" style="transform: translate3d(-130px, 70px, 0px);">
             <div class="item-slot-header">
-              Off Paw
+              {{localize "Maus.InventoryOffPaw"}}
             </div>
           </div>
 
@@ -82,7 +81,7 @@
           </div>
 
           {{#each actor.gear as |item id|}}
-          <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}}; transform: translate3d({{item.data.sheet.currentX}}px,{{item.data.sheet.currentY}}px, 0);"
+          <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}}; transform: translate3d({{item.data.sheet.currentX}}px,{{item.data.sheet.currentY}}px, 0); z-index: {{item.data.sheet.zIndex}};"
             data-item-id="{{item._id}}" id="{{item._id}}">
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
             {{#if item.data.clear}} <!-- If it's a condition -->
@@ -130,14 +129,15 @@
             {{/if}}
             {{#if item.data.clear}}
             <div class="item-card-clear">
-              Clear:
+              {{localize "Maus.CardClear"}}:
             </div>
             <div class="item-card-clear-text">
               {{item.data.clear}}
             </div>
             {{/if}}
-            <img src="{{item.img}}" title="{{item.name}}" class="item-card-image" />
+            <img src="{{item.img}}" title="{{item.name}}" class="item-card-image" style="transform:rotate({{item.data.sheet.rotation}}deg) scale({{item.data.size.aspect}});"/>
             <div class="item-controls item-card-chat">
+              <a class="item-control item-rotate" title="Rotate Item"><i class="fas fa-sync-alt"></i></a>
               <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
               <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
               <!-- <i class="fas fa-comment-dots list-roll description-roll"></i> -->
@@ -149,7 +149,7 @@
             {{item.name}}
           </div> -->
 
-          {{/each}}
+        {{/each}}
         </div>
       </div>
 
@@ -158,7 +158,7 @@
           <!-- Strength -->
           <div class="statblock">
             <label for="data.stat.strength.value" class="statName minmaxtext rollable stat-roll" data-key="strength"
-              data-roll="1d20" data-label="Strength">STR</label>
+              data-roll="1d20" data-label="Strength">{{localize "Maus.ActorStr"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.stats.strength.value"
               value="{{data.stats.strength.value}}" data-dtype="Number" />
@@ -174,7 +174,7 @@
           <!-- Dexterity -->
           <div class="statblock">
             <label for="data.stat.dexterity.value" class="statName minmaxtext rollable stat-roll" data-key="dexterity"
-              data-roll="1d20" data-label="Dexterity">DEX</label>
+              data-roll="1d20" data-label="Dexterity">{{localize "Maus.ActorDex"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.stats.dexterity.value"
               value="{{data.stats.dexterity.value}}" data-dtype="Number" />
@@ -190,7 +190,7 @@
           <!-- Will -->
           <div class="statblock">
             <label for="data.stat.will.value" class="statName minmaxtext rollable stat-roll" data-key="will"
-              data-roll="1d20" data-label="Will">WIL</label>
+              data-roll="1d20" data-label="Will">{{localize "Maus.ActorWil"}}</label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.stats.will.value"
               value="{{data.stats.will.value}}" data-dtype="Number" />
@@ -206,15 +206,15 @@
         <div class="verticalFlex">
           <div class="statblock" style="height: 20px;">
             <div style="width:33%;"></div>
-            <div class="current-max-label">Current</div>
-            <div class="current-max-label">Max</div>
+            <div class="current-max-label">{{localize "Maus.Current"}}</div>
+            <div class="current-max-label">{{localize "Maus.Max"}}</div>
           </div>
         </div>
 
         <div class="verticalFlex blockborder">
           <!-- HP -->
           <div class="statblock">
-            <label for="data.stat.will.value" class="statName minmaxtext">HP </label>
+            <label for="data.stat.will.value" class="statName minmaxtext">{{localize "Maus.ActorHP"}} </label>
 
             <input class="minmax-input darkGreyText" type="text" name="data.health.value" value="{{data.health.value}}"
               data-dtype="Number" />
@@ -227,8 +227,8 @@
         <div class="verticalFlex">
           <div class="statblock" style="height: 20px;">
             <div style="width:33%;"></div>
-            <div class="current-max-label">Current</div>
-            <div class="current-max-label">Max</div>
+            <div class="current-max-label">{{localize "Maus.Current"}}</div>
+            <div class="current-max-label">{{localize "Maus.Max"}}</div>
           </div>
         </div>
 
@@ -240,7 +240,7 @@
   <nav class="mausritter sheet-tabs tabs"
     style="line-height: 29px; border-top: 2px solid rgb(22, 22, 22); border-bottom: 2px solid rgb(22, 22, 22);"
     data-group="primary">
-    <a class="tab-select" data-tab="notes">Notes</a>
+    <a class="tab-select" data-tab="notes">{{localize "Maus.Notes"}}</a>
 
   </nav>
 

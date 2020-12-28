@@ -5,10 +5,10 @@
 
     <div class="rollcontainer">
         {{#if onlyDesc}}
-        <div class="flexrow">
+        <div class="flexrow" style="height: 46px;">
             <div class="rollweaponh1">{{item.name}}
             </div>
-            <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
+            <img class="roll-image" src="{{item.img}}" title="{{item.name}}" />
         </div>
         {{#if pip}}
         {{{pip}}}
@@ -18,10 +18,10 @@
         </div>
         {{else}}
         {{#if isWeapon}} 
-        <div class="flexrow">
+        <div class="flexrow" style="height: 46px;">
             <div class="rollweaponh1">{{item.name}}
             </div>
-            <div style="text-align: right"><img class="roll-image" src="{{item.img}}" title="{{item.name}}" /></div>
+            <img class="roll-image" src="{{item.img}}" title="{{item.name}}" />
         </div>
         {{#if pip}}
         {{{pip}}}
@@ -31,7 +31,7 @@
         {{/if}}
 
         {{#if advantage}}
-        <div class="rollh2">A/D</div>
+        <div class="rollh2">{{localize "Maus.RollAD"}}</div>
         {{else}}
         {{#unless isWeapon}}
         <div class="rollh2">{{data.resultText.value}}</div>
@@ -46,7 +46,7 @@
             {{/if}}
         </div>
         <div class="roll-target">
-            <div class="valuetext">Target:</div>
+            <div class="valuetext">{{localize "Maus.RollTarget"}}:</div>
             <div class="roll-targetbox">
                 <div class="value">{{targetValue}}</div>
             </div>
@@ -67,7 +67,7 @@
 
                 {{#if item.data.description}}
                 <div class="description">
-                    <div class="header" style="font-size: 1.3em;">Description</div>
+                    <div class="header" style="font-size: 1.3em;">{{localize "Maus.RollDescription"}}</div>
                     <div class="body">{{{item.data.description}}}</div>
                 </div>
                 {{/if}}

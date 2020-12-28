@@ -2,9 +2,9 @@
   "name": "mausritter",
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.0.6c",
+  "version": "0.0.9c",
   "minimumCoreVersion": "0.7.0",
-  "compatibleCoreVersion": "0.7.7",
+  "compatibleCoreVersion": "0.7.8",
   "templateVersion": 2,
   "author": "Futilrevenge",
   "esmodules": [
@@ -56,6 +56,20 @@
       "system": "mausritter",
       "path": "packs/creatures.db",
       "entity": "Actor"
+    },
+    {
+      "name": "tables",
+      "label": "Tables",
+      "system": "mausritter",
+      "path": "packs/tables.db",
+      "entity": "RollTable"
+    },
+    {
+      "name": "mausritter-macros",
+      "label": "Mausritter Macros",
+      "system": "mausritter",
+      "path": "packs/mausritter-macros.db",
+      "entity": "Macro"
     }
   ],
   "languages": [
@@ -63,6 +77,11 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
     }
   ],
   "gridDistance": 1,

@@ -44,9 +44,6 @@ export class MausritterActor extends Actor {
     let selectList = "";
 
     statList.forEach(stat => selectList += "<option value='" + stat[0] + "'>" + stat[1].label + "</option>")
-    statList.forEach(stat => console.log(stat[0]));
-
-    console.log(statList);
 
     let d = new Dialog({
       title: "Select Roll Type",
@@ -70,7 +67,6 @@ export class MausritterActor extends Actor {
   }
 
   rollStat(attribute) {
-    console.log(attribute);
 
     let attLabel = attribute.label?.charAt(0).toUpperCase() + attribute.label?.toLowerCase().slice(1);
     if (!attribute.label && isNaN(attLabel))
@@ -80,16 +76,16 @@ export class MausritterActor extends Actor {
 
     let d = new Dialog({
       title: "Select Roll Type",
-      content: "<h2> Advantages/Disadvantage </h2> <select style='margin-bottom:10px;'name='advantage' id='advantage'> <option value='none'>None</option> <option value='advantage'>Advantage/Disadvantage</option></select> <br/>",
+      content: "<h2> "+game.i18n.localize('Maus.RollAdvantageDisadvantage')+ "</h2> <select style='margin-bottom:10px;'name='advantage' id='advantage'> <option value='none'>"+game.i18n.localize('Maus.RollNone')+"</option> <option value='advantage'>"+game.i18n.localize('Maus.RollAdvantageDisadvantage')+"</option></select> <br/>",
       buttons: {
         roll: {
           icon: '<i class="fas fa-check"></i>',
-          label: "Roll",
+          label: game.i18n.localize('Maus.Roll'),
           callback: (html) => this.rollAttribute(attribute, html.find('[id=\"advantage\"]')[0].value)
         },
         cancel: {
           icon: '<i class="fas fa-times"></i>',
-          label: "Cancel",
+          label: game.i18n.localize('Maus.Cancel'),
           callback: () => { }
         }
       },
@@ -102,16 +98,14 @@ export class MausritterActor extends Actor {
   rollItem(itemId, options = { event: null }) {
     let item = duplicate(this.getEmbeddedEntity("OwnedItem", itemId));
 
-    console.log(item);
-
     if(item.type == "weapon"){
             //Select the stat of the roll.
       let t = new Dialog({
-        title: "Select Stat",
-        content: "<h2> Enhanced/Impaired </h2> <select style='margin-bottom:10px;'name='enhanced' id='enhanced'>\
-        <option value='normal'>Normal</option>\
-        <option value='enhanced'>Enhanced</option>\
-        <option value='impaired'>Impaired</option></select> <br/>",
+        title: game.i18n.localize('Maus.RollSelectStat'),
+        content: "<h2> "+game.i18n.localize('Maus.RollEnhanced')+"/"+game.i18n.localize('Maus.RollImpaired')+" </h2> <select style='margin-bottom:10px;'name='enhanced' id='enhanced'>\
+        <option value='normal'>"+game.i18n.localize('Maus.RollNormal')+"</option>\
+        <option value='enhanced'>"+game.i18n.localize('Maus.RollEnhanced')+"</option>\
+        <option value='impaired'>"+game.i18n.localize('Maus.RollImpaired')+"</option></select> <br/>",
         buttons: {
           roll: {
             icon: '<i class="fas fa-check"></i>',
@@ -137,16 +131,16 @@ export class MausritterActor extends Actor {
       //Select the stat of the roll.
       let t = new Dialog({
         title: "Select Stat",
-        content: "<h2> How much power? </h2> <input style='margin-bottom:10px;' name='power' id='power' value='1'></input><br/>",
+        content: "<h2> "+game.i18n.localize('Maus.RollPowerDesc')+" </h2> <input style='margin-bottom:10px;' name='power' id='power' value='1'></input><br/>",
         buttons: {
           roll: {
             icon: '<i class="fas fa-check"></i>',
-            label: "Roll",
+            label: game.i18n.localize('Maus.Roll'),
             callback: (html) => this.rollSpell(item, html.find('[id=\"power\"]')[0].value)
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: "Cancel",
+            label: game.i18n.localize('Maus.Cancel'),
             callback: () => { }
           }
         },
@@ -174,19 +168,18 @@ export class MausritterActor extends Actor {
 
     let damageRoll = new Roll(die);
     damageRoll.roll();
-    console.log(damageRoll);
 
     const diceData = this.formatDice(damageRoll);
 
     //Create the pip HTML.
-    let pipHtml = "";
+    let pipHtml = "<div style='margin-top: 5px;'>";
     for (let i = 0; i < item.data.pips.max; i++) {
       if (i < item.data.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
     }
-    
+    pipHtml += "</div>";
 
     var templateData = {
       actor: this,
@@ -235,10 +228,8 @@ export class MausritterActor extends Actor {
 
     let damageRoll = new Roll(die);
     damageRoll.roll();
-    console.log(damageRoll);
 
     const diceData = this.formatDice(damageRoll);
-    console.log(diceData);
 
     let rollDiv = '';
 
@@ -262,23 +253,25 @@ export class MausritterActor extends Actor {
     if(item.data.description == null){
       item.data.description = "";
     }
-    item.data.description = item.data.description.replace("[DICE]", "<strong style='text-decoration:underline' class='red'>"+power+"</strong>")
-    item.data.description = item.data.description.replace("[SUM]", "<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>")
-    item.data.description += "<h2>Usage: <strong>"+usage+"</strong></h2>";
+
+    item.data.description = item.data.description.split("[DICE]").join("<strong style='text-decoration:underline' class='red'>"+power+"</strong>");
+    item.data.description = item.data.description.split("[SUM]").join("<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>");
+    item.data.description += "<h2>"+game.i18n.localize('Maus.RollUsage')+": <strong>"+usage+"</strong></h2>";
     if(miscast){
-      item.data.description += "<h2>Miscast: <strong>"+miscast+"</strong> </h2> Take [[/r "+miscast+"d6]] Will Damage <br/> Then, make a will save, taking the <i>mad</i> condition on a failure.";
+      let miscastDesc = game.i18n.localize('Maus.RollMiscastDesc');
+      miscastDesc = miscastDesc.replace("!miscast!", ""+miscast);
+      item.data.description += "<h2>"+game.i18n.localize('Maus.RollMiscast')+": <strong>"+miscast+"</strong> </h2>" + miscastDesc;
     }
 
     //Create the pip HTML.
-    let pipHtml = "";
+    let pipHtml = "<div style='margin-top: 5px;'>";
     for (let i = 0; i < item.data.pips.max; i++) {
       if (i < item.data.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
     }
-
-    console.log(pipHtml);
+    pipHtml += "</div>";
 
     var templateData = {
       actor: this,
@@ -293,7 +286,7 @@ export class MausritterActor extends Actor {
       pip: pipHtml,
       isSpell: true,
       isWeapon:true,
-      rollTitle: "Sum|Dice", //The title of the roll.
+      rollTitle: game.i18n.localize('Maus.RollSum')+"|"+game.i18n.localize('Maus.RollDice'), //The title of the roll.
       rollText: damageRoll._total+'|'+power, //What is printed within the roll amount.
       sum: damageRoll._total,
       dice: power,
@@ -331,17 +324,12 @@ export class MausritterActor extends Actor {
     if (!attribute.label && isNaN(attributeName))
       attributeName = attribute.charAt(0)?.toUpperCase() + attribute.toLowerCase().slice(1);
 
-    console.log("Got here baybee");
-
     // Roll
     let diceformular = "1d20";
 
-    console.log(attribute);
 
     let r = new Roll(diceformular, {});
     r.roll();
-
-    console.log(r);
 
     let rSplit = ("" + r._total).split("");
 
@@ -353,7 +341,6 @@ export class MausritterActor extends Actor {
     if (item.type == "weapon") {
       damageRoll = new Roll(item.data.damage);
       damageRoll.roll();
-      console.log(damageRoll);
     }
 
     // Format Dice
@@ -368,17 +355,15 @@ export class MausritterActor extends Actor {
     let resultText = "";
 
     if (rollOver == true) {
-        resultText = (r._total >= targetValue ? "Success" : "Failure");
+        resultText = (r._total >= targetValue ? game.i18n.localize('Maus.RollSuccess') : game.i18n.localize('Maus.RollFailure'));
     } else {
-        resultText = (r._total <= targetValue ? "Success" : "Failure");
+        resultText = (r._total <= targetValue ? game.i18n.localize('Maus.RollSuccess') : game.i18n.localize('Maus.RollFailure'));
     }
-
-    console.log(attribute.value + attribute.mod);
 
     var templateData = {
       actor: this,
       stat: {
-        name: attributeName.toUpperCase()
+        name: game.i18n.localize('Maus.'+attributeName).toUpperCase()
       },
       data: {
         diceTotal: {
@@ -511,13 +496,14 @@ export class MausritterActor extends Actor {
       itemName = item.charAt(0)?.toUpperCase() + item.toLowerCase().slice(1);
 
     //Create the pip HTML.
-    let pipHtml = "";
+    let pipHtml = "<div style='margin-top: 5px;'>";
     for (let i = 0; i < item.data.pips.max; i++) {
       if (i < item.data.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
     }
+    pipHtml += "</div>";
 
     if(item.data.description == null){
       item.data.description = "";

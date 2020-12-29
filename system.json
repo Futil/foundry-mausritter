@@ -2,7 +2,7 @@
   "name": "mausritter",
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.0.9c",
+  "version": "0.0.9d",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.8",
   "templateVersion": 2,
@@ -82,6 +82,11 @@
       "lang": "pt-BR",
       "name": "Português (Brasil)",
       "path": "lang/pt-BR.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español (Spanish)",
+      "path": "lang/es.json"
     }
   ],
   "gridDistance": 1,

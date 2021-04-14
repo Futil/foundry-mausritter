@@ -2,7 +2,7 @@
   "name": "mausritter",
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.0.9c",
+  "version": "0.0.9e",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.8",
   "templateVersion": 2,

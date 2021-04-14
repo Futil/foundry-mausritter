@@ -28,12 +28,9 @@ export class MausritterActorSheet extends ActorSheet {
       this._prepareCharacterItems(data);
     }
 
-
     if (data.data.settings == null) {
       data.data.settings = {};
     }
-    // data.data.settings.useCalm = game.settings.get("mausritter", "useCalm");
-    // data.data.settings.hideWeight = game.settings.get("mausritter", "hideWeight");
 
     return data;
   }
@@ -142,7 +139,7 @@ export class MausritterActorSheet extends ActorSheet {
     // Add Inventory Item
     html.find('.item-create').click(ev => {
 
-      let creatableItems = ['item', 'weapon', 'spell', 'armor', 'condition'];
+      let creatableItems = ['item', 'weapon', 'spell', 'armor', 'condition', 'storage'];
       let selectList = "";
 
       creatableItems.forEach(type => selectList += "<option value='" + type + "'>" + type + "</option>")

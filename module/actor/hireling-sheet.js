@@ -141,7 +141,7 @@ export class MausritterHirelingSheet extends ActorSheet {
     // Add Inventory Item
     html.find('.item-create').click(ev => {
 
-      let creatableItems = ['item', 'weapon', 'spell', 'armor', 'condition'];
+      let creatableItems = ['item', 'weapon', 'spell', 'armor', 'condition', 'storage'];
       let selectList = "";
 
       creatableItems.forEach(type => selectList += "<option value='" + type + "'>" + type + "</option>")

@@ -28,7 +28,7 @@ export class MausritterActor extends Actor {
     const data = actorData.data;
 
     // let armorBonus = 0;
-    // const armors = this.getEmbeddedCollection("OwnedItem").filter(e => "armor" === e.type);
+    // const armors = this.getEmbeddedCollection("Item").filter(e => "armor" === e.type);
 
     // for (let armor of armors) {
     //   if (armor.data.equipped) {
@@ -96,7 +96,7 @@ export class MausritterActor extends Actor {
   }
 
   rollItem(itemId, options = { event: null }) {
-    let item = duplicate(this.getEmbeddedEntity("OwnedItem", itemId));
+    let item = duplicate(this.getEmbeddedDocument("Item", itemId));
 
     if(item.type == "weapon"){
             //Select the stat of the roll.

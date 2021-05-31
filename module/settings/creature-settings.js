@@ -120,7 +120,7 @@ export class DLCreatureSettings extends FormApplication {
             });
         }
 
-        await this.object.updateEmbeddedEntity("OwnedItem", update);
+        await this.object.updateEmbeddedDocuments("Item", [update.toObject()]);
 
         this.object.update({
             formData

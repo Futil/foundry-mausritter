@@ -131,10 +131,10 @@ export class MausritterHirelingSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-equip').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", li.data("itemId")))
+      const item = duplicate(this.actor.getEmbeddedDocument("Item", li.data("itemId")))
 
       item.data.equipped = !item.data.equipped;
-      this.actor.updateEmbeddedEntity('OwnedItem', item);
+      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
     });
 
 
@@ -171,26 +171,26 @@ export class MausritterHirelingSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(li.data("itemId"));
+      const item = this.actor.getItem(li.data("itemId"));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(li.data("itemId"));
+      this.actor.deleteItem(li.data("itemId"));
       li.slideUp(200, () => this.render(false));
     });
 
     // Rotate Inventory Item
     html.find('.item-rotate').click(ev => {
       const li = ev.currentTarget.closest(".item");
-      const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", li.dataset.itemId))
+      const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
       if(item.data.sheet.rotation == -90)
         item.data.sheet.rotation = 0;
       else
         item.data.sheet.rotation = -90;
-        this.actor.updateEmbeddedEntity('OwnedItem', item);
+        this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
     });
 
     // Rollable Attributes
@@ -212,17 +212,17 @@ export class MausritterHirelingSheet extends ActorSheet {
     // If we have an item input being adjusted from the character sheet.
     html.on('change', '.item-input', ev => {
       const li = ev.currentTarget.closest(".item");
-      const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", li.dataset.itemId))
+      const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
       const input = $(ev.currentTarget);
 
       item[input[0].name] = input[0].value;
 
-      this.actor.updateEmbeddedEntity('OwnedItem', item);
+      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
     });
 
     html.on('mousedown', '.pip-button', ev => {
       const li = ev.currentTarget.closest(".item");
-      const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", li.dataset.itemId))
+      const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
       let amount = item.data.pips.value;
 
@@ -236,26 +236,26 @@ export class MausritterHirelingSheet extends ActorSheet {
         }
       }
 
-      this.actor.updateEmbeddedEntity('OwnedItem', item);
+      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
     });
 
 
     html.on('mousedown', '.damage-swap', ev => {
       const li = ev.currentTarget.closest(".item");
-      const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", li.dataset.itemId))
+      const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
       let d1 = item.data.weapon.dmg1;
       let d2 = item.data.weapon.dmg2;
 
       item.data.weapon.dmg1 = d2;
       item.data.weapon.dmg2 = d1;
-      this.actor.updateEmbeddedEntity('OwnedItem', item);
+      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
     });
 
 
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = ev => this._onDragItemStart(ev);
 
       html.find('li.dropitem').each((i, li) => {
@@ -275,7 +275,7 @@ export class MausritterHirelingSheet extends ActorSheet {
 
       // html.find('div.dragItems').each((i, dragItem) => {
 
-      //   const item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", dragItem.dataset.itemId))
+      //   const item = duplicate(this.actor.getEmbeddedDocument("Item", dragItem.dataset.itemId))
       //   // let dragItem = document.querySelector("#" + container.dataset.itemId);
       //   var curIndex = 1; //The current zIndex
 
@@ -336,7 +336,7 @@ export class MausritterHirelingSheet extends ActorSheet {
     delete itemData.data["type"];
 
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    return this.actor.createItem(itemData);
   }
 
   /**
@@ -363,7 +363,7 @@ export class MausritterHirelingSheet extends ActorSheet {
     delete itemData.data["type"];
 
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    return this.actor.createItem(itemData);
   }
 
 
@@ -408,7 +408,7 @@ export class MausritterHirelingSheet extends ActorSheet {
           return;
 
       const clickedItem = duplicate(
-          this.actor.getEmbeddedEntity("OwnedItem", itemId)
+          this.actor.getEmbeddedDocument("Item", itemId)
       );
 
 
@@ -473,7 +473,7 @@ export class MausritterHirelingSheet extends ActorSheet {
    * @private
    */
   async _onDropItem(event, data) {
-      if (!this.actor.owner) return false;
+      if (!this.actor.isOwner) return false;
       const item = await Item.fromDropData(data);
       const itemData = duplicate(item.data);
 
@@ -509,7 +509,7 @@ export class MausritterHirelingSheet extends ActorSheet {
 
       let sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor && !(event.ctrlKey)) {
-          let i = duplicate(actor.getEmbeddedEntity("OwnedItem", data.itemId))
+          let i = duplicate(actor.getEmbeddedDocument("Item", data.itemId))
           i.data.sheet = {
               currentX: x - data.offset.x,
               currentY: y - data.offset.y,
@@ -518,14 +518,14 @@ export class MausritterHirelingSheet extends ActorSheet {
               xOffset: x - data.offset.x,
               yOffset: y - data.offset.y
           };
-          actor.updateEmbeddedEntity('OwnedItem', i);
+          actor.updateEmbeddedDocuments('Item', [i.toObject()]);
           return;
           //return this._onSortItem(event, itemData);
       }
 
       if (data.actorId && !(event.ctrlKey)) {
           let oldActor = game.actors.get(data.actorId);
-          oldActor.deleteOwnedItem(data.itemId);
+          oldActor.deleteItem(data.itemId);
       }
 
       if (!data.offset) {

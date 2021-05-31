@@ -34,8 +34,8 @@ Hooks.once('init', async function () {
   };
 
   // Define custom Entity classes
-  CONFIG.Actor.entityClass = MausritterActor;
-  CONFIG.Item.entityClass = MausritterItem;
+  CONFIG.Actor.documentClass = MausritterActor;
+  CONFIG.Item.documentClass = MausritterItem;
 
 
   // Register sheet application classes
@@ -177,7 +177,7 @@ function rollItemMacro(itemName) {
   const item = actor ? actor.items.find(i => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 
-  return actor.rollItem(item.id);
+  return actor.rollItem(item._id);
 }
 
 

@@ -32,7 +32,7 @@ export class MausritterActorSheet extends ActorSheet {
       data.data.settings = {};
     }
 
-    return data;
+    return data.data;
   }
 
   /**
@@ -133,7 +133,7 @@ export class MausritterActorSheet extends ActorSheet {
       const item = duplicate(this.actor.getEmbeddedDocument("Item", li.data("itemId")))
 
       item.data.equipped = !item.data.equipped;
-      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
+      this.actor.updateEmbeddedDocuments('Item', [item]);
     });
 
     // Add Inventory Item
@@ -170,14 +170,14 @@ export class MausritterActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getItem(li.data("itemId"));
+      const item = this.actor.getEmbeddedDocument("Item",li.data("itemId"));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteItem(li.data("itemId"));
+      this.actor.deleteEmbeddedDocuments("Item",[li.data("itemId")]);
       li.slideUp(200, () => this.render(false));
     });
 
@@ -189,7 +189,7 @@ export class MausritterActorSheet extends ActorSheet {
         item.data.sheet.rotation = 0;
       else
         item.data.sheet.rotation = -90;
-        this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
+        this.actor.updateEmbeddedDocuments('Item', [item]);
     });
 
 
@@ -217,7 +217,7 @@ export class MausritterActorSheet extends ActorSheet {
 
       item[input[0].name] = input[0].value;
 
-      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
+      this.actor.updateEmbeddedDocuments('Item', [item]);
     });
 
     html.on('mousedown', '.pip-button', ev => {
@@ -236,7 +236,7 @@ export class MausritterActorSheet extends ActorSheet {
         }
       }
 
-      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
+      this.actor.updateEmbeddedDocuments('Item', [item]);
     });
 
 
@@ -249,7 +249,7 @@ export class MausritterActorSheet extends ActorSheet {
 
       item.data.weapon.dmg1 = d2;
       item.data.weapon.dmg2 = d1;
-      this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
+      this.actor.updateEmbeddedDocuments('Item', [item]);
 
     });
 
@@ -298,7 +298,7 @@ export class MausritterActorSheet extends ActorSheet {
       //   setTranslate(item.data.sheet.currentX, item.data.sheet.currentY, dragItem, true);
       //   dragItem.style.zIndex = item.data.sheet.currentX + 500;
 
-      //   //this.actor.updateEmbeddedDocuments('Item', [item.toObject()]);
+      //   //this.actor.updateEmbeddedDocuments('Item', [item]);
 
       //   function setTranslate(xPos, yPos, el, round = false) {
 
@@ -341,7 +341,7 @@ export class MausritterActorSheet extends ActorSheet {
     delete itemData.data["type"];
 
     // Finally, create the item!
-    return this.actor.createItem(itemData);
+    return this.actor.createEmbeddedDocuments("Item",[itemData]);
   }
 
   /**
@@ -368,7 +368,7 @@ export class MausritterActorSheet extends ActorSheet {
     delete itemData.data["type"];
 
     // Finally, create the item!
-    return this.actor.createItem(itemData);
+    return this.actor.createEmbeddedDocuments("Item",[itemData]);
   }
 
 
@@ -432,6 +432,7 @@ export class MausritterActorSheet extends ActorSheet {
 
       clickedItem.data.stored = "";
       const item = clickedItem;
+
       event.dataTransfer.setData(
           "text/plain",
           JSON.stringify({
@@ -439,6 +440,7 @@ export class MausritterActorSheet extends ActorSheet {
               sheetTab: this.actor.data.flags["_sheetTab"],
               actorId: this.actor.id,
               itemId: itemId,
+              fromToken: this.actor.isToken,
               offset: {
                   x: x,
                   y: y
@@ -498,18 +500,18 @@ export class MausritterActorSheet extends ActorSheet {
           x = event.pageX - it.offset().left - width / 2;
           y = event.pageY - it.offset().top - height / 2;
       }
-      // let width = $('#drag-area-' + actor._id).outerWidth();
-      // let height = $('#drag-area-' + actor._id).outerHeight();
+      // let width = $('#drag-area-' + actor.id).outerWidth();
+      // let height = $('#drag-area-' + actor.id).outerHeight();
   
-      // var x = event.pageX - $('#drag-area-' + actor._id).offset().left - width / 2;
-      // var y = event.pageY - $('#drag-area-' + actor._id).offset().top - height / 2;
+      // var x = event.pageX - $('#drag-area-' + actor.id).offset().left - width / 2;
+      // var y = event.pageY - $('#drag-area-' + actor.id).offset().top - height / 2;
       
       // if (Math.abs(x) > Math.abs(width / 2) || Math.abs(y) > Math.abs(height / 2)) {
       //     x = 0;
       //     y = 0;
       // }
 
-      let sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
+      let sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor && !(event.ctrlKey)) {
           let i = duplicate(actor.getEmbeddedDocument("Item", data.itemId))
           i.data.sheet = {
@@ -520,14 +522,14 @@ export class MausritterActorSheet extends ActorSheet {
               xOffset: x - data.offset.x,
               yOffset: y - data.offset.y
           };
-          actor.updateEmbeddedDocuments('Item', [i.toObject()]);
+          actor.updateEmbeddedDocuments('Item', [i]);
           return;
           //return this._onSortItem(event, itemData);
       }
 
-      if (data.actorId && !(event.ctrlKey)) {
+      if (data.actorId && !(event.ctrlKey) && !data.fromToken && !this.actor.isToken) {
           let oldActor = game.actors.get(data.actorId);
-          oldActor.deleteItem(data.itemId);
+          oldActor.deleteEmbeddedDocuments("Item",[data.itemId]);
       }
 
       if (!data.offset) {

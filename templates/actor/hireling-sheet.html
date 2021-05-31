@@ -12,7 +12,7 @@
           from 1 to 12 and will create that number of columns.  --}}
 
       <div class="header .creature">
-        <img class="portrait-creature" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="20"
+        <img class="portrait-creature" src="{{img}}" data-edit="img" title="{{name}}" height="20"
           width="20" />
 
         <div class="header-border creature-header-border" style="width: 100%;">
@@ -22,7 +22,7 @@
           <div class="headernamegrid">
             <div class="headerinputtext" style="font-size: 3rem;">{{localize "Maus.ActorName"}}</div>
             <div class="headerinputfield charname" style="font-size: 2rem;flex:3;"><input name="name" class="noborder"
-                type="text" value="{{actor.name}}" placeholder="Name" style="height: auto;"/></div>
+                type="text" value="{{name}}" placeholder="Name" style="height: auto;"/></div>
           </div>
           <div class="seperatorLine"></div>
           <!-- Background -->
@@ -39,7 +39,7 @@
 
       <div style="grid-area: centercol" ;>
         {{!-- Item Drag Tab --}}
-        <div class="item-container" style="width:420px; height:290px;" id="drag-area">
+        <div class="item-container" style="width:420px; height:310px;" id="drag-area">
           <div class="item-container-controls">
             <a class="item-control item-create" title="Create Item" data-type="item"><i class="fas fa-plus"></i> {{localize "Maus.InventoryAddItem"}}</a>
           </div>
@@ -80,7 +80,7 @@
             </div>
           </div>
 
-          {{#each actor.gear as |item id|}}
+          {{#each items as |item id|}}
           <div class="item-card item dragItems dropitem" style="width: {{item.data.size.x}}; height: {{item.data.size.y}}; transform: translate3d({{item.data.sheet.currentX}}px,{{item.data.sheet.currentY}}px, 0); z-index: {{item.data.sheet.zIndex}};"
             data-item-id="{{item._id}}" id="{{item._id}}">
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
@@ -232,6 +232,38 @@
           </div>
         </div>
 
+        <div class="grid" style="margin-bottom: 5px; margin-top: 0;">
+          <div class="verticalFlex blockborder-mini">
+            <!-- Level -->
+            <div class="statblock">
+              <label for="data.level.value" class="statName littleLabel" style="flex: 0.8;">{{localize "Maus.ActorLvl"}} </label>
+
+              <input class="minmax-input darkGreyText" type="text" name="data.level.value" value="{{data.level.value}}"
+                data-dtype="Number" />
+            </div>
+          </div>
+
+          <div class="verticalFlex blockborder-mini">
+            <!-- Grit -->
+            <div class="statblock">
+              <label for="data.grit.value" class="statName littleLabel" style="flex: 0.8;">{{localize "Maus.ActorGrit"}}</label>
+  
+              <input class="minmax-input darkGreyText" type="text" name="data.grit.value" value="{{data.grit.value}}"
+                data-dtype="Number" />
+            </div>
+          </div>
+        </div>
+
+        <div class="verticalFlex blockborder">
+          <!-- XP -->
+          <div class="statblock">
+            <label for="data.level.xp" class="statName minmaxtext" style="flex: 0.5;">{{localize "Maus.ActorXP"}} </label>
+
+            <input class="minmax-input darkGreyText" type="text" name="data.level.xp" value="{{data.level.xp}}"
+              data-dtype="Number" />
+          </div>
+        </div>
+
       </div>
     </div>
   </header>
@@ -248,7 +280,7 @@
   <section class="sheet-body">
     {{!-- Notes Tab --}}
     <div class="tab biography" data-group="primary" data-tab="notes">
-      {{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}
+      {{editor content=data.notes target="data.notes" button=true owner=owner editable=true}}
     </div>
     {{!-- Owned Items Tab --}}
     <div class="tab items" data-group="primary" data-tab="items">
@@ -262,7 +294,7 @@
         </li>
 
         <div class="seperatorLine"></div>
-        {{#each actor.gear as |item id|}}
+        {{#each items as |item id|}}
         <li class="item flexrow dropitem" data-item-id="{{item._id}}">
           <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
           <h4 class="skill-name list-roll description-roll" style="flex-grow: 1.5;">{{item.name}}</h4>

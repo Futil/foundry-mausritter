@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header-maus">
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" class="item-text item-sheet-header"/></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="Name" class="item-text item-sheet-header"/></h1>
 
             <div class="grid grid-2col">
                 <div class="resource">
@@ -28,7 +28,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Attributes Tab --}}

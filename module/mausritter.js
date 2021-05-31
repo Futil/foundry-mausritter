@@ -177,7 +177,7 @@ function rollItemMacro(itemName) {
   const item = actor ? actor.items.find(i => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 
-  return actor.rollItem(item._id);
+  return actor.rollItem(item.id);
 }
 
 

@@ -167,7 +167,8 @@ export class MausritterActor extends Actor {
   // this.rollWeapon(item, item.data.weapon.dmg2);
 
     let damageRoll = new Roll(die);
-    damageRoll.roll();
+    damageRoll.evaluate({async: false});
+    //damageRoll.roll();
 
     const diceData = this.formatDice(damageRoll);
 
@@ -193,14 +194,16 @@ export class MausritterActor extends Actor {
       pip: pipHtml,
       rollTitle: "Damage", //The title of the roll.
       rollText: damageRoll._total, //What is printed within the roll amount.
+      damageDice: die,
+      weaponState: state,
       isWeapon: true,
       diceData
     };
 
     let chatData = {
-      user: game.user._id,
+      user: game.user.id,
       speaker: {
-        actor: this._id,
+        actor: this.id,
         token: this.token,
         alias: this.name
       }
@@ -227,7 +230,7 @@ export class MausritterActor extends Actor {
     let die = power+"d6";
 
     let damageRoll = new Roll(die);
-    damageRoll.roll();
+    damageRoll.evaluate({async: false});
 
     const diceData = this.formatDice(damageRoll);
 
@@ -294,9 +297,9 @@ export class MausritterActor extends Actor {
     };
 
     let chatData = {
-      user: game.user._id,
+      user: game.user.id,
       speaker: {
-        actor: this._id,
+        actor: this.id,
         token: this.token,
         alias: this.name
       }
@@ -329,18 +332,19 @@ export class MausritterActor extends Actor {
 
 
     let r = new Roll(diceformular, {});
-    r.roll();
+    r.evaluate({async: false});
 
     let rSplit = ("" + r._total).split("");
 
     //Advantage roll
     let a = new Roll(diceformular, {});
-    a.roll();
+    a.evaluate({async: false});
 
     let damageRoll = 0;
     if (item.type == "weapon") {
       damageRoll = new Roll(item.data.damage);
-      damageRoll.roll();
+      damageRoll.evaluate({async: false});
+
     }
 
     // Format Dice
@@ -390,9 +394,9 @@ export class MausritterActor extends Actor {
     };
 
     let chatData = {
-      user: game.user._id,
+      user: game.user.id,
       speaker: {
-        actor: this._id,
+        actor: this.id,
         token: this.token,
         alias: this.name
       }
@@ -525,9 +529,9 @@ export class MausritterActor extends Actor {
     };
 
     let chatData = {
-      user: game.user._id,
+      user: game.user.id,
       speaker: {
-        actor: this._id,
+        actor: this.id,
         token: this.token,
         alias: this.name
       }

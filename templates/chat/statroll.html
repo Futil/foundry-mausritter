@@ -1,5 +1,5 @@
-<div class="mausritter" {{#if actor._id}}data-actor-id="{{actor._id}}" {{/if}}
-    {{#if item._id}}data-item-id="{{item._id}}" {{/if}} {{#if tokenId}}data-token-id="{{tokenId}}" {{/if}}>
+<div class="mausritter" {{#if actor.id}}data-actor-id="{{actor.id}}" {{/if}}
+    {{#if item.id}}data-item-id="{{item.id}}" {{/if}} {{#if tokenId}}data-token-id="{{tokenId}}" {{/if}}>
     <div class="showinfo"></div>
     <div class="showlessinfo"></div>
 
@@ -63,7 +63,7 @@
                     <div class="value">{{rollText}}</div>
                 </div>
             </div>
-            <div class="rollmods" style="margin-top: 0px;">({{#if isSpell}}{{data.rollDiv}}{{else}}{{item.data.weapon.dmg1}}{{/if}})</div>
+            <div class="rollmods" style="margin-top: 0px;">{{weaponState}} ({{#if isSpell}}{{data.rollDiv}}{{else}}{{damageDice}}{{/if}})</div>
 
                 {{#if item.data.description}}
                 <div class="description">

@@ -87,7 +87,7 @@ Hooks.once('init', async function () {
 /**
  * Set default values for new actors' tokens
  */
-Hooks.on("preCreateActor", (createData) => {
+ Hooks.on("preCreateActor", (document, createData, options, userId) => {
   let disposition = CONST.TOKEN_DISPOSITIONS.NEUTRAL;
 
   if (createData.type == "creature") {

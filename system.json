@@ -98,19 +98,20 @@
     {
       "lang": "pt-BR",
       "name": "Português (Brasil)",
-      "path": "lang/pt-BR.json",
+      "path": "lang/pt-br.json",
       "flags": {}
     },
     {
       "lang": "es",
       "name": "Español (Spanish)",
-
-      "path": "lang/es.json"
+      "path": "lang/es.json",
+      "flags": {}
     },
     {
       "lang": "de",
       "name": "Deutsch (German)",
-      "path": "lang/de.json"
+      "path": "lang/de.json",
+      "flags": {}
     }
   ],
   "gridDistance": 1,

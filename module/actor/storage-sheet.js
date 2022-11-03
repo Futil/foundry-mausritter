@@ -25,25 +25,25 @@ export class MausritterStorageSheet extends ActorSheet {
         data.dtypes = ["String", "Number", "Boolean"];
 
         // Prepare items.
-        if (this.actor.data.type == 'storage') {
+        if (this.actor.type == 'storage') {
             this._prepareCharacterItems(data);
         }
 
 
-        if (data.data.settings == null) {
-            data.data.settings = {};
-        }
+        if (data.data.system.settings == null) {
+            data.data.system.settings = {};
+          }
 
-        data.data.data.storeDiv = "";
-        data.data.data.size.divWidth = data.data.data.size.width * 130 + 35;
-        data.data.data.size.divHeight = data.data.data.size.height * 130 + 35;
+        data.data.system.storeDiv = "";
+        data.data.system.size.divWidth = data.data.system.size.width * 130 + 35;
+        data.data.system.size.divHeight = data.data.system.size.height * 130 + 35;
 
         let storenum = 0;
-        for (let y = 0; y < data.data.data.size.height; y++) {
-            for (let x = 0; x < data.data.data.size.width; x++) {
+        for (let y = 0; y < data.data.system.size.height; y++) {
+            for (let x = 0; x < data.data.system.size.width; x++) {
                 storenum++;
-                data.data.data.storeDiv += '\
-                <div class="item-slot-dashed" style="transform: translate3d('+ (x * 130 - (data.data.data.size.width - 1) * 65) + 'px, ' + (y * 130 - (data.data.data.size.height - 1) * 65) + 'px, 0px);">\
+                data.data.system.storeDiv += '\
+                <div class="item-slot-dashed" style="transform: translate3d('+ (x * 130 - (data.data.system.size.width - 1) * 65) + 'px, ' + (y * 130 - (data.data.system.size.height - 1) * 65) + 'px, 0px);">\
                     <div class="item-bag-text">\
                         '+ storenum + '\
                     </div>\
@@ -52,8 +52,8 @@ export class MausritterStorageSheet extends ActorSheet {
         }
 
 
-        this.position.width = data.data.data.size.width * 130 + 80;
-        this.position.height = data.data.data.size.height * 130 + 230;
+        this.position.width = data.data.system.size.width * 130 + 80;
+        this.position.height = data.data.system.size.height * 130 + 230;
 
 
         return data.data;
@@ -68,7 +68,7 @@ export class MausritterStorageSheet extends ActorSheet {
      */
     _prepareCharacterItems(sheetData) {
 
-        const actorData = sheetData.actor.data;
+        const actorData = sheetData.actor.system;
 
         // Initialize containers.
         const gear = [];
@@ -76,7 +76,7 @@ export class MausritterStorageSheet extends ActorSheet {
         // Iterate through items, allocating to containers
         // let totalWeight = 0;
         for (let i of sheetData.items) {
-            let item = i.data;
+            let item = i.system;
             i.img = i.img || DEFAULT_TOKEN;
 
             // We'll handle the pip html here.
@@ -161,9 +161,9 @@ export class MausritterStorageSheet extends ActorSheet {
         // Update Inventory Item
         html.find('.item-equip').click(ev => {
             const li = $(ev.currentTarget).parents(".item");
-            const item = duplicate(this.actor.getEmbeddedDocument("Item", li.data("itemId")))
+            const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
-            item.data.equipped = !item.data.equipped;
+            item.system.equipped = !item.system.equipped;
             this.actor.updateEmbeddedDocuments('Item', [item]);
         });
 
@@ -216,10 +216,10 @@ export class MausritterStorageSheet extends ActorSheet {
         html.find('.item-rotate').click(ev => {
             const li = ev.currentTarget.closest(".item");
             const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
-            if (item.data.sheet.rotation == -90)
-                item.data.sheet.rotation = 0;
+            if (item.system.sheet.rotation == -90)
+                item.system.sheet.rotation = 0;
             else
-                item.data.sheet.rotation = -90;
+                item.system.sheet.rotation = -90;
             this.actor.updateEmbeddedDocuments('Item', [item]);
         });
 
@@ -227,7 +227,7 @@ export class MausritterStorageSheet extends ActorSheet {
         html.find('.stat-roll').click(ev => {
             const div = $(ev.currentTarget);
             const statName = div.data("key");
-            const attribute = this.actor.data.data.stats[statName];
+            const attribute = this.actor.system.stats[statName];
             this.actor.rollStat(attribute);
         });
 
@@ -254,15 +254,15 @@ export class MausritterStorageSheet extends ActorSheet {
             const li = ev.currentTarget.closest(".item");
             const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
-            let amount = item.data.pips.value;
+            let amount = item.system.pips.value;
 
             if (event.button == 0) {
-                if (amount < item.data.pips.max) {
-                    item.data.pips.value = Number(amount) + 1;
+                if (amount < item.system.pips.max) {
+                    item.system.pips.value = Number(amount) + 1;
                 }
             } else if (event.button == 2) {
                 if (amount > 0) {
-                    item.data.pips.value = Number(amount) - 1;
+                    item.system.pips.value = Number(amount) - 1;
                 }
             }
 
@@ -274,11 +274,11 @@ export class MausritterStorageSheet extends ActorSheet {
             const li = ev.currentTarget.closest(".item");
             const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
-            let d1 = item.data.weapon.dmg1;
-            let d2 = item.data.weapon.dmg2;
+            let d1 = item.system.weapon.dmg1;
+            let d2 = item.system.weapon.dmg2;
 
-            item.data.weapon.dmg1 = d2;
-            item.data.weapon.dmg2 = d1;
+            item.system.weapon.dmg1 = d2;
+            item.system.weapon.dmg2 = d1;
             this.actor.updateEmbeddedDocuments('Item', [item]);
         });
 
@@ -309,8 +309,8 @@ export class MausritterStorageSheet extends ActorSheet {
             //     // let dragItem = document.querySelector("#" + container.dataset.itemId);
             //     var curIndex = 1; //The current zIndex
 
-            //     if (item.data.sheet == undefined) {
-            //         item.data.sheet = {
+            //     if (item.system.sheet == undefined) {
+            //         item.system.sheet = {
             //             "active": false,
             //             "currentX": 0,
             //             "currentY": 0,
@@ -322,8 +322,8 @@ export class MausritterStorageSheet extends ActorSheet {
             //     }
 
             //     console.log("Item Position Update");
-            //     setTranslate(item.data.sheet.currentX, item.data.sheet.currentY, dragItem, true);
-            //     dragItem.style.zIndex = item.data.sheet.currentX + 500;
+            //     setTranslate(item.system.sheet.currentX, item.system.sheet.currentY, dragItem, true);
+            //     dragItem.style.zIndex = item.system.sheet.currentX + 500;
 
             //     function setTranslate(xPos, yPos, el, round = false) {
 
@@ -408,7 +408,7 @@ export class MausritterStorageSheet extends ActorSheet {
         const dataset = element.dataset;
 
         if (dataset.roll) {
-            let roll = new Roll(dataset.roll, this.actor.data.data);
+            let roll = new Roll(dataset.roll, this.actor.system);
             let label = dataset.label ? `Rolling ${dataset.label} to score under ${dataset.target}` : '';
             roll.roll().toMessage({
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
@@ -459,14 +459,14 @@ export class MausritterStorageSheet extends ActorSheet {
         // }, 1);
         // console.log(event);
 
-        clickedItem.data.stored = "";
+        clickedItem.system.stored = "";
         const item = clickedItem;
 
         event.dataTransfer.setData(
             "text/plain",
             JSON.stringify({
                 type: "Item",
-                sheetTab: this.actor.data.flags["_sheetTab"],
+                sheetTab: this.actor.flags["_sheetTab"],
                 actorId: this.actor.id,
                 itemId: itemId,
                 fromToken: this.actor.isToken,
@@ -508,7 +508,7 @@ export class MausritterStorageSheet extends ActorSheet {
     async _onDropItem(event, data) {
         if (!this.actor.isOwner) return false;
         const item = await Item.fromDropData(data);
-        const itemData = duplicate(item.data);
+        const itemData = duplicate(item);
 
         // Handle item sorting within the same Actor
         const actor = this.actor;
@@ -543,7 +543,7 @@ export class MausritterStorageSheet extends ActorSheet {
         let sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
         if (sameActor && !(event.ctrlKey)) {
             let i = duplicate(actor.getEmbeddedDocument("Item", data.itemId))
-            i.data.sheet = {
+            i.system.sheet = {
                 currentX: x - data.offset.x,
                 currentY: y - data.offset.y,
                 initialX: x - data.offset.x,
@@ -568,7 +568,7 @@ export class MausritterStorageSheet extends ActorSheet {
                 y: 0
             };
         }
-        itemData.data.sheet = {
+        itemData.system.sheet = {
             currentX: x - data.offset.x,
             currentY: y - data.offset.y,
             initialX: x - data.offset.x,

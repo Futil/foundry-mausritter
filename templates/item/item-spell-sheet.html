@@ -7,27 +7,27 @@
             <div class="grid grid-3col">
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemWorth"}}</label>
-                    <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.cost" value="{{system.cost}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemCurrentUsage"}}</label>
-                    <input type="text" name="data.pips.value" value="{{data.pips.value}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.pips.value" value="{{system.pips.value}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemMaxUsage"}}</label>
-                    <input type="text" name="data.pips.max" value="{{data.pips.max}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.pips.max" value="{{system.pips.max}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemTag"}}</label>
-                    <input type="text" name="data.tag" value="{{data.tag}}" data-dtype="String" class="item-text"/>
+                    <input type="text" name="system.tag" value="{{system.tag}}" data-dtype="String" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemWidth"}}</label>
-                    <input type="text" name="data.size.width" value="{{data.size.width}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.size.width" value="{{system.size.width}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemHeight"}}</label>
-                    <input type="text" name="data.size.height" value="{{data.size.height}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.size.height" value="{{system.size.height}}" data-dtype="Number" class="item-text"/>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Attributes Tab --}}

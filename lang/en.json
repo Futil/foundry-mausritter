@@ -51,6 +51,7 @@
     "Maus.ItemWidth" : "Width",
     "Maus.ItemHeight" : "Height",
     "Maus.ItemClear" : "Clear",
+    "Maus.ItemColor" : "Color",
     "Maus.ItemDescription" : "Description",
     "Maus.ItemDamage" : "Damage",
     "Maus.ItemCurrentStore" : "Current",

@@ -104,8 +104,13 @@
     {
       "lang": "es",
       "name": "Español (Spanish)",
-      "path": "lang/es.json",
-      "flags": {}
+
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch (German)",
+      "path": "lang/de.json"
     }
   ],
   "gridDistance": 1,

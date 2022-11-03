@@ -51,12 +51,13 @@ export class MausritterActor extends Actor {
       buttons: {
         roll: {
           icon: '<i class="fas fa-check"></i>',
-          label: "Roll",
+
+          label: game.i18n.localize('Maus.Roll'),
           callback: (html) => this.rollStat(this.system.stats[html.find('[id=\"stat\"]')[0].value])
         },
         cancel: {
           icon: '<i class="fas fa-times"></i>',
-          label: "Cancel",
+          label: game.i18n.localize('Maus.Cancel'),
           callback: () => { }
         }
       },
@@ -109,12 +110,12 @@ export class MausritterActor extends Actor {
         buttons: {
           roll: {
             icon: '<i class="fas fa-check"></i>',
-            label: "Roll",
+            label: game.i18n.localize('Maus.Roll'),
             callback: (html) => this.rollWeapon(item, html.find('[id=\"enhanced\"]')[0].value)
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: "Cancel",
+            label: game.i18n.localize('Maus.Cancel'),
             callback: () => { }
           }
         },
@@ -192,7 +193,7 @@ export class MausritterActor extends Actor {
       },
       item: item,
       pip: pipHtml,
-      rollTitle: "Damage", //The title of the roll.
+      rollTitle: game.i18n.localize('Maus.RollDamage'), //The title of the roll.
       rollText: damageRoll._total, //What is printed within the roll amount.
       damageDice: die,
       weaponState: state,

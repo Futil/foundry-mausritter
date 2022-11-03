@@ -114,8 +114,10 @@
             <div class="item-card-damage">{{item.system.weapon.dmg1}}</div>
             {{/if}}
             {{/if}}
-            {{#if item.system.armor.value}}
-            <div class="item-card-damage">{{item.system.armor.value}} def</div>
+
+            {{#if item.data.armor.value}}
+            <div class="item-card-damage">{{item.system.armor.value}} {{localize "Maus.ActorArmor"}}</div>
+            
             {{/if}}
             {{#if item.system.store}}
             <div class="item-card-field-container">

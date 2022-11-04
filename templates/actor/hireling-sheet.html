@@ -83,6 +83,7 @@
           {{#each items as |item id|}}
           <div class="item-card item dragItems dropitem" style="width: {{item.system.size.x}}; height: {{item.system.size.y}}; transform: translate3d({{item.system.sheet.currentX}}px,{{item.system.sheet.currentY}}px, 0); z-index: {{item.system.sheet.zIndex}};"
             data-item-id="{{item._id}}" id="{{item._id}}">
+            <div class="overlay" id="overlay" style="background-color: {{item.system.color}};"></div>
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
             {{#if item.system.clear}} <!-- If it's a condition -->
             <div class="item-card-header-noborder flex-between" data-item-id="{{item._id}}">

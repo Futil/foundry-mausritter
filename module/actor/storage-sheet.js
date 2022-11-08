@@ -68,7 +68,7 @@ export class MausritterStorageSheet extends ActorSheet {
      */
     _prepareCharacterItems(sheetData) {
 
-        const actorData = sheetData.actor.system;
+        const actorData = sheetData.actor;
 
         // Initialize containers.
         const gear = [];
@@ -135,13 +135,17 @@ export class MausritterStorageSheet extends ActorSheet {
             item.sheet.currentX = xPos;
             item.sheet.currentY = yPos;
             item.sheet.zIndex = xPos + yPos + 1000;
+            
+            if(i.type != "storage"){
+                item.store = null;
+            }
 
             gear.push(i);
         }
 
         // Assign and return
         sheetData.actor.gear = gear;
-
+        console.log(gear);
 
     }
 

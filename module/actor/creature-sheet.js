@@ -140,6 +140,9 @@ export class MausritterCreatureSheet extends ActorSheet {
             //End update pos
 
             //this.actor.updateEmbeddedDocuments('Item', [i]);
+            if(i.type != "storage"){
+                item.store = null;
+            }
 
             gear.push(i);
         }

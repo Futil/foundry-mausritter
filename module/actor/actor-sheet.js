@@ -115,6 +115,9 @@ export class MausritterActorSheet extends ActorSheet {
       item.sheet.currentY = yPos;
       item.sheet.zIndex = xPos + yPos + 1000;
       
+      if(i.type != "storage"){
+        item.store = null;
+      }
 
       gear.push(i);
     }

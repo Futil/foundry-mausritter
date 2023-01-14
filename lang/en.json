@@ -79,5 +79,5 @@
     "Maus.RollTarget" : "Target",
     "Maus.RollAD" : "A/D",
     "Maus.RollMiscast" : "Miscast",
-    "Maus.RollMiscastDesc" : "Take [[/r !miscast!d6]] Will Damage <br/> Then, make a will save, taking the <i>mad</i> condition on a failure."
+    "Maus.RollMiscastDesc" : "Take [[/r !miscast!d6]] Will Damage <br/> Then, make a will save, taking the <i>drained</i> condition on a failure."
 }

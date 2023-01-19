@@ -112,6 +112,12 @@
       "name": "Deutsch (German)",
       "path": "lang/de.json",
       "flags": {}
+    },
+    {
+      "lang": "pl",
+      "name": "Polski (Polish)",
+      "path": "lang/pl.json",
+      "flags": {}
     }
   ],
   "gridDistance": 1,

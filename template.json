@@ -182,7 +182,8 @@
       "weight": 0,
       "cost": 0,
       "tag": "",
-      "placement": "hand"
+      "placement": "hand",
+      "color": "white"
     },
     "storage": {
       "templates": [
@@ -194,7 +195,8 @@
         "value": "0",
         "max": 25
       },
-      "tag": ""
+      "tag": "",
+      "color": "white"
     },
     "weapon": {
       "templates": [
@@ -209,7 +211,8 @@
         "dmg2": "",
         "selected": 0,
         "canSwap": false
-      }
+      },
+      "color": "white"
     },
     "armor": {
       "templates": [
@@ -220,21 +223,24 @@
       "tag": "",
       "armor": {
         "value": 1
-      }
+      },
+      "color": "white"
     },
     "condition": {
       "templates": [
         "base"
       ],
       "clear": "",
-      "desc": ""
+      "desc": "",
+      "color": "white"
     },
     "spell": {
       "templates": [
         "base"
       ],
       "tag": "",
-      "isSpell" : true
+      "isSpell" : true,
+      "color": "white"
     }
   }
 }

@@ -24,18 +24,16 @@ export class MausritterHirelingSheet extends ActorSheet {
     data.dtypes = ["String", "Number", "Boolean"];
 
     // Prepare items.
-    if (this.actor.data.type == 'hireling') {
+    if (this.actor.type == 'hireling') {
       this._prepareCharacterItems(data);
     }
 
 
-    if (data.data.settings == null) {
-      data.data.settings = {};
-    }
-    // data.data.settings.useCalm = game.settings.get("mausritter", "useCalm");
-    // data.data.settings.hideWeight = game.settings.get("mausritter", "hideWeight");
+    if (data.data.system.settings == null) {
+      data.data.system.settings = {};
+      }
 
-    return data.data;
+      return data.data;
   }
 
   /**
@@ -55,7 +53,7 @@ export class MausritterHirelingSheet extends ActorSheet {
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of sheetData.items) {
-      let item = i.data;
+      let item = i.system;
       i.img = i.img || DEFAULT_TOKEN;
 
       // We'll handle the pip html here.
@@ -115,6 +113,10 @@ export class MausritterHirelingSheet extends ActorSheet {
       item.sheet.currentY = yPos;
       item.sheet.zIndex = xPos + yPos + 1000;
 
+      if(i.type != "storage"){
+        item.store = null;
+      }
+
       gear.push(i);
     }
     // Assign and return
@@ -131,9 +133,9 @@ export class MausritterHirelingSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-equip').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = duplicate(this.actor.getEmbeddedDocument("Item", li.data("itemId")))
+      const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
-      item.data.equipped = !item.data.equipped;
+      item.system.equipped = !item.system.equipped;
       this.actor.updateEmbeddedDocuments('Item', [item]);
     });
 
@@ -171,7 +173,7 @@ export class MausritterHirelingSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getEmbeddedDocument("Item",li.data("itemId"));
+      const item = this.actor.getEmbeddedDocument("Item", li.data("itemId"));
       item.sheet.render(true);
     });
 
@@ -186,10 +188,10 @@ export class MausritterHirelingSheet extends ActorSheet {
     html.find('.item-rotate').click(ev => {
       const li = ev.currentTarget.closest(".item");
       const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
-      if(item.data.sheet.rotation == -90)
-        item.data.sheet.rotation = 0;
+      if(item.system.sheet.rotation == -90)
+        item.system.sheet.rotation = 0;
       else
-        item.data.sheet.rotation = -90;
+        item.system.sheet.rotation = -90;
         this.actor.updateEmbeddedDocuments('Item', [item]);
     });
 
@@ -197,7 +199,7 @@ export class MausritterHirelingSheet extends ActorSheet {
     html.find('.stat-roll').click(ev => {
       const div = $(ev.currentTarget);
       const statName = div.data("key");
-      const attribute = this.actor.data.data.stats[statName];
+      const attribute = this.actor.system.stats[statName];
       this.actor.rollStat(attribute);
     });
 
@@ -224,15 +226,15 @@ export class MausritterHirelingSheet extends ActorSheet {
       const li = ev.currentTarget.closest(".item");
       const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
-      let amount = item.data.pips.value;
+      let amount = item.system.pips.value;
 
       if (event.button == 0) {
-        if (amount < item.data.pips.max) {
-          item.data.pips.value = Number(amount) + 1;
+        if (amount < item.system.pips.max) {
+          item.system.pips.value = Number(amount) + 1;
         }
       } else if (event.button == 2) {
         if (amount > 0) {
-          item.data.pips.value = Number(amount) - 1;
+          item.system.pips.value = Number(amount) - 1;
         }
       }
 
@@ -244,11 +246,11 @@ export class MausritterHirelingSheet extends ActorSheet {
       const li = ev.currentTarget.closest(".item");
       const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId))
 
-      let d1 = item.data.weapon.dmg1;
-      let d2 = item.data.weapon.dmg2;
+      let d1 = item.system.weapon.dmg1;
+      let d2 = item.system.weapon.dmg2;
 
-      item.data.weapon.dmg1 = d2;
-      item.data.weapon.dmg2 = d1;
+      item.system.weapon.dmg1 = d2;
+      item.system.weapon.dmg2 = d1;
       this.actor.updateEmbeddedDocuments('Item', [item]);
     });
 
@@ -275,12 +277,12 @@ export class MausritterHirelingSheet extends ActorSheet {
 
       // html.find('div.dragItems').each((i, dragItem) => {
 
-      //   const item = duplicate(this.actor.getEmbeddedDocument("Item", dragItem.dataset.itemId))
+      //   const item = duplicate(this.actor.getEmbeddedDocument("Item", dragitem.systemset.itemId))
       //   // let dragItem = document.querySelector("#" + container.dataset.itemId);
       //   var curIndex = 1; //The current zIndex
 
-      //   if (item.data.sheet == undefined) {
-      //     item.data.sheet = {
+      //   if (item.system.sheet == undefined) {
+      //     item.system.sheet = {
       //       "active": false,
       //       "currentX": 0,
       //       "currentY": 0,
@@ -292,8 +294,8 @@ export class MausritterHirelingSheet extends ActorSheet {
       //   }
 
 
-      //   setTranslate(item.data.sheet.currentX, item.data.sheet.currentY, dragItem, true);
-      //   dragItem.style.zIndex = item.data.sheet.currentX + 500;
+      //   setTranslate(item.system.sheet.currentX, item.system.sheet.currentY, dragItem, true);
+      //   dragItem.style.zIndex = item.system.sheet.currentX + 500;
 
       //   function setTranslate(xPos, yPos, el, round = false) {
 
@@ -378,7 +380,7 @@ export class MausritterHirelingSheet extends ActorSheet {
     const dataset = element.dataset;
 
     if (dataset.roll) {
-      let roll = new Roll(dataset.roll, this.actor.data.data);
+      let roll = new Roll(dataset.roll, this.actor.system);
       let label = dataset.label ? `Rolling ${dataset.label} to score under ${dataset.target}` : '';
       roll.roll().toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
@@ -429,14 +431,14 @@ export class MausritterHirelingSheet extends ActorSheet {
       // }, 1);
       // console.log(event);
 
-      clickedItem.data.stored = "";
+      clickedItem.system.stored = "";
       const item = clickedItem;
 
       event.dataTransfer.setData(
           "text/plain",
           JSON.stringify({
               type: "Item",
-              sheetTab: this.actor.data.flags["_sheetTab"],
+              sheetTab: this.actor.flags["_sheetTab"],
               actorId: this.actor.id,
               itemId: itemId,
               fromToken: this.actor.isToken,
@@ -478,7 +480,7 @@ export class MausritterHirelingSheet extends ActorSheet {
   async _onDropItem(event, data) {
       if (!this.actor.isOwner) return false;
       const item = await Item.fromDropData(data);
-      const itemData = duplicate(item.data);
+      const itemData = duplicate(item);
 
       // Handle item sorting within the same Actor
       const actor = this.actor;
@@ -513,7 +515,7 @@ export class MausritterHirelingSheet extends ActorSheet {
       let sameActor = (data.actorId === actor.id) || (actor.isToken && (data.tokenId === actor.token.id));
       if (sameActor && !(event.ctrlKey)) {
           let i = duplicate(actor.getEmbeddedDocument("Item", data.itemId))
-          i.data.sheet = {
+          i.system.sheet = {
               currentX: x - data.offset.x,
               currentY: y - data.offset.y,
               initialX: x - data.offset.x,
@@ -538,7 +540,7 @@ export class MausritterHirelingSheet extends ActorSheet {
               y: 0
           };
       }
-      itemData.data.sheet = {
+      itemData.system.sheet = {
           currentX: x - data.offset.x,
           currentY: y - data.offset.y,
           initialX: x - data.offset.x,

@@ -1,110 +1,142 @@
 {
-  "name": "mausritter",
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.1.4",
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "V9",
-  "templateVersion": 2,
-  "author": "Futilrevenge",
+  "version": "0.2.7",
   "esmodules": [
     "module/mausritter.js"
   ],
   "styles": [
     "css/mausritter.css"
   ],
-  "scripts": [],
   "packs": [
     {
       "name": "weapons",
       "label": "Weapons",
       "system": "mausritter",
       "path": "packs/weapons.db",
-      "entity": "Item"
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "armor",
       "label": "Armor",
       "system": "mausritter",
       "path": "packs/armor.db",
-      "entity": "Item"
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "gear",
       "label": "Gear",
       "system": "mausritter",
       "path": "packs/gear.db",
-      "entity": "Item"
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "conditions",
       "label": "Conditions",
       "system": "mausritter",
       "path": "packs/conditions.db",
-      "entity": "Item"
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "spells",
       "label": "Spells",
       "system": "mausritter",
       "path": "packs/spells.db",
-      "entity": "Item"
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "creatures",
       "label": "Creatures",
       "system": "mausritter",
       "path": "packs/creatures.db",
-      "entity": "Actor"
+      "type": "Actor",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "tables",
       "label": "Tables",
       "system": "mausritter",
       "path": "packs/tables.db",
-      "entity": "RollTable"
+      "type": "RollTable",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "mausritter-macros",
       "label": "Mausritter Macros",
       "system": "mausritter",
       "path": "packs/mausritter-macros.db",
-      "entity": "Macro"
+      "type": "Macro",
+      "private": false,
+      "flags": {}
     }
   ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en.json",
+      "flags": {}
     },
     {
       "lang": "fr",
       "name": "Français",
-      "path": "lang/fr.json"
+      "path": "lang/fr.json",
+      "flags": {}
     },
     {
       "lang": "pt-BR",
       "name": "Português (Brasil)",
-      "path": "lang/pt-BR.json"
+      "path": "lang/pt-br.json",
+      "flags": {}
     },
     {
       "lang": "es",
       "name": "Español (Spanish)",
-      "path": "lang/es.json"
+      "path": "lang/es.json",
+      "flags": {}
     },
     {
       "lang": "de",
       "name": "Deutsch (German)",
-      "path": "lang/de.json"
+      "path": "lang/de.json",
+      "flags": {}
+    },
+    {
+      "lang": "pl",
+      "name": "Polski (Polish)",
+      "path": "lang/pl.json",
+      "flags": {}
     }
   ],
   "gridDistance": 1,
   "gridUnits": "in",
   "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "",
   "url": "https://github.com/Futil/foundry-mausritter",
-  "manifest": "https://raw.githubusercontent.com/Futil/foundry-mausritter/main/system.json",
-  "download": "https://github.com/Futil/foundry-mausritter/archive/main.zip",
-  "license": "LICENSE.txt"
+  "manifest": "https://raw.githubusercontent.com/Futil/foundry-mausritter/v10/system.json",
+  "download": "https://github.com/Futil/foundry-mausritter/archive/v10.zip",
+  "license": "LICENSE.txt",
+  "id": "mausritter",
+  "authors": [
+    {
+      "name": "Futilrevenge",
+      "flags": {}
+    }
+  ],
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10",
+    "maximum": "10"
+  }
 }

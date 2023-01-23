@@ -10,8 +10,8 @@ export class MausritterActor extends Actor {
   prepareData() {
     super.prepareData();
 
-    const actorData = this.data;
-    const data = actorData.data;
+    const actorData = this;
+    const data = actorData.system;
     const flags = actorData.flags;
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
@@ -25,7 +25,7 @@ export class MausritterActor extends Actor {
    * Prepare Character type specific data
    */
   _prepareCharacterData(actorData) {
-    const data = actorData.data;
+    const data = actorData.system;
 
     // let armorBonus = 0;
     // const armors = this.getEmbeddedCollection("Item").filter(e => "armor" === e.type);
@@ -51,8 +51,9 @@ export class MausritterActor extends Actor {
       buttons: {
         roll: {
           icon: '<i class="fas fa-check"></i>',
+
           label: game.i18n.localize('Maus.Roll'),
-          callback: (html) => this.rollStat(this.data.data.stats[html.find('[id=\"stat\"]')[0].value])
+          callback: (html) => this.rollStat(this.system.stats[html.find('[id=\"stat\"]')[0].value])
         },
         cancel: {
           icon: '<i class="fas fa-times"></i>',
@@ -123,10 +124,10 @@ export class MausritterActor extends Actor {
       });
       t.render(true);
       
-      // if(item.data.weapon.selected == 0)
-      //   this.rollWeapon(item, item.data.weapon.dmg1);
+      // if(item.system.weapon.selected == 0)
+      //   this.rollWeapon(item, item.system.weapon.dmg1);
       // else
-      // this.rollWeapon(item, item.data.weapon.dmg2);
+      // this.rollWeapon(item, item.system.weapon.dmg2);
     } else if(item.type=="spell"){
       //Select the stat of the roll.
       let t = new Dialog({
@@ -155,16 +156,16 @@ export class MausritterActor extends Actor {
   }
 
   rollWeapon(item = "", state = ""){
-    let die = (item.data.weapon.selected == 0 ? item.data.weapon.dmg1 : item.data.weapon.dmg2)
+    let die = (item.system.weapon.selected == 0 ? item.system.weapon.dmg1 : item.system.weapon.dmg2)
     
     if(state == "impaired")
       die = 'd4';
     if(state == "enhanced")
       die = 'd12';
       
-  //   this.rollWeapon(item, item.data.weapon.dmg1);
+  //   this.rollWeapon(item, item.system.weapon.dmg1);
   // else
-  // this.rollWeapon(item, item.data.weapon.dmg2);
+  // this.rollWeapon(item, item.system.weapon.dmg2);
 
     let damageRoll = new Roll(die);
     damageRoll.evaluate({async: false});
@@ -174,8 +175,8 @@ export class MausritterActor extends Actor {
 
     //Create the pip HTML.
     let pipHtml = "<div style='margin-top: 5px;'>";
-    for (let i = 0; i < item.data.pips.max; i++) {
-      if (i < item.data.pips.value)
+    for (let i = 0; i < item.system.pips.max; i++) {
+      if (i < item.system.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
@@ -253,23 +254,23 @@ export class MausritterActor extends Actor {
       }
     }
 
-    if(item.data.description == null){
-      item.data.description = "";
+    if(item.system.description == null){
+      item.system.description = "";
     }
 
-    item.data.description = item.data.description.split("[DICE]").join("<strong style='text-decoration:underline' class='red'>"+power+"</strong>");
-    item.data.description = item.data.description.split("[SUM]").join("<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>");
-    item.data.description += "<h2>"+game.i18n.localize('Maus.RollUsage')+": <strong>"+usage+"</strong></h2>";
+    item.system.description = item.system.description.split("[DICE]").join("<strong style='text-decoration:underline' class='red'>"+power+"</strong>");
+    item.system.description = item.system.description.split("[SUM]").join("<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>");
+    item.system.description += "<h2>"+game.i18n.localize('Maus.RollUsage')+": <strong>"+usage+"</strong></h2>";
     if(miscast){
       let miscastDesc = game.i18n.localize('Maus.RollMiscastDesc');
       miscastDesc = miscastDesc.replace("!miscast!", ""+miscast);
-      item.data.description += "<h2>"+game.i18n.localize('Maus.RollMiscast')+": <strong>"+miscast+"</strong> </h2>" + miscastDesc;
+      item.system.description += "<h2>"+game.i18n.localize('Maus.RollMiscast')+": <strong>"+miscast+"</strong> </h2>" + miscastDesc;
     }
 
     //Create the pip HTML.
     let pipHtml = "<div style='margin-top: 5px;'>";
-    for (let i = 0; i < item.data.pips.max; i++) {
-      if (i < item.data.pips.value)
+    for (let i = 0; i < item.system.pips.max; i++) {
+      if (i < item.system.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
@@ -342,7 +343,7 @@ export class MausritterActor extends Actor {
 
     let damageRoll = 0;
     if (item.type == "weapon") {
-      damageRoll = new Roll(item.data.damage);
+      damageRoll = new Roll(item.system.damage);
       damageRoll.evaluate({async: false});
 
     }
@@ -353,7 +354,7 @@ export class MausritterActor extends Actor {
     let mod = 0;
     if (attribute.mod > 0) mod = attribute.mod;
 
-    let targetValue = attribute.value + mod + (item == "" ? 0 : item.data.bonus);
+    let targetValue = attribute.value + mod + (item == "" ? 0 : item.system.bonus);
 
     //Here's where we handle the result text.
     let resultText = "";
@@ -501,21 +502,21 @@ export class MausritterActor extends Actor {
 
     //Create the pip HTML.
     let pipHtml = "<div style='margin-top: 5px;'>";
-    for (let i = 0; i < item.data.pips.max; i++) {
-      if (i < item.data.pips.value)
+    for (let i = 0; i < item.system.pips.max; i++) {
+      if (i < item.system.pips.value)
         pipHtml += '<i class="fas fa-circle">&nbsp;</i>'
       else
         pipHtml += '<i class="far fa-circle">&nbsp;</i>';
     }
     pipHtml += "</div>";
 
-    if(item.data.description == null){
-      item.data.description = "";
-    } else if(item.data.description.length > 0){
-      item.data.description += "<br/>";
+    if(item.system.description == null){
+      item.system.description = "";
+    } else if(item.system.description.length > 0){
+      item.system.description += "<br/>";
     }
     if(item.type == "condition"){
-      item.data.description += item.data.desc+"<br/><strong>Clear: </strong>"+item.data.clear;
+      item.system.description += item.system.desc+"<br/><strong>Clear: </strong>"+item.system.clear;
     }
 
     var templateData = {

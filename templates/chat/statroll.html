@@ -14,7 +14,7 @@
         {{{pip}}}
         {{/if}}
         <div class="description">
-            <div class="body">{{{item.data.description}}}</div>
+            <div class="body">{{{item.system.description}}}</div>
         </div>
         {{else}}
         {{#if isWeapon}} 
@@ -65,10 +65,10 @@
             </div>
             <div class="rollmods" style="margin-top: 0px;">{{weaponState}} ({{#if isSpell}}{{data.rollDiv}}{{else}}{{damageDice}}{{/if}})</div>
 
-                {{#if item.data.description}}
+                {{#if item.system.description}}
                 <div class="description">
                     <div class="header" style="font-size: 1.3em;">{{localize "Maus.RollDescription"}}</div>
-                    <div class="body">{{{item.data.description}}}</div>
+                    <div class="body">{{{item.system.description}}}</div>
                 </div>
                 {{/if}}
             {{/if}}

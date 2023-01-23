@@ -18,11 +18,11 @@ export class MausritterItemSheet extends ItemSheet {
   get template() {
     const path = "systems/mausritter/templates/item";
     // Return a single sheet for all item types.
-    return `${path}/item-${this.item.data.type}-sheet.html`;
+    return `${path}/item-${this.item.type}-sheet.html`;
     // Alternatively, you could use the following return statement to do a
     // unique item sheet by type, like `weapon-sheet.html`.
 
-    // return `${path}/${this.item.data.type}-sheet.html`;
+    // return `${path}/${this.item.system.type}-sheet.html`;
   }
 
 
@@ -42,14 +42,14 @@ export class MausritterItemSheet extends ItemSheet {
   //  * @return {undefined}
   //  */
   // _prepareItemData(item) {
-  //   console.log(item.data);
+  //   console.log(item.system);
 
   //   if(item.category == "gear"){item.isWeapon = false; item.isCondition = false;}
   //   else if(item.category == "weapon"){
   //     this.object.update({"data.isWeapon" : true});
   //     this.object.update({"data.isCondition" : false});
 
-  //     console.log(item.data.isWeapon);
+  //     console.log(item.system.isWeapon);
 
   //     if(item.weapon.dmg2 != ""){
   //       item.weapon.canSwap = true;
@@ -59,7 +59,7 @@ export class MausritterItemSheet extends ItemSheet {
   //   }
   //   else if(item.category == "condition"){item.isWeapon = false; item.isCondition = true;}
 
-  //   var dupeItem = duplicate(item.data);
+  //   var dupeItem = duplicate(item.system);
 
     
   //   // this.update({"data.recharge.charged": false});

@@ -7,15 +7,19 @@
             <div class="grid grid-3col">
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemWorth"}}</label>
-                    <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.cost" value="{{system.cost}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemCurrentStore"}}</label>
-                    <input type="text" name="data.store.value" value="{{data.store.value}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.store.value" value="{{system.store.value}}" data-dtype="Number" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemMaxStore"}}</label>
-                    <input type="text" name="data.store.max" value="{{data.store.max}}" data-dtype="Number" class="item-text"/>
+                    <input type="text" name="system.store.max" value="{{system.store.max}}" data-dtype="Number" class="item-text"/>
+                </div>
+                <div class="resource">
+                    <label class="resource-label">{{localize "Maus.ItemColor"}}</label>
+                    <input type="text" name="system.color" value="{{system.color}}" data-dtype="String" class="item-text"/>
                 </div>
             </div>
 
@@ -32,7 +36,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Attributes Tab --}}

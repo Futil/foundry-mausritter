@@ -6,11 +6,15 @@
             <div class="grid grid-2col">
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemClear"}}</label>
-                    <input type="text" name="data.clear" value="{{data.clear}}" data-dtype="String" class="item-text"/>
+                    <input type="text" name="system.clear" value="{{system.clear}}" data-dtype="String" class="item-text"/>
                 </div>
                 <div class="resource">
                     <label class="resource-label">{{localize "Maus.ItemDescription"}}</label>
-                    <input type="text" name="data.desc" value="{{data.desc}}" data-dtype="String" class="item-text"/>
+                    <input type="text" name="system.desc" value="{{system.desc}}" data-dtype="String" class="item-text"/>
+                </div>
+                <div class="resource">
+                    <label class="resource-label">{{localize "Maus.ItemColor"}}</label>
+                    <input type="text" name="system.color" value="{{system.color}}" data-dtype="String" class="item-text"/>
                 </div>
 
             </div>
@@ -28,7 +32,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Attributes Tab --}}

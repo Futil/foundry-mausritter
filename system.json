@@ -1,7 +1,7 @@
 {
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "esmodules": [
     "module/mausritter.js"
   ],
@@ -105,6 +105,12 @@
       "lang": "es",
       "name": "Español (Spanish)",
       "path": "lang/es.json",
+      "flags": {}
+    },
+    {
+      "lang": "pl",
+      "name": "Polski (Polish)",
+      "path": "lang/pl.json",
       "flags": {}
     },
     {

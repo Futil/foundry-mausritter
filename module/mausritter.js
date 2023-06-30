@@ -11,6 +11,7 @@ import { MausritterItemSheet } from "./item/item-sheet.js";
 import {
   registerSettings
 } from "./settings.js";
+import {autoCreateCharacter} from "./actor/create-character/create-character.js";
 
 Hooks.once('init', async function () {
 
@@ -18,13 +19,14 @@ Hooks.once('init', async function () {
     MausritterActor,
     MausritterItem,
     rollItemMacro,
-    rollStatMacro
+    rollStatMacro,
+    autoCreateCharacter,
   };
 
   registerSettings();
 
 
-  /**
+  /**s
    * Set an initiative formula for the system
    * @type {String}
    */

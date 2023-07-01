@@ -1,7 +1,7 @@
 {
   "title": "Mausritter",
   "description": "The unofficial Mausritter system for FoundryVTT.",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "esmodules": [
     "module/mausritter.js"
   ],
@@ -15,8 +15,11 @@
       "system": "mausritter",
       "path": "packs/weapons.db",
       "type": "Item",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "armor",
@@ -24,8 +27,11 @@
       "system": "mausritter",
       "path": "packs/armor.db",
       "type": "Item",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "gear",
@@ -33,8 +39,11 @@
       "system": "mausritter",
       "path": "packs/gear.db",
       "type": "Item",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "conditions",
@@ -42,8 +51,11 @@
       "system": "mausritter",
       "path": "packs/conditions.db",
       "type": "Item",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "spells",
@@ -51,8 +63,11 @@
       "system": "mausritter",
       "path": "packs/spells.db",
       "type": "Item",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "creatures",
@@ -60,8 +75,11 @@
       "system": "mausritter",
       "path": "packs/creatures.db",
       "type": "Actor",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "tables",
@@ -69,8 +87,11 @@
       "system": "mausritter",
       "path": "packs/tables.db",
       "type": "RollTable",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "mausritter-macros",
@@ -78,8 +99,11 @@
       "system": "mausritter",
       "path": "packs/mausritter-macros.db",
       "type": "Macro",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "languages": [
@@ -135,8 +159,7 @@
     }
   ],
   "compatibility": {
-    "minimum": "10",
-    "verified": "10",
-    "maximum": "10"
+    "minimum": "9",
+    "verified": "11"
   }
 }

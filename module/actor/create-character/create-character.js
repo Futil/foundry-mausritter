@@ -1,4 +1,4 @@
-import {BACKGROUNDS, FIRST_NAMES, ITEMS, LAST_NAMES, WEAPONS_TO_ITEMS} from "./data.js";
+import {BACKGROUNDS, FIRST_NAMES, ITEMS, LAST_NAMES, SLOTS, WEAPONS_TO_ITEMS} from "./data.js";
 import {showCreateCharacterDialog} from "./create-character-dialog.js";
 import {showWeaponChoiceDialog} from "./weapon-choice.js";
 import {addItem, attrRoll, drawFromTable, getItemFromFoundry} from "./foundry-clinet.js";
@@ -33,33 +33,36 @@ export async function createCharacter(options, additionalWeaponsItems) {
     }
 
     if (additionalWeaponsItems !== undefined) {
-        additionalWeaponsItems.forEach(itemId => addItem(itemId, instant))
+        const slots = [SLOTS.MAIN_PAW, SLOTS.UPPER_BODY]
+        for (const [idx, itemId] of additionalWeaponsItems.entries()) {
+            await addItem(itemId, instant, slots[idx]);
+        }
     }
 
     await instant.sheet.render(true)
 
     const highestAttrValue = getHighestAttrValue(characterStats.data.stats);
-    if (highestAttrValue <= 7 && options.items) {
+    if (highestAttrValue <= 7 && options.items && options.background) {
         const additionalItemsBackground = getRandomBackgroundDifferentThen(background);
         getBackgroundItems(additionalItemsBackground)
             .then(async (items) => {
-                for (const item of items) {
-                    await addItem(item.uuid, instant);
+                const slots = [SLOTS.SLOT_2, SLOTS.SLOT_5]
+                for (const [idx, item] of items.entries()) {
+                    await addItem(item.uuid, instant, slots[idx]);
                 }
 
                 await showAdditionalItemsInfoDialog(items)
             })
 
-    } else if (highestAttrValue <= 9 && options.items) {
+    } else if (highestAttrValue <= 9 && options.items && options.background) {
         const additionalItemsBackground = getRandomBackgroundDifferentThen(background);
         const itemCompendiumIds = additionalItemsBackground.items;
         getBackgroundItems(additionalItemsBackground)
             .then(async (items) => {
                 await showAdditionalItemsChoiceDialog(items, async (selectedIndex) => {
-                    await addItem(itemCompendiumIds[selectedIndex], instant)
+                    await addItem(itemCompendiumIds[selectedIndex], instant, SLOTS.SLOT_2)
                 })
             })
-    } else {
     }
 }
 
@@ -137,13 +140,14 @@ function getRandomBackground() {
 
 
 async function addStatingItems(instant) {
-    await addItem(ITEMS.TORCHES, instant)
-    await addItem(ITEMS.RATIONS, instant)
+    await addItem(ITEMS.TORCHES, instant, SLOTS.SLOT_3)
+    await addItem(ITEMS.RATIONS, instant, SLOTS.SLOT_6)
 }
 
 async function addItemsFromBackground(instant, background) {
-    for (const itemId of background.items) {
-        await addItem(itemId, instant);
+    const slots = [SLOTS.SLOT_1, SLOTS.SLOT_4]
+    for (const [idx, itemId] of background.items.entries()) {
+        await addItem(itemId, instant, slots[idx]);
     }
 }
 

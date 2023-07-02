@@ -442,7 +442,6 @@ export class MausritterActorSheet extends ActorSheet {
         clickedItem.system.stored = "";
         const item = clickedItem;
 
-
         event.dataTransfer.setData(
             "text/plain",
             JSON.stringify({

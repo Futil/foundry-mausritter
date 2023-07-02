@@ -363,3 +363,47 @@ export const LAST_NAMES = [
     'Winterholme',
     'Witter',
 ];
+const UPPER_ROW_Y = -150
+const LOWER_ROW_Y = -20
+export const SLOTS = {
+    MAIN_PAW: {
+        currentX: -270,
+        currentY: UPPER_ROW_Y,
+    },
+    OFF_PAW: {
+        currentX: -270,
+        currentY: LOWER_ROW_Y,
+    },
+    UPPER_BODY: {
+        currentX: -140,
+        currentY: UPPER_ROW_Y,
+    },
+    LOWER_BODY: {
+        currentX: -140,
+        currentY: LOWER_ROW_Y,
+    },
+    SLOT_1:{
+        currentX: 10,
+        currentY: UPPER_ROW_Y,
+    },
+    SLOT_2:{
+        currentX: 140,
+        currentY: UPPER_ROW_Y,
+    },
+    SLOT_3:{
+        currentX: 270,
+        currentY: UPPER_ROW_Y,
+    },
+    SLOT_4:{
+        currentX: 10,
+        currentY: LOWER_ROW_Y,
+    },
+    SLOT_5:{
+        currentX: 140,
+        currentY: LOWER_ROW_Y,
+    },
+    SLOT_6:{
+        currentX: 270,
+        currentY: LOWER_ROW_Y,
+    }
+}

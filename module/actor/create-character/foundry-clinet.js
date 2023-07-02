@@ -5,9 +5,14 @@ export async function getItemFromFoundry(item_id) {
     });
 }
 
-export async function addItem(itemId, instant) {
+export async function addItem(itemId, instant, slot) {
     const item = await getItemFromFoundry(itemId);
-    await instant.sheet._onDropItemCreate(item)
+    const itemData = duplicate(item);
+    if (slot) {
+        itemData.system.sheet = slot
+    }
+    console.log(itemData)
+    await instant.sheet._onDropItemCreate(itemData)
 }
 
 export function attrRoll() {

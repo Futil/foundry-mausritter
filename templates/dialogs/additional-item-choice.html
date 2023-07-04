@@ -1,0 +1,12 @@
+<div>
+    <p>Because your highest attribute is 9 or less you take additional starting item:</p>
+    <label for="items">Additional item:</label>
+    <select name="items" id="items">
+        {{#each items as |item|}}
+        <option value="{{item.id}}">{{item.name}}</option>
+        {{/each}}
+    </select>
+    <br>
+    <br>
+</div>
+

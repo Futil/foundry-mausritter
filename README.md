@@ -41,3 +41,7 @@ game.mausritter.rollStatMacro();
 ![Alt text](https://i.imgur.com/4PYBj8X.jpg "Game Example")
 
 _Mausritter ©2020 Isaac Williams & Losing Games_
+
+# Legal note
+Images used:
+- [Icons - Flaticon](https://www.flaticon.com)

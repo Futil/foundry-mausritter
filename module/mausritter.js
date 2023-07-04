@@ -26,7 +26,7 @@ Hooks.once('init', async function () {
   registerSettings();
 
 
-  /**s
+  /**
    * Set an initiative formula for the system
    * @type {String}
    */

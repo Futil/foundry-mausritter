@@ -11,7 +11,6 @@ export async function addItem(itemId, instant, slot) {
     if (slot) {
         itemData.system.sheet = slot
     }
-    console.log(itemData)
     await instant.sheet._onDropItemCreate(itemData)
 }
 
@@ -21,7 +20,12 @@ export function attrRoll() {
 
 export async function drawFromTable(tableName) {
     const listCompendium = await game.packs.filter(p => p.documentName === 'RollTable');
-    const inside = await listCompendium.filter(p => p.metadata.label === 'Tables')[0].getDocuments();
+    const compendiumTables = await listCompendium.filter(p => p.metadata.label === 'Tables')
+    if (compendiumTables.length===0) {
+        ui.notifications.warn(`Table ${tableName} not found.`, {});
+        return;
+    }
+    const inside = await compendiumTables[0].getDocuments();
     const table = await inside.filter(p => p.name === tableName)[0];
 
     if (!table) {

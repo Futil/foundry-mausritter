@@ -1,7 +1,7 @@
 export async function showAdditionalItemsInfoDialog(items) {
-    let template = 'systems/mausritter/templates/dialogs/additional-item-info.html';
+    const template = 'systems/mausritter/templates/dialogs/additional-item-info.html';
     const html = await renderTemplate(template, {items: items})
-    let d = new Dialog({
+    const d = new Dialog({
         title: "Additional starting items",
         content: html,
         buttons: {

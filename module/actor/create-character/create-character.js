@@ -1,4 +1,13 @@
-import {BACKGROUNDS, FIRST_NAMES, ITEMS, LAST_NAMES, SLOTS, WEAPONS_TO_ITEMS} from "./data.js";
+import {
+    BACKGROUNDS,
+    FIRST_NAMES,
+    ITEMS,
+    LAST_NAMES,
+    SLOTS,
+    WEAPONS_TO_ITEMS,
+    TAKE_ONE_OF_ADDITIONAL_ITEMS,
+    TAKE_BOTH_ADDITIONAL_ITEMS
+} from "./data.js";
 import {showCreateCharacterDialog} from "./create-character-dialog.js";
 import {showWeaponChoiceDialog} from "./weapon-choice.js";
 import {addItem, attrRoll, drawFromTable, getItemFromFoundry} from "./foundry-clinet.js";
@@ -21,54 +30,56 @@ export async function autoCreateCharacter() {
 export async function createCharacter(options, additionalWeaponsItems) {
     const background = options.background ? getRandomBackground() : undefined
     const characterStats = await createStats(background, options.stats, options.details);
-
-    const instant = await Actor.create(characterStats);
+    const characterActor = await Actor.create(characterStats);
 
     if (options.background && options.items) {
-        await addItemsFromBackground(instant, background);
+        await addItemsFromBackground(characterActor, background);
     }
 
     if (options.items) {
-        await addStatingItems(instant)
+        await addStatingItems(characterActor)
     }
 
     if (additionalWeaponsItems !== undefined) {
         const slots = [SLOTS.MAIN_PAW, SLOTS.UPPER_BODY]
         for (const [idx, itemId] of additionalWeaponsItems.entries()) {
-            await addItem(itemId, instant, slots[idx]);
+            await addItem(itemId, characterActor, slots[idx]);
         }
     }
 
-    await instant.sheet.render(true)
+    await characterActor.sheet.render(true)
 
     const highestAttrValue = getHighestAttrValue(characterStats.data.stats);
-    if (highestAttrValue <= 7 && options.items && options.background) {
-        const additionalItemsBackground = getRandomBackgroundDifferentThen(background);
+    if (highestAttrValue <= TAKE_BOTH_ADDITIONAL_ITEMS && options.items && options.background) {
+        const additionalItemsBackground = getRandomBackgroundDifferentThan(background);
         getBackgroundItems(additionalItemsBackground)
             .then(async (items) => {
                 const slots = [SLOTS.SLOT_2, SLOTS.SLOT_5]
                 for (const [idx, item] of items.entries()) {
-                    await addItem(item.uuid, instant, slots[idx]);
+                    await addItem(item.uuid, characterActor, slots[idx]);
                 }
 
                 await showAdditionalItemsInfoDialog(items)
             })
 
-    } else if (highestAttrValue <= 9 && options.items && options.background) {
-        const additionalItemsBackground = getRandomBackgroundDifferentThen(background);
-        const itemCompendiumIds = additionalItemsBackground.items;
-        getBackgroundItems(additionalItemsBackground)
-            .then(async (items) => {
-                await showAdditionalItemsChoiceDialog(items, async (selectedIndex) => {
-                    await addItem(itemCompendiumIds[selectedIndex], instant, SLOTS.SLOT_2)
+    } else {
+
+        if (highestAttrValue <= TAKE_ONE_OF_ADDITIONAL_ITEMS && options.items && options.background) {
+            const additionalItemsBackground = getRandomBackgroundDifferentThan(background);
+            const itemCompendiumIds = additionalItemsBackground.items;
+            getBackgroundItems(additionalItemsBackground)
+                .then(async (items) => {
+                    await showAdditionalItemsChoiceDialog(items, async (selectedIndex) => {
+                        await addItem(itemCompendiumIds[selectedIndex], characterActor, SLOTS.SLOT_2)
+                    })
                 })
-            })
+        }
     }
 }
 
-function getRandomBackgroundDifferentThen(current) {
+function getRandomBackgroundDifferentThan(current) {
     const background = getRandomBackground()
-    return background.name === current.name ? getRandomBackgroundDifferentThen(current) : background;
+    return background.name === current.name ? getRandomBackgroundDifferentThan(current) : background;
 }
 
 async function getBackgroundItems(background) {
@@ -80,9 +91,9 @@ async function getBackgroundItems(background) {
 }
 
 async function createStats(background, basicStats, details) {
-    const dexterity = basicStats === true ? attrRoll() : 0;
-    const strength = basicStats === true ? attrRoll() : 0;
-    const will = basicStats === true ? attrRoll() : 0;
+    const dexterity = !!basicStats ? attrRoll() : 0;
+    const strength = !!basicStats ? attrRoll() : 0;
+    const will = !!basicStats ? attrRoll() : 0;
 
     const backgroundName = !!background ? background.name : "";
     const pips = !!background ? background.pips : 0;
@@ -90,14 +101,10 @@ async function createStats(background, basicStats, details) {
 
     const birthSign = details ? await drawFromTable("Birthsign") : '';
     const look = details ? await drawFromTable("Physical detail") : '';
+    const coat = details ? await drawFromTable("Mousy Coat Pattern") + " " + await drawFromTable("Mousy Coat Color") : '';
 
-    let coat;
-    if (details) {
-        coat = await drawFromTable("Mousy Coat Pattern") + " " + await drawFromTable("Mousy Coat Color");
-    } else {
-        coat = '';
-    }
     const name = getRandomName();
+
     return {
         name: name,
         type: "character",

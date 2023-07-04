@@ -1,3 +1,6 @@
+export const TAKE_BOTH_ADDITIONAL_ITEMS = 7;
+export const TAKE_ONE_OF_ADDITIONAL_ITEMS = 9;
+
 export const ITEMS = {
     TORCHES: "Compendium.mausritter.gear.IhV9bZ3WX8sQnJAp",
     RATIONS: "Compendium.mausritter.gear.EuWZ26fjA7E0Gka0"

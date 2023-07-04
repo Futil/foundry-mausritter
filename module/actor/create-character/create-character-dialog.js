@@ -1,9 +1,7 @@
-import {createCharacter} from "./create-character.js";
-
 export async function showCreateCharacterDialog(callback) {
-    let template = 'systems/mausritter/templates/dialogs/create-character.html';
+    const template = 'systems/mausritter/templates/dialogs/create-character.html';
     const html = await renderTemplate(template)
-    let d = new Dialog({
+    const d = new Dialog({
         title: "What do you want to create?",
         content: html,
         buttons: {

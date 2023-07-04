@@ -1,7 +1,7 @@
 export async function showWeaponChoiceDialog(callback) {
-    let template = 'systems/mausritter/templates/dialogs/weapon-choice.html';
+    const template = 'systems/mausritter/templates/dialogs/weapon-choice.html';
     const html = await renderTemplate(template)
-    let d = new Dialog({
+    const d = new Dialog({
         title: "What weapon do you want?",
         content: html,
         buttons: {

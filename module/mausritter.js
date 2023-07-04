@@ -20,7 +20,7 @@ Hooks.once('init', async function () {
     MausritterItem,
     rollItemMacro,
     rollStatMacro,
-    autoCreateCharacter,
+    autoCreateCharacter
   };
 
   registerSettings();

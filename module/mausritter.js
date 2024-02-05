@@ -38,8 +38,20 @@ Hooks.once('init', async function () {
   // Define custom Entity classes
   CONFIG.Actor.documentClass = MausritterActor;
   CONFIG.Item.documentClass = MausritterItem;
+ 
+  // Define table data for character generator
+  CONFIG.MAUSRITTER = {}
 
-
+  CONFIG.MAUSRITTER.tables = {
+    tables: "Tables",
+    birthsign: "Birthsign",
+    physicalDetail: "Physical detail",
+    coatPattern: "Mousy Coat Pattern",
+    coatColor: "Mousy Coat Color",
+    firstName: "Mousy Names - Birthname",
+    lastName: "Mousy Names - Matriname"
+  }
+  
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
 

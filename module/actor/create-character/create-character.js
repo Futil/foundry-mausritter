@@ -99,11 +99,11 @@ async function createStats(background, basicStats, details) {
     const pips = !!background ? background.pips : 0;
     const hp = !!background ? background.hp : 0;
 
-    const birthSign = details ? await drawFromTable("Birthsign") : '';
-    const look = details ? await drawFromTable("Physical detail") : '';
-    const coat = details ? await drawFromTable("Mousy Coat Pattern") + " " + await drawFromTable("Mousy Coat Color") : '';
+    const birthSign = details ? await drawFromTable(CONFIG.MAUSRITTER.tables.birthsign) : '';
+    const look = details ? await drawFromTable(CONFIG.MAUSRITTER.tables.physicalDetail) : '';
+    const coat = details ? await drawFromTable(CONFIG.MAUSRITTER.tables.coatPattern) + " " + await drawFromTable(CONFIG.MAUSRITTER.tables.coatColor) : '';
 
-    const name = getRandomName();
+    const name = await getRandomName();
 
     return {
         name: name,
@@ -162,8 +162,8 @@ function getHighestAttrValue(stats) {
     return Math.max(...[stats.dexterity.max, stats.will.max, stats.strength.max])
 }
 
-function getRandomName() {
-    const firstName = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)]
-    const lastName = LAST_NAMES[Math.floor(Math.random() * LAST_NAMES.length)]
+async function getRandomName() {
+    const firstName = await drawFromTable(CONFIG.MAUSRITTER.tables.firstName)
+    const lastName = await drawFromTable(CONFIG.MAUSRITTER.tables.lastName)
     return firstName + " " + lastName
 }

@@ -43,15 +43,14 @@ export class MausritterActor extends Actor {
 
     let selectList = "";
 
-    statList.forEach(stat => selectList += "<option value='" + stat[0] + "'>" + stat[1].label + "</option>")
+    statList.forEach(stat => selectList += "<option value='" + stat[0] + "'>" + game.i18n.localize('Maus.'+stat[1].label) + "</option>")
 
     let d = new Dialog({
-      title: "Select Roll Type",
-      content: "<h2> Stat </h2> <select style='margin-bottom:10px;'name='stat' id='stat'> " + selectList + "</select> <br/>",
+      title: game.i18n.localize('Maus.RollSelectType'),
+      content: "<h2>" + game.i18n.localize('Maus.RollSelectStat') + "</h2> <select style='margin-bottom:10px;'name='stat' id='stat'> " + selectList + "</select> <br/>",
       buttons: {
         roll: {
           icon: '<i class="fas fa-check"></i>',
-
           label: game.i18n.localize('Maus.Roll'),
           callback: (html) => this.rollStat(this.system.stats[html.find('[id=\"stat\"]')[0].value])
         },
@@ -76,7 +75,7 @@ export class MausritterActor extends Actor {
     //this.rollAttribute(attribute, "none");
 
     let d = new Dialog({
-      title: "Select Roll Type",
+      title: game.i18n.localize('Maus.RollSelectType'),
       content: "<h2> "+game.i18n.localize('Maus.RollAdvantageDisadvantage')+ "</h2> <select style='margin-bottom:10px;'name='advantage' id='advantage'> <option value='none'>"+game.i18n.localize('Maus.RollNone')+"</option> <option value='advantage'>"+game.i18n.localize('Maus.RollAdvantageDisadvantage')+"</option></select> <br/>",
       buttons: {
         roll: {
@@ -196,7 +195,7 @@ export class MausritterActor extends Actor {
       rollTitle: game.i18n.localize('Maus.RollDamage'), //The title of the roll.
       rollText: damageRoll._total, //What is printed within the roll amount.
       damageDice: die,
-      weaponState: state,
+      weaponState: game.i18n.localize('Maus.Roll' + state.charAt(0).toUpperCase() + state.slice(1)), 
       isWeapon: true,
       diceData
     };
@@ -257,9 +256,9 @@ export class MausritterActor extends Actor {
     if(item.system.description == null){
       item.system.description = "";
     }
-
-    item.system.description = item.system.description.split("[DICE]").join("<strong style='text-decoration:underline' class='red'>"+power+"</strong>");
-    item.system.description = item.system.description.split("[SUM]").join("<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>");
+  
+    item.system.description = item.system.description.split(game.i18n.localize('Maus.RollDiceKeyword')).join("<strong style='text-decoration:underline' class='red'>"+power+"</strong>");
+    item.system.description = item.system.description.split(game.i18n.localize('Maus.RollSumKeyword')).join("<strong style='text-decoration:underline' class='red'>"+damageRoll._total+"</strong>");
     item.system.description += "<h2>"+game.i18n.localize('Maus.RollUsage')+": <strong>"+usage+"</strong></h2>";
     if(miscast){
       let miscastDesc = game.i18n.localize('Maus.RollMiscastDesc');

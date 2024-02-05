@@ -20,7 +20,7 @@ export function attrRoll() {
 
 export async function drawFromTable(tableName) {
     const listCompendium = await game.packs.filter(p => p.documentName === 'RollTable');
-    const compendiumTables = await listCompendium.filter(p => p.metadata.label === 'Tables')
+    const compendiumTables = await listCompendium.filter(p => p.metadata.label === CONFIG.MAUSRITTER.tables.tables)
     if (compendiumTables.length===0) {
         ui.notifications.warn(`Table ${tableName} not found.`, {});
         return;

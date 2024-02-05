@@ -1,4 +1,20 @@
 {
+    "TYPES": {
+		"Actor": {
+			"character": "Character",
+			"hireling": "Hireling",
+			"creature": "Creature",
+			"storage": "Storage"
+		},
+		"Item": {
+			"item": "Item",
+			"weapon": "Weapon",
+			"armor": "Armor",
+			"storage": "Storage",
+			"condition": "Condition",
+			"spell": "Spell"
+		}
+	},
     "Maus.ActorName" : "Name",
     "Maus.ActorBackground" : "Background",
     "Maus.ActorWants" : "Wants",
@@ -19,7 +35,6 @@
     "Maus.Current" : "Current",
     "Maus.Strength" : "Strength",
     "Maus.Dexterity" : "Dexterity",
-
     "Maus.Will" : "Will",
     "Maus.Max" : "Max",
     "Maus.Pips" : "Pips",
@@ -63,6 +78,7 @@
     "Maus.Roll" : "Roll",
     "Maus.RollDescription" : "Description",
     "Maus.RollSelectStat" : "Select Stat",
+    "Maus.RollSelectType" : "Select Roll Type",
     "Maus.RollAdvantageDisadvantage" : "Advantage/Disadvantage",
     "Maus.RollAdvantage" : "Advantage",
     "Maus.RollDisadvantage" : "Disadvantage",
@@ -73,8 +89,10 @@
     "Maus.RollEnhanced" : "Enhanced",
     "Maus.RollImpaired" : "Impaired",
     "Maus.RollPowerDesc" : "How much Power?",
-    "Maus.RollSum" : "Sum",
+    "Maus.RollSum" : "Sum", 
     "Maus.RollDice" : "Dice",
+    "Maus.RollSumKeyword": "[SUM]",
+    "Maus.RollDiceKeyword": "[DICE]", 
     "Maus.RollUsage" : "Usage",
     "Maus.RollDamage" : "Damage",
     "Maus.RollTarget" : "Target",

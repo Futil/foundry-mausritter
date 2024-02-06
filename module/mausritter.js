@@ -136,45 +136,52 @@ Hooks.once('init', async function () {
 
 Hooks.once("ready", async function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createMausritterMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) => {
+    if (data.type === "Item") {
+      createMausritterMacro(data, slot);
+      return false;
+    }
+  });
 });
-
-
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */
 
 /**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} data     The dropped data
- * @param {number} slot     The hotbar slot to use
+ * Attempt to create a macro from the dropped data. Will use an existing macro if one exists.
+ * @param {object} dropData     The dropped data
+ * @param {number} slot         The hotbar slot to use
  * @returns {Promise}
  */
-async function createMausritterMacro(data, slot) {
-  if (data.type !== "Item") return;
-  if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-  const item = data.data;
+async function createMausritterMacro(dropData, slot) {
+  const macroData = { type: "script", scope: "actor" };
+  const itemData = await Item.implementation.fromDropData(dropData);
 
-  // Create the macro command
-  let command = `game.mausritter.rollItemMacro("${item.name}");`;
-
-
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
-  if (!macro) {
-    macro = await Macro.create({
-      name: item.name,
-      type: "script",
-      img: item.img,
-      command: command,
-      flags: {
-        "mausritter.itemMacro": true
-      }
-    });
+  if (!itemData) {
+    ui.notifications.warn("You can only create macro buttons for owned Items");
+    return null;
   }
+  
+  foundry.utils.mergeObject(macroData, {
+    name: itemData.name,
+    img: itemData.img,
+    command: `game.mausritter.rollItemMacro("${itemData.name}")`,
+    flags: {
+      "mausritter.itemMacro": true,
+    },
+  });
+
+  // Assign the macro to the hotbar
+  const macro =
+    game.macros.find((m) => {
+      return (
+        m.name === macroData.name &&
+        m.command === macroData.command &&
+        m.isAuthor
+      );
+    }) || (await Macro.create(macroData));
   game.user.assignHotbarMacro(macro, slot);
-  return false;
 }
 
 

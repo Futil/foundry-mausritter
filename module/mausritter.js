@@ -137,7 +137,7 @@ Hooks.once('init', async function () {
 Hooks.once("ready", async function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => {
-    if ( ["Item"].includes(data.type) ) {
+    if (data.type === "Item") {
       createMausritterMacro(data, slot);
       return false;
     }
@@ -156,28 +156,31 @@ Hooks.once("ready", async function () {
  */
 async function createMausritterMacro(dropData, slot) {
   const macroData = { type: "script", scope: "actor" };
-  if (dropData.type === "Item") {
-   
-      const itemData = await Item.implementation.fromDropData(dropData);
+  const itemData = await Item.implementation.fromDropData(dropData);
 
-      if ( !itemData ) {
-        ui.notifications.warn("You can only create macro buttons for owned Items");
-        return null;
-      }
-      foundry.utils.mergeObject(macroData, {
-        name: itemData.name,
-        img: itemData.img,
-        command: `game.mausritter.rollItemMacro("${itemData.name}")`,
-        flags: {
-          "mausritter.itemMacro": true
-        }
-      });
-    }  
+  if (!itemData) {
+    ui.notifications.warn("You can only create macro buttons for owned Items");
+    return null;
+  }
+  
+  foundry.utils.mergeObject(macroData, {
+    name: itemData.name,
+    img: itemData.img,
+    command: `game.mausritter.rollItemMacro("${itemData.name}")`,
+    flags: {
+      "mausritter.itemMacro": true,
+    },
+  });
 
   // Assign the macro to the hotbar
-  const macro = game.macros.find(m => {
-    return (m.name === macroData.name) && (m.command === macroData.command) && m.isAuthor;
-  }) || await Macro.create(macroData);
+  const macro =
+    game.macros.find((m) => {
+      return (
+        m.name === macroData.name &&
+        m.command === macroData.command &&
+        m.isAuthor
+      );
+    }) || (await Macro.create(macroData));
   game.user.assignHotbarMacro(macro, slot);
 }
 

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Germania+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&display=swap');
 
 @include-when-export url(https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
 
@@ -889,6 +890,10 @@
   flex: 1;
 }
 
+.mausritter .headerinputtext.actorname {
+  font-size: 3rem;
+}
+
 .mausritter .headerinputfield {
   height: auto;
   width: 100%;
@@ -1384,4 +1389,69 @@
   font-weight: bold;
   font-size: 1.5em;
   line-height: 28px;
+}
+
+/* For czech language, we have "different" letters - diacritic */
+
+.mausritter .tab-select:lang(cs), 
+.mausritter .current-max-label:lang(cs),
+.mausritter .minmax-input:lang(cs),
+.mausritter .minmaxtext:lang(cs),
+.mausritter .littleLabel:lang(cs),
+.mausritter .bigLabel:lang(cs),
+.mausritter .headerinputtext:lang(cs),
+.mausritter .headerinputfield:lang(cs),
+.mausritter .rollcontainer:lang(cs),
+.mausritter .rollattribute:lang(cs),
+.mausritter .roll-target:lang(cs),
+.mausritter .roll-damage:lang(cs),
+.mausritter .item-bag-text:lang(cs),
+.mausritter .item-slot-header:lang(cs),
+.mausritter .item-card-header:lang(cs),
+.mausritter .item-card-header-noborder:lang(cs),
+.mausritter .item-card-damage:lang(cs),
+.mausritter .item-card-field-container:lang(cs),
+.mausritter .sheet-header-maus h1.charname:lang(cs),
+.mausritter .sheet-header-maus .resource-label:lang(cs),
+.mausritter .tabs .item:lang(cs) {
+  font-weight: 900;
+  font-family: 'Roboto Slab', Garamond;
+}
+
+.mausritter .tab-select:lang(cs),
+.mausritter .minmaxtext:lang(cs),
+.mausritter .bigLabel:lang(cs) {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.mausritter .headerinputtext:lang(cs),
+.mausritter .tabs .item:lang(cs) {
+  font-size: 1.125rem;
+  text-transform: capitalize;
+}
+
+.mausritter .littleLabel:lang(cs) {
+  font-size: 1rem;
+}
+
+.mausritter .headerinputtext.actorname:lang(cs) {
+  font-size: 2.125rem;
+}
+
+.mausritter .item-slot-header:lang(cs),
+.mausritter .item-card-header:lang(cs),
+.mausritter .item-card-header-noborder:lang(cs) {
+  font-size: 1em;
+}
+
+.mausritter .item-card-damage:lang(cs),
+.mausritter .item-card-field-container:lang(cs),
+.mausritter .sheet-header-maus h1.charname:lang(cs) {
+  font-size: 1.25em;
+}
+
+.mausritter .current-max-label:lang(cs), 
+.mausritter .sheet-header-maus .resource-label:lang(cs) {
+  font-size: 0.85em;
 }

@@ -109,7 +109,7 @@ Hooks.once('init', async function () {
   }
 
   // Set wounds, advantage, and display name visibility
-  mergeObject(createData,
+  foundry.utils.mergeObject(createData,
     {
       "token.bar1": { "attribute": "health" },        // Default Bar 1 to Health 
       "token.bar2": { "stat": "strength" },      // Default Bar 2 to Insanity

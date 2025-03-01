@@ -7,7 +7,7 @@ export class MausritterStorageSheet extends ActorSheet {
 
     /** @override */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["mausritter", "sheet", "actor", "storage"],
             template: "systems/mausritter/templates/actor/storage-sheet.html",
             width: 475,
